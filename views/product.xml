@@ -1,0 +1,16 @@
+<!--<odoo>-->
+<!--    <data>-->
+         <!-- Action to open product list-->           <!--reference model -->
+<!--        <act-window id="action_product" name="product" res_model="clinical_management_system.product"-->
+<!--                    view_mode="tree, form"/>-->
+
+        <!-- menuitem to open product list-->
+<!--        <menuitem id="menu _product" name="product" parent="mail.mail_feeds" sequence="20" action="action_product"/>-->
+<!--    </data>-->
+<!--</odoo>-->
+
+<odoo>
+     <record model="clinical_management_system.product" id="1">
+            <field name="name">X-Ray</field>
+     </record>
+</odoo>
