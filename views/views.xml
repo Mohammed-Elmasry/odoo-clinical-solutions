@@ -40,6 +40,12 @@
     </record>
     -->
 
+    <menuitem name="clinic" id="menu_root"/>
+
+    <!-- menu categories -->
+
+<!--    <menuitem name="special" id="lab1.menu_1" parent="lab1_menu_root"/>-->
+
     <!-- Top menu item -->
     <!--
     <menuitem name="clinical_management_system" id="clinical_management_system.menu_root"/>
