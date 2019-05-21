@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="">
+
+    </record>
+
+    <act_window id="action_all_employees"
+                name="All employees"
+                res_model="doctor.info.model"
+                view_mode="tree,form"/>
+
+    <menuitem id="menu_custom_toplevel" name="my custom menu" />
+    <menuitem id="menu_custom_left" parent="menu_custom_toplevel"
+              name="this will appear in the left part"/>
+    <menuitem id="menu_all_employees" parent="menu_custom_left" action="action_all_employees"
+              sequence="10"/>
+</odoo>

@@ -41,12 +41,12 @@
     -->
 
     <!-- Top menu item -->
-    <!--
+<!--    &lt;!&ndash;-->
     <menuitem name="clinical_management_system" id="clinical_management_system.menu_root"/>
     -->
     <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="clinical_management_system.menu_1" parent="clinical_management_system.menu_root"/>
+
+    <menuitem name="Menu 1" id="clinical_management_system.menu_1" parent="clinical_management_system.menu_root"/>-->
     <menuitem name="Menu 2" id="clinical_management_system.menu_2" parent="clinical_management_system.menu_root"/>
     -->
     <!-- actions -->
