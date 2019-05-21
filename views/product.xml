@@ -10,7 +10,48 @@
 <!--</odoo>-->
 
 <odoo>
-     <record model="clinical_management_system.product" id="1">
-            <field name="name">X-Ray</field>
-     </record>
+
+
+    <record model="ir.actions.act_window" id="test_action">
+        <field name="name">test</field>
+        <field name="res_model">clinical_management_system.product</field>
+        <field name="view_mode">tree, list, graph</field>
+        <field name="view_all_services" ref="form_all_services"/>
+    </record>
+
+    <record id="action_all_services_form" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="action_all_services"/>
+        <field name="view_id" ref="form_all_services"/>
+        <field name="view_mode">form</field>
+        <field name="sequnce">10</field>
+    </record>
+
+    <record id="form_all_services" model="ir.ui.view">
+        <field name="name">All services</field>
+        <field name="model">clinical_management_system.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="fees"/>
+                    <field name="description"/>
+                    <field name="rental"/>
+                    <field name="type"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+<!--    <record model="clinical_management_system.product" id="1">-->
+<!--        <field name="name">X-Ray</field>-->
+<!--        <field name="fees">10.00</field>-->
+<!--     </record>-->
+<!--    <record model="clinical_management_system.product" id="2">-->
+<!--        <field name="name">Oxygen</field>-->
+<!--        <field name="fees">15.00</field>-->
+<!--    </record>-->
+<!--    <record model="clinical_management_system.product" id="3">-->
+<!--        <field name="name">First aids</field>-->
+<!--        <field name="fees">100</field>-->
+<!--    </record>-->
 </odoo>
