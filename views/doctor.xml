@@ -25,6 +25,7 @@
                 </group>
             </form>
         </field>
+<!--        List View For Doctor Data Model-->
     </record>
     <record model="ir.ui.view" id="view_doctor_info_list">
         <field name="name">Doctor List Info </field>
@@ -40,6 +41,7 @@
             </tree>
         </field>
     </record>
+<!--            Graph View For Doctor Data Model-->
     <record model="ir.ui.view" id="view_doctor_info_graph">
             <field name="name">Doctor Data and Information Graph</field>
             <field name="model">doctor.info.model</field>
@@ -56,6 +58,7 @@
                 </graph>
             </field>
     </record>
+<!--        Pivot View For Doctor Data Model-->
     <record model="ir.ui.view" id="view_doctor_info_pivot">
         <field name="name">Doctor Data and Information Pivot </field>
         <field name="model">doctor.info.model</field>
@@ -85,7 +88,7 @@
         <field name="name">Employees</field>
         <field name="res_model">hr.employee</field>
 <!--        i can add the name of parent model?!!-->
-        <field name="view_mode">tree,form,search</field>
+        <field name="view_mode">tree,form,graph,pivot</field>
     </record>
 <!--    <menuitem id="doctor_info_model"-->
 <!--              name="Clinic"-->
