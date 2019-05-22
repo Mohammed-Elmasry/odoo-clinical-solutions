@@ -7,3 +7,4 @@ class DoctorInfo(models.Model):
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True)
     speciality = fields.Char(size=50)
     personal_phone = fields.Text('Phone Number', size=25)
+    personal_address = fields.Text('Address', size=50)
