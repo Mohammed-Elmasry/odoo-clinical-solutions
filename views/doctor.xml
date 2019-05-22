@@ -56,6 +56,18 @@
                 </graph>
             </field>
     </record>
+    <record model="ir.ui.view" id="view_doctor_info_pivot">
+        <field name="name">Doctor Data and Information Pivot </field>
+        <field name="model">doctor.info.model</field>
+        <field name="arch" type="xml">
+            <pivot string="Doctor Data and Information">
+                <field name="name" type="row"/>
+                <field name="job_title" type="col"/>
+                 <field name="speciality" type="col"/>
+                 <field name="role" type="row"/>
+            </pivot>
+        </field>
+    </record>
 <!--    Search View-->
 <!--    <record model="ir.ui.view" id="view_doctor_info_search">-->
 <!--        <field name="name">Doctor Search Info</field>-->
