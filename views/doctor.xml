@@ -11,6 +11,7 @@
                     <field name="gender"/>
                     <field name="birthday"/>
                     <field name="personal_phone"/>
+                    <field name="personal_address"/>
                 </group>
                 <group string="Job Information"  col="4">
                     <field name="job_title"/>
@@ -38,6 +39,19 @@
                 <field name="mobile_phone"/>
             </tree>
         </field>
+    </record>
+    <record model="ir.ui.view" id="view_doctor_info_graph">
+            <field name="name">Doctor Graph Info</field>
+            <field name="model">doctor.info.model</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="Doctor Data">
+                    <field name="name"/>
+                    <field name="job_title"/>
+                    <field name="speciality"/>
+                    <field name="personal_address"/>
+                </graph>
+            </field>
     </record>
 <!--    Search View-->
 <!--    <record model="ir.ui.view" id="view_doctor_info_search">-->
