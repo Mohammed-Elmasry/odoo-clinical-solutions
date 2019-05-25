@@ -20,8 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
-
+    'depends': ['base', 'hr'],
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
@@ -30,7 +29,7 @@
         'views/patient_view.xml',
         'views/medical_view.xml',
         'views/visit_view.xml',
-
+        'views/doctor.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
