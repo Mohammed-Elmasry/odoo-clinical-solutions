@@ -20,8 +20,9 @@
                     <field name="mobile_phone"/>
                     <field name="certificate"/>
                     <field name="speciality"/>
-                    <field name="notes"/>
+
                 </group>
+                    <group><field name="notes"/> </group>
                 </sheet>
 
             </form>
