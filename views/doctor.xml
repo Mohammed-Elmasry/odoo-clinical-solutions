@@ -93,6 +93,9 @@
 <!--        i can add the name of parent model?!!-->
         <field name="view_mode">tree,form</field>
     </record>
+      <menuitem name="Employee Data" id="clinical_management_system.menu_1" parent="menu_root"/>
+    <menuitem name="All Employees" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_1"
+              action="clinical_management_system.employee_list_action"/>
 <!--    <menuitem id="doctor_info_model"-->
 <!--              name="Clinic"-->
 <!--              group="base.group_user"/>-->
