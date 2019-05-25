@@ -77,8 +77,11 @@
         <field name="name">Doctor Data and Information Search</field>
         <field name="model">doctor.info.model</field>
         <field name="arch" type="xml">
-            <search>
+            <search >
                 <field name="name"/>
+                 <field name="speciality"/>
+                <field name="job_title"/>
+
 <!--                <group string="Group by">-->
 <!--                    <filter name="Group by Name" string="Name" context="{'group_by':'name'}"/>-->
 <!--                </group>-->
