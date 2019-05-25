@@ -62,10 +62,14 @@
         <field name="arch" type="xml">
             <search>
                 <field name="description"/>
-                    <filter name="filter_is_medicine" string="medicines"/>
-                    <filter name="filter_is_service" string="services"/>
+                    <filter name="filter_is_medicine" string="medicines"
+                        domain="[('is_medicine','=','True')]"/>
+                    <filter name="filter_is_service" string="services"
+                            domain="[('is_medicine','=','False')]"
+                    />
                 <field name="fees"/>
-                    <filter name="filter_fees" string="fees"/>
+                    <filter name="filter_fees" string="fees"
+                    domain="[('fees','>','0')]"/>
             </search>
         </field>
     </record>
