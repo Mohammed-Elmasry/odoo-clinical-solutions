@@ -47,6 +47,11 @@
     </record>
     -->
 
+
+    <!-- menu categories -->
+
+<!--    <menuitem name="special" id="lab1.menu_1" parent="lab1_menu_root"/>-->
+
     <!-- Top menu item -->
 <!--    &lt;!&ndash;-->
     <menuitem name="Clinic" id="menu_root"/>

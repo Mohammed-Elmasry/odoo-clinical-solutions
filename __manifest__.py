@@ -21,12 +21,17 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr'],
+
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
         'views/doctor.xml',
+        'views/patient_view.xml',
+        'views/medical_view.xml',
+        'views/visit_view.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [
