@@ -73,34 +73,20 @@
 <!--            </pivot>-->
 <!--        </field>-->
 <!--    </record>-->
+    <!--    Search View-->
     <record model="ir.ui.view" id="view_doctor_info_search">
         <field name="name">Doctor Data and Information Search</field>
         <field name="model">doctor.info.model</field>
         <field name="arch" type="xml">
-            <search >
+            <search>
                 <field name="name"/>
                  <field name="speciality"/>
                 <field name="job_title"/>
-
-<!--                <group string="Group by">-->
-<!--                    <filter name="Group by Name" string="Name" context="{'group_by':'name'}"/>-->
-<!--                </group>-->
             </search>
         </field>
     </record>
-<!--    Search View-->
-<!--    <record model="ir.ui.view" id="view_doctor_info_search">-->
-<!--        <field name="name">Doctor Search Info</field>-->
-<!--        <field name="model">doctor.info.model</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <search name="Search Employee Info">-->
-<!--                <field name="name"/>-->
-<!--                <field name="speciality"/>-->
-<!--                <field name="job_title"/>-->
-<!--            </search>-->
-<!--        </field>-->
-<!--    </record>-->
 
+<!--Action of our model-->
     <record model="ir.actions.act_window" id="employee_list_action">
         <field name="name">Employees</field>
         <field name="res_model">doctor.info.model</field>

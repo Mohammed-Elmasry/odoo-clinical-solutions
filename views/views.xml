@@ -49,11 +49,11 @@
 
     <!-- Top menu item -->
 <!--    &lt;!&ndash;-->
-    <menuitem name="Clinic" id="clinical_management_system.menu_root"/>
+    <menuitem name="Clinic" id="menu_root"/>
     -->
     <!-- menu categories -->
 
-    <menuitem name="Employee Data" id="clinical_management_system.menu_1" parent="clinical_management_system.menu_root"/>-->
+    <menuitem name="Employee Data" id="clinical_management_system.menu_1" parent="menu_root"/>-->
 <!--    <menuitem name="Menu 2" id="clinical_management_system.menu_2" parent="clinical_management_system.menu_root"/>-->
     -->
     <!-- actions -->
