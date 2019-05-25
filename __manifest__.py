@@ -28,6 +28,7 @@
         'views/views.xml',
         'views/templates.xml',
         'views/patient_view.xml',
+        'views/medical_view.xml',
 
     ],
     # only loaded in demonstration mode
