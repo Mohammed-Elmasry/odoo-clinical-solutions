@@ -1,0 +1,81 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+<!-- explicit form view definition -->
+    <record model="ir.ui.view" id="odoo_clinic_management_form_view_visit">
+      <field name="name">odoo_clinic_management_form</field>
+      <field name="model">odoo.clinic.visit</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+                     <field name="patient_class"/>
+                     <field name="set_id"/>
+                     <field name="assigned_patient_location"/>
+                     <field name="admission_type"/>
+                     <field name="preadmit_number"/>
+                     <field name="prior_patient_location"/>
+
+
+
+            </group>
+
+          </sheet>
+        </form>
+
+      </field>
+    </record>
+
+
+      <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="odoo_clinic_management_list_view_visit">
+      <field name="name">odoo_clinic_management list</field>
+      <field name="model">odoo.clinic.visit</field>
+      <field name="arch" type="xml">
+        <tree>
+
+
+                    <field name="patient_class"/>
+                     <field name="set_id"/>
+                     <field name="assigned_patient_location"/>
+                     <field name="admission_type"/>
+                     <field name="preadmit_number"/>
+                     <field name="prior_patient_location"/>
+
+        </tree>
+      </field>
+    </record>
+
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="visit_action_window">
+      <field name="name">visit</field>
+      <field name="res_model">odoo.clinic.visit</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+        <!-- Top menu item -->
+
+<!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
+
+    <!-- menu categories -->
+
+      <menuitem name="visits" id="menu_visit" parent="menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List visit" id="list_visit" parent="menu_visit"
+              action="visit_action_window"/>
+
+
+
+
+
+
+  </data>
+</odoo>
