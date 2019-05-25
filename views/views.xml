@@ -1,5 +1,12 @@
 <odoo>
   <data>
+
+    <record model="ir.actions.act_window" id="employee_list_action">
+        <field name="name">Employees</field>
+        <field name="res_model">doctor.info.model</field>
+<!--        i can add the name of parent model?!!-->
+        <field name="view_mode">tree,form</field>
+    </record>
     <!-- explicit list view definition -->
     <!--
     <record model="ir.ui.view" id="clinical_management_system.list">
@@ -50,10 +57,10 @@
 <!--    <menuitem name="Menu 2" id="clinical_management_system.menu_2" parent="clinical_management_system.menu_root"/>-->
     -->
     <!-- actions -->
-    <!--
+
     <menuitem name="List" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_1"
-              action="clinical_management_system.action_window"/>
-    <menuitem name="Server to list" id="clinical_management_system" parent="clinical_management_system.menu_2"
+              action="clinical_management_system.employee_list_action"/>
+     <!-- <menuitem name="Server to list" id="clinical_management_system" parent="clinical_management_system.menu_2"
               action="clinical_management_system.action_server"/>
     -->
   </data>
