@@ -80,7 +80,7 @@
 
         <!-- explicit list view definition -->
         <record model="ir.ui.view" id="odoo_clinic_management_list_view_visit">
-            <field name="name">odoo_clinic_management list</field>
+            <field name="name">Visits List</field>
             <field name="model">odoo.clinic.visit</field>
             <field name="arch" type="xml">
                 <tree>
@@ -97,11 +97,15 @@
         <record model="ir.ui.view" id="odoo_clinic_management_list_view_visit">
              <field name="name">Visits Graph</field>
             <field name="model">odoo.clinic.visit</field>
-            <field name="arch" type="xml">
-                <graph string="Visit Data and Information" >
-
-                </graph>
-            </field>
+<!--            <field name="arch" type="xml">-->
+<!--                <graph string="Visit Data and Information" >-->
+<!--                         <field name="set_id"/>-->
+<!--                      <field name="visit_number"/>-->
+<!--                     <field name="account_status"/>-->
+<!--                     <field name="admitting_doctor"/>-->
+<!--                    <field name="total_payments"/>-->
+<!--                </graph>-->
+<!--            </field>-->
         </record>
         <!-- actions opening views on models -->
 
