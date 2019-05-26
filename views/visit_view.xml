@@ -93,16 +93,16 @@
             </field>
         </record>
 
-<!--        &lt;!&ndash;        graph view&ndash;&gt;-->
-<!--        <record model="ir.ui.view" id="odoo_clinic_management_list_view_visit">-->
-<!--             <field name="name">odoo_clinic_mamagement_graph</field>-->
-<!--            <field name="model">odoo.clinic.visit</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <graph>-->
-
-<!--                </graph>-->
-<!--            </field>-->
-<!--        </record>-->
+        <!--        graph view-->
+        <record model="ir.ui.view" id="odoo_clinic_management_list_view_visit">
+             <field name="name">Visit Graph</field>
+            <field name="model">odoo.clinic.visit</field>
+            <field name="arch" type="xml">
+                <graph>
+                    
+                </graph>
+            </field>
+        </record>
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">
