@@ -95,11 +95,11 @@
 
         <!--        graph view-->
         <record model="ir.ui.view" id="odoo_clinic_management_list_view_visit">
-             <field name="name">Visit Graph</field>
+             <field name="name">Visits Graph</field>
             <field name="model">odoo.clinic.visit</field>
             <field name="arch" type="xml">
-                <graph>
-                    
+                <graph string="Visit Data and Information" >
+
                 </graph>
             </field>
         </record>
