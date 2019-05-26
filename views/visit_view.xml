@@ -118,6 +118,19 @@
 <!--                </calendar>-->
 <!--            </field>-->
 <!--        </record>-->
+
+<!--        pivot for visits model-->
+         <record model="ir.ui.view" id="view_doctor_info_pivot">
+             <field name="name">Visits Data and Information </field>
+             <field name="model">odoo.clinic.visit</field>
+             <field name="arch" type="xml">
+            <pivot string="Visit Data and Information">
+               <field name="set_id" type="row"/>
+                <field name="visit_number" type="col"/>
+                 <field name="admitting_doctor" type="col"/>
+            </pivot>
+        </field>
+    </record>
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">

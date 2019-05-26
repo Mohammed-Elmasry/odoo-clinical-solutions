@@ -13,6 +13,15 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/doctor.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="73" column="20" lean-forward="true" selection-start-line="62" selection-start-column="7" selection-end-line="73" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Visit.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="132">
@@ -24,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="109" column="13" selection-start-line="109" selection-start-column="13" selection-end-line="119" selection-end-column="21" />
+            <state relative-caret-position="138">
+              <caret line="129" column="57" selection-start-line="129" selection-start-column="57" selection-end-line="129" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -96,11 +105,6 @@
             <path>
               <item name="clinical_management_system" type="b2602c69:ProjectViewProjectNode" />
               <item name="clinical_management_system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="clinical_management_system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="clinical_management_system" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="clinical_management_system" type="b2602c69:ProjectViewProjectNode" />
@@ -181,12 +185,12 @@
     <frame x="45" y="27" width="1321" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23651771" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23651771" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32931036" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8906009" visible="true" weight="0.4862069" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8906009" visible="true" weight="0.4862069" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -275,16 +279,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/patient_view.xml">
+    <entry file="file://$PROJECT_DIR$/models/Patient.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Patient.py">
+    <entry file="file://$PROJECT_DIR$/views/patient_view.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/views/doctor.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="57" column="32" lean-forward="true" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+        <state relative-caret-position="192">
+          <caret line="73" column="20" lean-forward="true" selection-start-line="62" selection-start-column="7" selection-end-line="73" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -297,8 +301,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="109" column="13" selection-start-line="109" selection-start-column="13" selection-end-line="119" selection-end-column="21" />
+        <state relative-caret-position="138">
+          <caret line="129" column="57" selection-start-line="129" selection-start-column="57" selection-end-line="129" selection-end-column="57" />
         </state>
       </provider>
     </entry>
