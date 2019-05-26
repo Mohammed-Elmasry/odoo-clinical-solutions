@@ -24,5 +24,6 @@ class DoctorInfo(models.Model):
         ('master', 'Master'),
         ('other', 'Other'),
     ], 'Certificate Level', default='master', groups="hr.group_hr_user", required=True)
+    mobile_phone = fields.Char('Work Mobile', required=True)
     # personal_phone = fields.Char('Phone Number', size=25)
     # personal_address = fields.Text('Address', size=50)
