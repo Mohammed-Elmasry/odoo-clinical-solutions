@@ -9,5 +9,6 @@ class DoctorInfo(models.Model):
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True)
     speciality = fields.Char(size=50)
     license_id = fields.Integer(size=40 , string="License ID")
+    name = fields.Char(related='resource_id.name', store=True, oldname='name_related', readonly=False, required=True)
     # personal_phone = fields.Char('Phone Number', size=25)
     # personal_address = fields.Text('Address', size=50)
