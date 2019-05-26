@@ -14,6 +14,7 @@ class DoctorInfo(models.Model):
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'Other')
-    ], groups="hr.group_hr_user", default="male",required=True )
+    ], groups="hr.group_hr_user", default="male",required=True)
+    birthday = fields.Date('Date of Birth', groups="hr.group_hr_user", required=True )
     # personal_phone = fields.Char('Phone Number', size=25)
     # personal_address = fields.Text('Address', size=50)
