@@ -131,6 +131,19 @@
             </pivot>
         </field>
     </record>
+        <!--        create search view-->
+         <record model="ir.ui.view" id="view_doctor_info_search">
+        <field name="name">Visits Search</field>
+        <field name="model">odoo.clinic.visit</field>
+        <field name="arch" type="xml">
+            <search>
+                 <field name="patient_class"/>
+                 <field name="patient_type"/>
+                 <field name="set_id"/>
+                 <field name="admitting_doctor"/>
+            </search>
+        </field>
+    </record>
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">
