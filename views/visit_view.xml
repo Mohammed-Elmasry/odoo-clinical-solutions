@@ -99,11 +99,10 @@
             <field name="model">odoo.clinic.visit</field>
             <field name="arch" type="xml">
                 <graph string="Visit Data and Information" >
-                         <field name="set_id"/>
+                    <field name="set_id"/>
                       <field name="visit_number"/>
                      <field name="account_status"/>
-                     <field name="admitting_doctor"/>
-                    <field name="total_payments"/>
+                     <field name="admitting_doctor"  type="col"/>
                 </graph>
             </field>
         </record>
