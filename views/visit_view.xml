@@ -20,7 +20,6 @@
                             <field name="re_admission_indicator"/>
                             <field name="prior_patient_location"/>
                             <field name="temporary_location"/>
-                            <field name="patient_type"/>
                             <field name="vip_indicator"/>
                             <field name="courtesy_code"/>
                             <field name="credit_rating"/>
@@ -55,7 +54,7 @@
                             <field name="bad_debt_recovery_amount"/>
                             <field name="discharge_disposition"/>
                             <field name="discharged_location"/>
-                            <field name="servicing_facility"/>
+
                             <field name="pending_location"/>
 
 <!--                            <field name=" transfer_bad_debt_code"-->
@@ -67,9 +66,10 @@
                             <field name="total_payments"/>
                             <field name="Total_Adjustments"/>
                         </group>
-                        <group string="Service Data" col="2">
+                        <group string="Service Data" col="6">
                             <field name="service_episode_description"/>
                             <field name="service_episode_identifier"/>
+                             <field name="servicing_facility"/>
                         </group>
                     </sheet>
                 </form>
@@ -79,28 +79,19 @@
 
 
         <!-- explicit list view definition -->
-<!--        <record model="ir.ui.view" id="odoo_clinic_management_list_view_visit">-->
-<!--            <field name="name">odoo_clinic_management list</field>-->
-<!--            <field name="model">odoo.clinic.visit</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                 <field name="set_id"/>-->
-<!--                -->
-<!--                -->
-<!--            </field>-->
-<!--        </record>-->
-
-
-
-<!--                    <field name="patient_class"/>-->
-<!--                    <field name="set_id"/>-->
-<!--                    <field name="assigned_patient_location"/>-->
-<!--                    <field name="admission_type"/>-->
-<!--                    <field name="preadmit_number"/>-->
-<!--                    <field name="prior_patient_location"/>-->
-
-<!--                </tree>-->
-<!--            </field>-->
-<!--        </record>-->
+        <record model="ir.ui.view" id="odoo_clinic_management_list_view_visit">
+            <field name="name">odoo_clinic_management list</field>
+            <field name="model">odoo.clinic.visit</field>
+            <field name="arch" type="xml">
+                <tree>
+                      <field name="set_id"/>
+                      <field name="visit_number"/>
+                     <field name="account_status"/>
+                     <field name="admitting_doctor"/>
+                    <field name="total_payments"/>
+                </tree>
+            </field>
+        </record>
 
 
 
@@ -118,13 +109,13 @@
         <!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
 
         <!-- menu categories -->
-
         <menuitem name="visits" id="menu_visit" parent="menu_root"/>
 
-        <!-- actions -->
 
-        <menuitem name="List visit" id="list_visit" parent="menu_visit"
+        <!-- actions -->
+         <menuitem name="List visit" id="list_visit" parent="menu_visit"
                   action="visit_action_window"/>
+        
 
 
 
