@@ -23,5 +23,5 @@ class Patient(models.Model):
     Patient_Death_Indicator=fields.Char()
     Multiple_Birth_Indicator=fields.Char()
     # medical_sheet=fields.one2many('odoo.clinic.medical')
-    visit=fields.one2many('odoo.clinic.visit')
+    # visit=fields.one2many('odoo.clinic.visit')
 

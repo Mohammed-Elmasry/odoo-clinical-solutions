@@ -26,4 +26,4 @@ class Medical(models.Model):
     # physician_signature=
     date = fields.Date()
     time = fields.Datetime()
-    patient=fields.Many2one('odoo.clinic.patient')
+    # patient=fields.Many2one('odoo.clinic.patient')
