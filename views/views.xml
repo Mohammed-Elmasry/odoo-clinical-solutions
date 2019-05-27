@@ -53,7 +53,6 @@
 
 <!--    <menuitem name="Employee Data" id="clinical_management_system.menu_1" parent="menu_root"/>&ndash;&gt;-->
 <!--    <menuitem name="Menu 2" id="clinical_management_system.menu_2" parent="clinical_management_system.menu_root"/>-->
-    -->
     <!-- actions -->
 
 <!--    <menuitem name="All Employees" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_1"-->

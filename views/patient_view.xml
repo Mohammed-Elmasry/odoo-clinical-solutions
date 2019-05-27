@@ -60,6 +60,12 @@
 
               <field name="Patient_Death_Indicator"/>
               </group>
+              <group>
+                                <field name="medical_sheet"/>
+                                <field name="visit"/>
+
+
+              </group>
 
           </sheet>
         </form>

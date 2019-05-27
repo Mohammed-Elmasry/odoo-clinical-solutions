@@ -22,32 +22,6 @@ class Patient(models.Model):
     Patient_Death=fields.Datetime()
     Patient_Death_Indicator=fields.Char()
     Multiple_Birth_Indicator=fields.Char()
+    # medical_sheet=fields.one2many('odoo.clinic.medical')
+    visit=fields.one2many('odoo.clinic.visit')
 
-    # from odoo import models, fields, api
-
-    # class Sheet(models.Model):
-    #     _name = 'odoo.clinic.clinical.sheet'
-    #
-    #     obstetric_gynecological_history = fields.Text()
-    #     DM = fields.Boolean()
-    #     HTN = fields.Boolean()
-    #     cardiac = fields.Boolean()
-    #     heptic = fields.Boolean()
-    #     renal = fields.Boolean()
-    #     others = fields.Text()
-    #     surgical_history = fields.Text()
-    #     BP = fields.Float()
-    #     RR = fields.Float()
-    #     HR = fields.Float()
-    #     Temp = fields.Float()
-    #     FHC = fields.Float()
-    #     Weight = fields.Float()
-    #     Obese = fields.Boolean()
-    #     Average_weight = fields.Boolean()
-    #     Under_weight = fields.Boolean()
-    #     Examination = fields.Text()
-    #     Drug_Allergy = fields.Text()
-    #     # physician_signature=
-    #     Date = fields.Date()
-    #
-    #     time = fields.Datetime()
