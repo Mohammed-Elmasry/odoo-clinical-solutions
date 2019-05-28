@@ -25,3 +25,10 @@ class ClinicalManagementSystem(http.Controller):
         return http.request.render('clinical_management_system.object', {
             'object': obj
         })
+
+    @http.route('/clinical_management_system/clinical_management_system/doctors/', auth='user')
+    def get_doctors(self, **kw):
+        return http.request.render('clinical_management_system.listing' ,{
+            'root': '/clinical_management_system/clinical_management_system',
+            'objects': http.request.env['doctor.info.model'].search([])
+        })
