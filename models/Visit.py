@@ -4,7 +4,7 @@ class Visit(models.Model):
     _name = 'odoo.clinic.visit'
 
     patient_class=fields.Char(string="Patient class",required ='true')
-    set_id=fields.Integer()
+    set_id = fields.Integer(string="Set ID")
     assigned_patient_location=fields.Char()
     admission_type=fields.Char()
     preadmit_number=fields.Integer()
