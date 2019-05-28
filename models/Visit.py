@@ -8,11 +8,11 @@ class Visit(models.Model):
     assigned_patient_location = fields.Char(string="Assigned Patient Location")
     admission_type = fields.Char(string="Admission Type")
     preadmit_number = fields.Integer(string="Preadmit Number")
-    prior_patient_location=fields.Char()
+    prior_patient_location = fields.Char(string="Prior Location")
     # attending_doctor=
     # referring_doctor=
     # hospital_service=
-    temporary_location=fields.Char()
+    temporary_location = fields.Char(string="Previous Temporary Location")
     preadmit_test_indicator=fields.Char()
     re_admission_indicator=fields.Char()
     admit_source=fields.Char()
