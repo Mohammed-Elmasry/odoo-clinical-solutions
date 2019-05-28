@@ -13,6 +13,7 @@ class Visit(models.Model):
     # referring_doctor=
     # hospital_service=
     temporary_location = fields.Char(string="Temporary Location")
+    prior_temporory_location = fields.Text(string="Previous Temporary Location")
     preadmit_test_indicator=fields.Char()
     re_admission_indicator=fields.Char()
     admit_source=fields.Char()
