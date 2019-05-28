@@ -19,13 +19,14 @@
                     <field name="role"/>
                     <field name="work_email"/>
                     <field name="mobile_phone"/>
+                    <field name="work_phone"/>
                     <field name="certificate"/>
                     <field name="speciality"/>
-
+<!--                    attrs="{'invisible':[('role', '!=', 'officer')]}"-->
+<!-- attrs="{'visible':[('role', '!=', 'doctor')]}"-->
                 </group>
                     <group><field name="notes"/> </group>
                 </sheet>
-
             </form>
         </field>
 <!--        List View For Doctor Data Model-->
