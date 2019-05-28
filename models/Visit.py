@@ -19,7 +19,7 @@ class Visit(models.Model):
     admit_source = fields.Char(string="Admit Source")
     ambulatory_status = fields.Char(string="Ambulatory Status")
     vip_indicator = fields.Char(string="VIP-Type")
-    admitting_doctor=fields.Char()
+    admitting_doctor = fields.Char(string="Admitting Doctor")
     patient_type=fields.Char()
     visit_number=fields.Integer()
     financial_class=fields.Char()
