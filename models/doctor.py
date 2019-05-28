@@ -9,7 +9,7 @@ class DoctorInfo(models.Model):
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True)
     speciality = fields.Char(size=50)
     license_id = fields.Char(size=14, string="License ID")
-    name = fields.Char(required=True)
+    # name = fields.Char(required=True)
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
@@ -25,7 +25,6 @@ class DoctorInfo(models.Model):
         ('other', 'Other'),
     ], 'Certificate Level', default='master', groups="hr.group_hr_user", required=True)
     mobile_phone = fields.Char('Work Mobile', required=True)
-    visit_id =fields.Many2one('odoo.clinic.visit', 'Visit')
     # personal_phone = fields.Char('Phone Number', size=25)
     # personal_address = fields.Text('Address', size=50)
 
