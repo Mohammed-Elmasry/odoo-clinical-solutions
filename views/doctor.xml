@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_doctor_Info_form" model="ir.ui.view">
+        <field name="name">Doctor Form Info</field>
+        <field name="model">doctor.info.model</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Personal Information" col="6">
+                    <field name="name"/>
+                    <field name="gender"/>
+                    <field name="birthday"/>
+
+                </group>
+                <group string="Job Information" col="6">
+                    <field name="license_id"/>
+                    <field name="job_title"/>
+                    <field name="job_id"/>
+                    <field name="role"/>
+                    <field name="work_email"/>
+                    <field name="mobile_phone"/>
+                    <field name="certificate"/>
+                    <field name="speciality"/>
+
+                </group>
+                    <group><field name="notes"/> </group>
+                </sheet>
+
+            </form>
+        </field>
+<!--        List View For Doctor Data Model-->
+    </record>
+    <record model="ir.ui.view" id="view_doctor_info_list">
+        <field name="name">Doctor List Info </field>
+        <field name="model">doctor.info.model</field>
+        <field name="arch" type="xml">
+            <tree string="Info List">
+                <field name="name"></field>
+                <field name="role"></field>
+                <field name="job_title"></field>
+                <field name="speciality"/>
+                <field name="mobile_phone"/>
+            </tree>
+        </field>
+    </record>
+<!--            Graph View For Doctor Data Model-->
+<!--    <record model="ir.ui.view" id="view_doctor_info_graph">-->
+<!--            <field name="name">Doctor Data and Information Graph</field>-->
+<!--            <field name="model">doctor.info.model</field>-->
+<!--            <field name="type">graph</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <graph string="Doctor Data and Information" >-->
+<!--                    <field name="name" />-->
+<!--                    <field name="job_title"/>-->
+<!--                    <field name="personal_phone"/>-->
+<!--                    <field name="speciality"/>-->
+<!--                    <field name="work_email"/>-->
+<!--                    <field name="personal_address"/>-->
+<!--                    <field name="mobile_phone"/>-->
+<!--                </graph>-->
+<!--            </field>-->
+<!--    </record>-->
+<!--        Pivot View For Doctor Data Model-->
+<!--    <record model="ir.ui.view" id="view_doctor_info_pivot">-->
+<!--        <field name="name">Doctor Data and Information Pivot </field>-->
+<!--        <field name="model">doctor.info.model</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <pivot string="Doctor Data and Information">-->
+<!--                <field name="name" type="row"/>-->
+<!--                <field name="job_title" type="col"/>-->
+<!--                 <field name="speciality" type="col"/>-->
+<!--                 <field name="role" type="row"/>-->
+<!--            </pivot>-->
+<!--        </field>-->
+<!--    </record>-->
+    <!--    Search View-->
+    <record model="ir.ui.view" id="view_doctor_info_search">
+        <field name="name">Doctor Data and Information Search</field>
+        <field name="model">doctor.info.model</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                 <field name="speciality"/>
+                <field name="job_title"/>
+            </search>
+        </field>
+    </record>
+
+<!--Action of our model-->
+    <record model="ir.actions.act_window" id="employee_list_action">
+        <field name="name">Employees</field>
+        <field name="res_model">doctor.info.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+      <menuitem name="Employee Data" id="clinical_management_system.menu_1" parent="menu_root"/>
+    <menuitem name="All Employees" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_1"
+              action="clinical_management_system.employee_list_action"/>
+
+</odoo>
