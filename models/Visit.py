@@ -15,7 +15,7 @@ class Visit(models.Model):
     temporary_location = fields.Char(string="Temporary Location")
     prior_temporary_location = fields.Text(string="Previous Temporary Location")
     preadmit_test_indicator = fields.Char(string="Preadmit Test Indicator")
-    re_admission_indicator=fields.Char()
+    re_admission_indicator = fields.Char(string="Re-Admission Indicator")
     admit_source=fields.Char()
     ambulatory_status=fields.Char()
     vip_indicator=fields.Char()
