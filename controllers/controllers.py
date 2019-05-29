@@ -20,7 +20,7 @@ class ClinicalManagementSystem(http.Controller):
             'objects': http.request.env['res.partner'].search([]),
         })
 
-    @http.route('/clinical_management_system/clinical_management_system/objects/<model("clinical_management_system.clinical_management_system"):obj>/', auth='public')
+    @http.route('/clinical_management_system/clinical_management_system/objects/<model("clinical_management_system.clinical_management_system"):obj>/', auth='user')
     def object(self, obj, **kw): ##this is a particular object
         return http.request.render('clinical_management_system.object', {
             'object': obj
@@ -29,6 +29,9 @@ class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/clinical_management_system/doctors/', auth='user')
     def get_doctors(self, **kw):
         return http.request.render('clinical_management_system.listing' ,{
-            'root': '/clinical_management_system/clinical_management_system',
+            'root': '/clinical_management_system/doctor.info.model',
             'objects': http.request.env['doctor.info.model'].search([])
         })
+
+
+    # @http.route('')

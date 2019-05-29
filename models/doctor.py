@@ -8,8 +8,8 @@ class DoctorInfo(models.Model):
     emp_id = fields.Many2one('hr.employee')
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True)
     speciality = fields.Char(size=50)
-    license_id = fields.Integer(size=40 , string="License ID")
-    name = fields.Char(related='resource_id.name', store=True, oldname='name_related', readonly=False, required=True)
+    license_id = fields.Char(size=14, string="License ID")
+    # name = fields.Char(required=True)
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
@@ -27,3 +27,8 @@ class DoctorInfo(models.Model):
     mobile_phone = fields.Char('Work Mobile', required=True)
     # personal_phone = fields.Char('Phone Number', size=25)
     # personal_address = fields.Text('Address', size=50)
+
+    # @api.model
+    # def set_doctor(self):
+    #     if self.role == 'Doctor':
+    #         raise exceptions.ValidationError()

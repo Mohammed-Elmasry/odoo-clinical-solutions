@@ -20,8 +20,8 @@
           <field name="model">product.template</field>
           <field name="arch" type="xml">
               <tree>
-                  <field name="name"/>
-                  <field name="fees"/>
+                  <field name="description"/>
+<!--                  <field name="fees"/>-->
 <!--                  <field name="value2"/>-->
               </tree>
           </field>
