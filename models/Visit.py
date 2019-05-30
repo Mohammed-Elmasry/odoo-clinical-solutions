@@ -51,8 +51,9 @@ class Visit(models.Model):
     bad_debt_agency_code = fields.Integer(string="Bad Debt Agency Code")
 
     bad_debt_transfer_amount = fields.Integer(string="Amount of Bad Debt Transfer")
-    bad_debt_recovery_amount=fields.Integer(string="Amount of Bad Debt Recovery")
-    delete_account_indicator=fields.Integer()
+    bad_debt_recovery_amount = fields.Integer(string="Amount of Bad Debt Recovery")
+    delete_account_indicator = fields.Integer(string="Delete Account Indicator")
+    # This field indicates that the account was deleted from the file and gives the reason
     delete_account_date=fields.Date()
     discharge_disposition=fields.Char()
     discharged_location=fields.Char()
