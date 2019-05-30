@@ -5,7 +5,7 @@ class Visit(models.Model):
 
     patient_class=fields.Char(string="Patient class",required ='true')
     set_id = fields.Integer(string="Set ID")
-    assigned_patient_location = fields.Char(string="Assigned Location")
+    assigned_patient_location = fields.Text(string="Assigned Location")
     admission_type = fields.Char(string="Admission Type")
     preadmit_number = fields.Integer(string="Preadmit Number")
     prior_patient_location = fields.Char(string="Prior Location")
