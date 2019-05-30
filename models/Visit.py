@@ -36,7 +36,9 @@ class Visit(models.Model):
     # for the purpose of settling outstanding account balances.
     contract_effective_Date = fields.Date(string="Contract Date")
     # This field contains the date that the contract is to start or started.
-    contract_amount=fields.Integer()
+    contract_amount = fields.Integer(string="Contract Amount")
+    # This field contains the amount to be paid by the guarantor each period according to the
+    # contract.
     Contract_Period=fields.Integer()
     interest_code=fields.Integer()
     transfer_bad_debt_code=fields.Integer
