@@ -3,7 +3,7 @@ from odoo import models, fields, api
 class Visit(models.Model):
     _name = 'odoo.clinic.visit'
 
-    patient_class=fields.Char(string="Patient class",required ='true')
+    patient_class = fields.Char(string="Patient class", required='true')
     set_id = fields.Integer(string="Set ID")
     assigned_patient_location = fields.Text(string="Assigned Location")
     admission_type = fields.Char(string="Admission Type")
