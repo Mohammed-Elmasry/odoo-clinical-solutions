@@ -29,7 +29,8 @@ class Visit(models.Model):
     charge_price_indicator = fields.Integer(string="Charge Price Code")
     # This field contains the code used to determine which price schedule is to be used for room and bed charges.
     courtesy_code = fields.Integer(string="Courtesy Code")
-    credit_rating=fields.Integer()
+    credit_rating = fields.Integer(string="Credit Rating")
+    # This field contains the user-defined code to determine past credit experience
     contract_code=fields.Integer()
     contract_effective_Date=fields.Date()
     contract_amount=fields.Integer()
