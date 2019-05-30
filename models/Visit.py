@@ -50,7 +50,7 @@ class Visit(models.Model):
     # This field contains the date that the account was transferred to a bad debt status.
     bad_debt_agency_code = fields.Integer(string="Bad Debt Agency Code")
 
-    bad_debt_transfer_amount=fields.Integer()
+    bad_debt_transfer_amount = fields.Integer(string="Amount of Bad Debt Transfer")
     bad_debt_recovery_amount=fields.Integer()
     delete_account_indicator=fields.Integer()
     delete_account_date=fields.Date()
