@@ -51,7 +51,7 @@ class Visit(models.Model):
     bad_debt_agency_code = fields.Integer(string="Bad Debt Agency Code")
 
     bad_debt_transfer_amount = fields.Integer(string="Amount of Bad Debt Transfer")
-    bad_debt_recovery_amount=fields.Integer()
+    bad_debt_recovery_amount=fields.Integer(string="Amount of Bad Debt Recovery")
     delete_account_indicator=fields.Integer()
     delete_account_date=fields.Date()
     discharge_disposition=fields.Char()
