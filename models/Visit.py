@@ -60,7 +60,7 @@ class Visit(models.Model):
 
     bad_debt_transfer_amount = fields.Integer(string="Amount of Bad Debt Transfer")
     bad_debt_recovery_amount = fields.Integer(string="Amount of Bad Debt Recovery")
-    delete_account_indicator = fields.Selection([[('value', 'No suggested values defined')]],
+    delete_account_indicator = fields.Selection([('value', 'No suggested values defined')],
                                                 string="Delete Account Indicator")
     # This field indicates that the account was deleted from the file and gives the reason
     delete_account_date = fields.Date(string="Delete Account Date")
@@ -92,7 +92,7 @@ class Visit(models.Model):
                                            ('AND', 'Account number debitor'),
                                            ('ANT', 'Temporary Account Number'),
                                            ('APRN', 'Advanced Practice Registered Nurse number'),
-                                           ('ASID', 'Ancestor Specimen ID')
+                                           ('ASID', 'Ancestor Specimen ID'),
                                            ], string="Alternate Visit ID")
     visit_indicator = fields.Selection([('A', 'Account level (default)'),
                                         ('V', 'Visit level')], string="Visit Indicator", default='A')
