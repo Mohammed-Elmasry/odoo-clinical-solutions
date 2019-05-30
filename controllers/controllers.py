@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import http
-import  json
+import json
 
 class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/clinical_management_system/', auth='public')
@@ -34,4 +34,9 @@ class ClinicalManagementSystem(http.Controller):
         })
 
 
-    # @http.route('')
+    @http.route('/clinical_management_system/doctors/', type="http", auth="public")
+    def get_doctors(self):
+        records = http.request.env["doctor.info.model"].sudo().search([])
+        for i in records[0]:
+            
+        # return records

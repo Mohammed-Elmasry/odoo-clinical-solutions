@@ -1,10 +1,10 @@
 <!--<odoo>-->
 <!--    <data>-->
-         <!-- Action to open product list-->           <!--reference model -->
+<!-- Action to open product list-->           <!--reference model -->
 <!--        <act-window id="action_product" name="product" res_model="product.template"-->
 <!--                    view_mode="tree, form"/>-->
 
-        <!-- menuitem to open product list-->
+<!-- menuitem to open product list-->
 <!--        <menuitem id="menu _product" name="product" parent="mail.mail_feeds" sequence="20" action="action_product"/>-->
 <!--    </data>-->
 <!--</odoo>-->
@@ -45,66 +45,56 @@
         <field name="model">product.template</field>
         <field name="view_mode">tree</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
-        <field name="arch" type="xml">
-            <form >
-                <h1>Add a new Service</h1>
-                <group string="my group" col="4">
-<!--                    <field name="name"/>-->
-<!--                    <field name="fees"/>-->
-                    <field name="is_medicine"/>
-                </group>
-            </form>
-        </field>
     </record>
 
-    <!-- search view -->
-    <record id="search_all_services" model="ir.ui.view">
-        <field name="name">All services</field>
-        <field name="model">product.template</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="description"/>
-                    <filter name="filter_is_medicine" string="medicines"
-                        domain="[('is_medicine','=','True')]"/>
-                    <filter name="filter_is_service" string="services"
-                            domain="[('is_medicine','=','False')]"
-                    />
-<!--                <field name="fees"/>-->
-<!--                    <filter name="filter_fees" string="fees"-->
-<!--                    domain="[('fees','>','0')]"/>-->
-            </search>
-        </field>
-    </record>
+        <!-- search view -->
+<record id="search_all_services" model="ir.ui.view">
+<field name="name">All services</field>
+<field name="model">product.template</field>
+<field name="arch" type="xml">
+    <search>
+        <field name="description"/>
+        <filter name="filter_is_medicine" string="medicines"
+                domain="[('is_medicine','=','True')]"/>
+        <filter name="filter_is_service" string="services"
+                domain="[('is_medicine','=','False')]"
+        />
+        <!--                <field name="fees"/>-->
+        <!--                    <filter name="filter_fees" string="fees"-->
+        <!--                    domain="[('fees','>','0')]"/>-->
+    </search>
+</field>
+</record>
 
 
 
-    <record model="ir.actions.act_window" id="action_all_services_tree">
-        <field name="name">clinical_management_system window</field>
-        <field name="res_model">product.template</field>
-        <field name="view_mode">tree,form,graph,pivot,search</field>
-    </record>
+<record model="ir.actions.act_window" id="action_all_services_tree">
+<field name="name">clinical_management_system window</field>
+<field name="res_model">product.template</field>
+<field name="view_mode">tree,form,graph,pivot,search</field>
+</record>
 
-<!--    <menuitem name="clinical_management_system" id="clinical_management_system.menu_root"/>-->
+        <!--    <menuitem name="clinical_management_system" id="clinical_management_system.menu_root"/>-->
 
-    <menuitem name="services" id="clinical_management_system_menu" parent="clinical_management_system.menu_root"/>
+<menuitem name="services" id="clinical_management_system_menu" parent="clinical_management_system.menu_root"/>
 
-    <menuitem name="Products" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_root"
-              action="action_all_services_tree"/>
-    <menuitem name="Services" id="clinical_management_system.menu_2_list" parent="clinical_management_system.menu_root"
-              action="action_all_services_tree"/>
+<menuitem name="Products" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_root"
+          action="action_all_services_tree"/>
+<menuitem name="Services" id="clinical_management_system.menu_2_list" parent="clinical_management_system.menu_root"
+          action="action_all_services_tree"/>
 
 
 
-    <!--    <record model="product.template" id="1">-->
-    <!--        <field name="name">X-Ray</field>-->
-    <!--        <field name="fees">10.00</field>-->
-    <!--     </record>-->
-    <!--    <record model="product.template" id="2">-->
-    <!--        <field name="name">Oxygen</field>-->
-    <!--        <field name="fees">15.00</field>-->
-    <!--    </record>-->
-    <!--    <record model="product.template" id="3">-->
-    <!--        <field name="name">First aids</field>-->
-    <!--        <field name="fees">100</field>-->
-    <!--    </record>-->
-</odoo>
+        <!--    <record model="product.template" id="1">-->
+        <!--        <field name="name">X-Ray</field>-->
+        <!--        <field name="fees">10.00</field>-->
+        <!--     </record>-->
+        <!--    <record model="product.template" id="2">-->
+        <!--        <field name="name">Oxygen</field>-->
+        <!--        <field name="fees">15.00</field>-->
+        <!--    </record>-->
+        <!--    <record model="product.template" id="3">-->
+        <!--        <field name="name">First aids</field>-->
+        <!--        <field name="fees">100</field>-->
+        <!--    </record>-->
+        </odoo>
