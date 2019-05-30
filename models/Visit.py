@@ -69,7 +69,7 @@ class Visit(models.Model):
     # This field contains the visit balance due.
     total_charges = fields.Integer(string="Total Visit Charges")
     total_adjustments = fields.Integer(string="Total Adjustments")
-    total_payments=fields.Integer()
+    total_payments = fields.Integer(string="Total Payment")
     alternate_visit_id=fields.Integer()
     visit_indicator=fields.Integer()
     # Other Healthcare Provider
