@@ -14,7 +14,12 @@ class Visit(models.Model):
     prior_patient_location = fields.Text(string="Prior Location")
     attending_doctor = fields.Selection(['value', 'No suggested values defined'], string="Attending Doctor")
     referring_doctor = fields.Selection(['value', 'No suggested values defined'], string="Referring Doctor")
-    # hospital_service=
+    hospital_service = fields.Selection([('MED', 'Medical Service'),
+                                         ('SUR', 'Surgical Service'),
+                                         ('URO', 'Urology Service'),
+                                         ('PUL', 'Pulmonary Service'),
+                                         ('CAR', 'Cardiac Service')
+                                         ], string="Hospital Service")
     temporary_location = fields.Text(string="Temporary Location")
     prior_temporary_location = fields.Text(string="Previous Temporary Location")
     preadmit_test_indicator = fields.Char(string="Preadmit Test Indicator")
