@@ -68,7 +68,7 @@ class Visit(models.Model):
     current_patient_balance = fields.Char(string="Current Balance")
     # This field contains the visit balance due.
     total_charges = fields.Integer(string="Total Visit Charges")
-    Total_Adjustments=fields.Integer()
+    total_adjustments = fields.Integer(string="Total Adjustments")
     total_payments=fields.Integer()
     alternate_visit_id=fields.Integer()
     visit_indicator=fields.Integer()
