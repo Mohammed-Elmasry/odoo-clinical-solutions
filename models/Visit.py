@@ -88,4 +88,4 @@ class Visit(models.Model):
     visit_indicator = fields.Selection([('A', 'Account level (default)'),
                                         ('V', 'Visit level')], string="Visit Indicator", default='A')
     service_episode_description = fields.Text(string="Service Description")
-    service_episode_identifier=fields.Integer()
+    service_episode_identifier = fields.Integer(string="Service Identifier")
