@@ -69,7 +69,7 @@ class Visit(models.Model):
     total_charges = fields.Integer(string="Total Visit Charges")
     total_adjustments = fields.Integer(string="Total Adjustments")
     total_payments = fields.Integer(string="Total Payment")
-    alternate_visit_id=fields.Integer()
+    alternate_visit_id = fields.Integer(string="Alternate Visit ID")
     visit_indicator=fields.Integer()
     # Other Healthcare Provider
     service_episode_description=fields.Text()
