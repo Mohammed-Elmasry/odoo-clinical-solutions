@@ -56,7 +56,7 @@ class Visit(models.Model):
     # This field indicates that the account was deleted from the file and gives the reason
     delete_account_date = fields.Date(string="Delete Account Date")
     discharge_disposition = fields.Char(string="Discharge Disposition")
-    discharged_location = fields.Char(string="Discharged Location")
+    discharged_location = fields.Text(string="Discharged Location")
     # This field indicates the health care facility to which the patient was discharged and the date.
     diet_type = fields.Selection([('value', 'No suggested values defined')])
     servicing_facility = fields.Selection([('value', 'No suggested values defined')], string="Servicing Facility")
