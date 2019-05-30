@@ -64,7 +64,7 @@ class Visit(models.Model):
     pending_location = fields.Text(string="Pending Location")
     prior_temporary_location = fields.Text(string="Prior Temporary Location")
     admit_date = fields.Datetime(string="Admit Date")
-    discharge_date=fields.Date()
+    discharge_date = fields.Datetime(string="Discharge Date/Time")
     current_patient_balance=fields.Char()
     total_charges=fields.Integer()
     Total_Adjustments=fields.Integer()
