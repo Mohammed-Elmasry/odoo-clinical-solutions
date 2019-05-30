@@ -59,7 +59,7 @@ class Visit(models.Model):
     discharged_location = fields.Char(string="Discharged Location")
     # This field indicates the health care facility to which the patient was discharged and the date.
     diet_type = fields.Selection([('value', 'No suggested values defined')])
-    servicing_facility=fields.Char()
+    servicing_facility = fields.Selection([('value', 'No suggested values defined')], string="Servicing Facility")
     # Bed Status
     account_status=fields.Char()
     pending_location=fields.Char()
