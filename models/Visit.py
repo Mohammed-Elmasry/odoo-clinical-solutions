@@ -20,8 +20,9 @@ class Visit(models.Model):
     ambulatory_status = fields.Char(string="Ambulatory Status")
     vip_indicator = fields.Char(string="VIP-Type")
     admitting_doctor = fields.Char(string="Admitting Doctor")
-    patient_type=fields.Char()
-    visit_number=fields.Integer()
+    patient_type = fields.Char()
+    visit_number = fields.Integer(string="Visit Number")
+    # This field contains the unique number assigned to each patient visit.
     financial_class=fields.Char()
     charge_price_indicator=fields.Integer()
     courtesy_code=fields.Integer()
