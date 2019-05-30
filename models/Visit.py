@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class Visit(models.Model):
     _name = 'odoo.clinic.visit'
 
+    start_time = fields.Datetime()
     patient_class = fields.Char(string="Patient class", required='true')
     set_id = fields.Integer(string="Set ID")
     assigned_patient_location = fields.Text(string="Assigned Location")
