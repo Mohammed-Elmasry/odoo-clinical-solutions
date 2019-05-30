@@ -23,7 +23,9 @@ class Visit(models.Model):
     patient_type = fields.Char()
     visit_number = fields.Integer(string="Visit Number")
     # This field contains the unique number assigned to each patient visit.
-    financial_class=fields.Char()
+    financial_class = fields.Char(string="Financial Class")
+    # This field contains the financial class(es) assigned to the patient for the purpose of identifying
+    # sources of reimbursement
     charge_price_indicator=fields.Integer()
     courtesy_code=fields.Integer()
     credit_rating=fields.Integer()
