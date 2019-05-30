@@ -44,7 +44,8 @@ class Visit(models.Model):
     # contract.
     interest_code = fields.Integer(string="Interest Amount")
     # This field indicates the amount of interest that will be charged
-    transfer_bad_debt_code=fields.Integer
+    transfer_bad_debt_code = fields.Integer(string="Bad Debt Code")
+    # This field indicates that the account was transferred to bad debts and gives the reason.
     transfer_bad_debt_date=fields.Date()
     bad_debt_agency_code=fields.Integer()
 
