@@ -42,7 +42,8 @@ class Visit(models.Model):
     Contract_Period = fields.Integer(string="Contract Period")
     # This field contains the amount to be paid by the guarantor each period according to the
     # contract.
-    interest_code=fields.Integer()
+    interest_code = fields.Integer(string="Interest Amount")
+    # This field indicates the amount of interest that will be charged
     transfer_bad_debt_code=fields.Integer
     transfer_bad_debt_date=fields.Date()
     bad_debt_agency_code=fields.Integer()
