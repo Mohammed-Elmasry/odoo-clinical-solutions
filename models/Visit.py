@@ -62,7 +62,7 @@ class Visit(models.Model):
     servicing_facility = fields.Selection([('value', 'No suggested values defined')], string="Servicing Facility")
     account_status = fields.Selection([('value', 'No suggested values defined')], string="Account Status")
     pending_location = fields.Text(string="Pending Location")
-    prior_temporary_location=fields.Char()
+    prior_temporary_location = fields.Text(string="Prior Temporary Location")
     admit_date=fields.Date()
     discharge_date=fields.Date()
     current_patient_balance=fields.Char()
