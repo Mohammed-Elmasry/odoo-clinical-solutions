@@ -31,7 +31,9 @@ class Visit(models.Model):
     courtesy_code = fields.Integer(string="Courtesy Code")
     credit_rating = fields.Integer(string="Credit Rating")
     # This field contains the user-defined code to determine past credit experience
-    contract_code=fields.Integer()
+    contract_code = fields.Integer(string="Contract Code")
+    # This field identifies the type of contract entered into by the health care facility and the guarantor
+    # for the purpose of settling outstanding account balances.
     contract_effective_Date=fields.Date()
     contract_amount=fields.Integer()
     Contract_Period=fields.Integer()
