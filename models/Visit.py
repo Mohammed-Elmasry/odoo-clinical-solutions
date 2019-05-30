@@ -69,7 +69,22 @@ class Visit(models.Model):
     total_charges = fields.Integer(string="Total Visit Charges")
     total_adjustments = fields.Integer(string="Total Adjustments")
     total_payments = fields.Integer(string="Total Payment")
-    alternate_visit_id = fields.Integer(string="Alternate Visit ID")
+    alternate_visit_id = fields.Selection([('BCV', 'Bank Card Validation Number'),
+                                           ('NPI', 'Check digit algorithm in the US National Provider Identifier'),
+                                           ('ISO', 'ISO 7064: 1983'),
+                                           ('M10', 'Mod 10 algorithm'),
+                                           ('M11', 'Mod 11 algorithm'),
+                                           ('ACSN', 'Accession ID'),
+                                           ('AM', 'American Express'),
+                                           ('AMA', 'American Medical Association Number'),
+                                           ('AN', 'Account number'),
+                                           ('ANON', 'Anonymous identifier'),
+                                           ('ANC', 'Account number Creditor'),
+                                           ('AND', 'Account number debitor'),
+                                           ('ANT', 'Temporary Account Number'),
+                                           ('APRN', 'Advanced Practice Registered Nurse number'),
+                                           ('ASID', 'Ancestor Specimen ID')
+                                           ], string="Alternate Visit ID")
     visit_indicator=fields.Integer()
     # Other Healthcare Provider
     service_episode_description=fields.Text()
