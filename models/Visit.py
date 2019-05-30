@@ -46,7 +46,8 @@ class Visit(models.Model):
     # This field indicates the amount of interest that will be charged
     transfer_bad_debt_code = fields.Integer(string="Bad Debt Code")
     # This field indicates that the account was transferred to bad debts and gives the reason.
-    transfer_bad_debt_date=fields.Date()
+    transfer_bad_debt_date = fields.Date(string="Bad Debt Date")
+    # This field contains the date that the account was transferred to a bad debt status.
     bad_debt_agency_code=fields.Integer()
 
     bad_debt_transfer_amount=fields.Integer()
