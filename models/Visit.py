@@ -26,7 +26,8 @@ class Visit(models.Model):
     financial_class = fields.Char(string="Financial Class")
     # This field contains the financial class(es) assigned to the patient for the purpose of identifying
     # sources of reimbursement
-    charge_price_indicator=fields.Integer()
+    charge_price_indicator = fields.Integer(string="Charge Price Code")
+    # This field contains the code used to determine which price schedule is to be used for room and bed charges.
     courtesy_code=fields.Integer()
     credit_rating=fields.Integer()
     contract_code=fields.Integer()
