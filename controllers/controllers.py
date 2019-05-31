@@ -25,18 +25,19 @@ class ClinicalManagementSystem(http.Controller):
         return http.request.render('clinical_management_system.object', {
             'object': obj
         })
+    
 
-    @http.route('/clinical_management_system/clinical_management_system/doctors/', auth='user')
-    def get_doctors(self, **kw):
-        return http.request.render('clinical_management_system.listing' ,{
-            'root': '/clinical_management_system/doctor.info.model',
-            'objects': http.request.env['doctor.info.model'].search([])
-        })
-
-
-    @http.route('/clinical_management_system/doctors/', type="http", auth="public")
+    @http.route('/clinical_management_system/doctors/', type="http", auth="public", methods=['get'])
     def get_doctors(self):
-        records = http.request.env["doctor.info.model"].sudo().search([])
-        for i in records[0]:
-            
-        # return records
+        records = http.request.env["doctor.info.model"].sudo().search(args=[('role','=','doctor')])
+        result = []
+        doctors = []
+        for i in range(len(records)):
+            for attr in ["name","license_id","gender"]:
+                doctors.append({"doctor %s " % str(attr): records[i][attr]}) #, {"doctor gender": records[i].gender},
+                           # {"doctor license": records[i].license_id})
+        result.append(doctors)
+        print(doctors)
+        return json.dumps(doctors)
+
+
