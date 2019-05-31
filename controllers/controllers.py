@@ -25,7 +25,7 @@ class ClinicalManagementSystem(http.Controller):
         return http.request.render('clinical_management_system.object', {
             'object': obj
         })
-    
+
 
     @http.route('/clinical_management_system/doctors/', type="http", auth="public", methods=['get'])
     def get_doctors(self):
@@ -41,3 +41,17 @@ class ClinicalManagementSystem(http.Controller):
         return json.dumps(doctors)
 
 
+
+
+    @http.route('/clinical_management_system/officers/', type="http", auth="public", methods=['get'])
+    def get_officers(self):
+        records = http.request.env["doctor.info.model"].sudo().search(args=[('role','=','officer')])
+        result = []
+        officers = []
+        for i in range(len(records)):
+            for attr in ["name","license_id","gender"]:
+                officers.append({"officer %s " % str(attr): records[i][attr]}) #, {"doctor gender": records[i].gender},
+                           # {"doctor license": records[i].license_id})
+        result.append(officers)
+        print(officers)
+        return json.dumps(officers)
