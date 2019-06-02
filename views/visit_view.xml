@@ -1,118 +1,118 @@
 <odoo>
     <data>
-          <!-- explicit form view definition -->
+        <!-- explicit form view definition -->
         <record model="ir.ui.view"  id="view_visit_form">
-             <field name="name">Visit Form view</field>
-             <field name="model">visit.model</field>
-             <field name="arch" type="xml">
-                    <form>
-                        <sheet>
-                            <field name="patient_class"/>
-                            <field name="set_id"/>
-                            <notebook string="Visit Data and Information">
-                                <page string="Visit Data">
-                                    <group col="6">
-                                        <field name="visit_number"/>
-                                        <field name="alternate_visit_id"/>
-                                        <field name="visit_indicator"/>
-                                        <field name="start_time"/>
-                                        <field name="end_time"/>
-                                    </group>
+            <field name="name">Visit Form view</field>
+            <field name="model">visit.model</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="patient_class"/>
+                        <field name="set_id"/>
+                        <notebook string="Visit Data and Information">
+                            <page string="Visit Data">
+                                <group col="6">
+                                    <field name="visit_number"/>
+                                    <field name="alternate_visit_id"/>
+                                    <field name="visit_indicator"/>
+                                    <field name="start_time"/>
+                                    <field name="end_time"/>
+                                </group>
 
-                                    <group string="Additional Data For Visit" col="6">
-                                        <field name="admission_type"/>
-                                        <field name="re_admission_indicator"/>
-                                        <field name="admit_source"/>
-                                        <field name="ambulatory_status"/>
-                                        <field name="servicing_facility"/>
-                                    </group>
-                                </page>
-                                <page string="Patient Data">
-                                    <group string="Primary Data" col="6" >
-                                        <field name="patient_type"/>
-                                        <field name="admit_date"/>
-                                        <field name="discharge_date"/>
-                                        <field name="diet_type"/>
-                                    </group>
-                                    <group string="Location" col="6">
-                                         <field name="assigned_patient_location"/>
-                                         <field name="prior_patient_location"/>
-                                        <field name="pending_location"/>
-                                         <field name="temporary_location"/>
-                                    </group>
-                                    <group col="6">
-                                        <field name="courtesy_code"/>
-                                        <field name="credit_rating"/>
-                                        <field name="vip_indicator"/>
-                                    </group>
-                                    <group >
-                                        <field name="discharge_disposition"/>
-                                        <field name="discharged_location"/>
-                                    </group>
-                                </page>
-                                <page string="Doctor Information and services" >
-                                    <group string="Doctor Information" col="6">
-                                        <field name="attending_doctor"/>
-                                        <field name="referring_doctor"/>
-                                        <field name="admitting_doctor"/>
-                                    </group>
-                                    <group string="Services" col="6">
-                                         <field name="hospital_service"/>
-                                         <field name="service_episode_description"/>
-                                         <field name="service_episode_identifier"/>
-                                    </group>
-                                </page>
-                                <page string="Financial information">
-                                    <group string="Financial Data" col="6">
-                                        <field name="financial_class"/>
-                                        <field name="account_status"/>
-                                        <field name="contract_code"/>
-                                        <field name="contract_effective_date"/>
-                                        <field name="contract_amount"/>
-                                        <field name="contract_period"/>
-                                        <field name="interest_code"/>
-                                    </group>
-                                    <group col="6">
-                                        <field name="delete_account_indicator"/>
-                                        <field name="delete_account_date"/>
-                                        <field name="delete_account_indicator_reasons"/>
-                                    </group>
-                                    <group string="Room and Bed Charges">
-                                        <field name="charge_price_indicator"/>
-                                    </group>
-                                    <group string="Bad Debt Data" col="6">
-                                        <field name="transfer_bad_debt_code"/>
-                                        <field name="transfer_bad_debt_date"/>
-                                        <field name="bad_debt_agency_code"/>
-                                        <field name="bad_debt_transfer_amount"/>
-                                        <field name="bad_debt_recovery_amount"/>
-                                    </group>
-                                    <group string="Payment Data" col="6">
-                                        <field name="current_patient_balance"/>
-                                        <field name="total_charges"/>
-                                        <field name="total_adjustments"/>
-                                        <field name="total_payments"/>
-                                    </group>
-                                </page>
-                            </notebook>
-                        </sheet>
-                    </form>
-             </field>
+                                <group string="Additional Data For Visit" col="6">
+                                    <field name="admission_type"/>
+                                    <field name="re_admission_indicator"/>
+                                    <field name="admit_source"/>
+                                    <field name="ambulatory_status"/>
+                                    <field name="servicing_facility"/>
+                                </group>
+                            </page>
+                            <page string="Patient Data">
+                                <group string="Primary Data" col="6" >
+                                    <field name="patient_type"/>
+                                    <field name="admit_date"/>
+                                    <field name="discharge_date"/>
+                                    <field name="diet_type"/>
+                                </group>
+                                <group string="Location" col="6">
+                                    <field name="assigned_patient_location"/>
+                                    <field name="prior_patient_location"/>
+                                    <field name="pending_location"/>
+                                    <field name="temporary_location"/>
+                                </group>
+                                <group col="6">
+                                    <field name="courtesy_code"/>
+                                    <field name="credit_rating"/>
+                                    <field name="vip_indicator"/>
+                                </group>
+                                <group >
+                                    <field name="discharge_disposition"/>
+                                    <field name="discharged_location"/>
+                                </group>
+                            </page>
+                            <page string="Doctor Information and services" >
+                                <group string="Doctor Information" col="6">
+                                    <field name="attending_doctor"/>
+                                    <field name="referring_doctor"/>
+                                    <field name="admitting_doctor"/>
+                                </group>
+                                <group string="Services" col="6">
+                                    <field name="hospital_service"/>
+                                    <field name="service_episode_description"/>
+                                    <field name="service_episode_identifier"/>
+                                </group>
+                            </page>
+                            <page string="Financial information">
+                                <group string="Financial Data" col="6">
+                                    <field name="financial_class"/>
+                                    <field name="account_status"/>
+                                    <field name="contract_code"/>
+                                    <field name="contract_effective_date"/>
+                                    <field name="contract_amount"/>
+                                    <field name="contract_period"/>
+                                    <field name="interest_code"/>
+                                </group>
+                                <group col="6">
+                                    <field name="delete_account_indicator"/>
+                                    <field name="delete_account_date"/>
+                                    <field name="delete_account_indicator_reasons"/>
+                                </group>
+                                <group string="Room and Bed Charges">
+                                    <field name="charge_price_indicator"/>
+                                </group>
+                                <group string="Bad Debt Data" col="6">
+                                    <field name="transfer_bad_debt_code"/>
+                                    <field name="transfer_bad_debt_date"/>
+                                    <field name="bad_debt_agency_code"/>
+                                    <field name="bad_debt_transfer_amount"/>
+                                    <field name="bad_debt_recovery_amount"/>
+                                </group>
+                                <group string="Payment Data" col="6">
+                                    <field name="current_patient_balance"/>
+                                    <field name="total_charges"/>
+                                    <field name="total_adjustments"/>
+                                    <field name="total_payments"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
         </record>
-         <!--        calender view-->
-          <record id="view_calendar_visit" model="ir.ui.view">
+        <!--        calender view-->
+        <record id="view_calendar_visit" model="ir.ui.view">
             <field name="name">Visits</field>
             <field name="model">visit.model</field>
             <field name="arch" type="xml">
                 <calendar date_start="start_time" date_stop="end_time">
-                            <field name="patient_class"/>
-                            <field name="patient_type"/>
-                            <field name="set_id"/>
+                    <field name="patient_class"/>
+                    <field name="patient_type"/>
+                    <field name="set_id"/>
                 </calendar>
             </field>
         </record>
         <!--        create search view-->
-         <record model="ir.ui.view" id="view_doctor_info_search">
+        <record model="ir.ui.view" id="view_doctor_info_search">
             <field name="name">Visits Search</field>
             <field name="model">visit.model</field>
             <field name="arch" type="xml">
@@ -132,8 +132,8 @@
                     <field name="patient_class"/>
                     <field name="patient_type"/>
                     <field name="set_id"/>
-                     <field name="start_time"/>
-                     <field name="end_time"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
                 </tree>
             </field>
         </record>
@@ -155,7 +155,7 @@
 
 
         <!-- actions -->
-         <menuitem name="All visit" id="list_visit" parent="menu_visit"
+        <menuitem name="All visit" id="list_visit" parent="menu_visit"
                   action="visit_action_window"/>
 
 
