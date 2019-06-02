@@ -116,7 +116,7 @@
         <record model="ir.actions.act_window" id="visit_action_window">
             <field name="name">visit</field>
             <field name="res_model">odoo.clinic.visit</field>
-            <field name="view_mode">form,calender</field>
+            <field name="view_mode">form,calendar</field>
         </record>
 
 
@@ -129,7 +129,7 @@
 
 
         <!-- actions -->
-         <menuitem name="List visit" id="list_visit" parent="menu_visit"
+         <menuitem name="All visit" id="list_visit" parent="menu_visit"
                   action="visit_action_window"/>
 
 
