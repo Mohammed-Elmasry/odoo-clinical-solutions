@@ -54,7 +54,7 @@ class Visit(models.Model):
     contract_code = fields.Selection([('value', 'No suggested values defined')], string="Contract Code")
     # This field identifies the type of contract entered into by the health care facility and the guarantor
     # for the purpose of settling outstanding account balances.
-    contract_effective_Date = fields.Date(string="Contract Date")
+    contract_effective_date = fields.Date(string="Contract Date")
     # This field contains the date that the contract is to start or started.
     contract_amount = fields.Integer(string="Contract Amount")
     # This field contains the amount to be paid by the guarantor each period according to the
