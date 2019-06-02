@@ -35,7 +35,7 @@ class ClinicalManagementSystem(http.Controller):
     def get_doctor_path(self, doctor):
         return self.get_doctor(doctor.id)
 
-    @http.route('/clinical_management_system/doctors/', type="http", auth="public", methods=['get'])
+    @http.route('/clinical_management_system/doctors/', type="http", auth="public", methods=['get'], cors="*")
     def get_doctors(self):
         """
             @
@@ -45,7 +45,7 @@ class ClinicalManagementSystem(http.Controller):
         result = []
         doctors = []
         for i in range(len(records)):
-            for attr in ["name","license_id","gender"]:
+            for attr in ["name","license_id","gender","job_title"]:
                 doctors.append({"doctor %s " % str(attr): records[i][attr]}) #, {"doctor gender": records[i].gender},
                            # {"doctor license": records[i].license_id})
         result.append(doctors)
@@ -54,7 +54,7 @@ class ClinicalManagementSystem(http.Controller):
 
 
 
-    @http.route('/clinical_management_system/officers/', type="http", auth="public", methods=['get'])
+    @http.route('/clinical_management_system/officers/', type="http", auth="public", methods=['get'], cors="*")
     def get_officers(self):
         """
         :param: this function takes nothing
