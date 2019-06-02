@@ -43,7 +43,7 @@ class Visit(models.Model):
     patient_type = fields.Selection([('value', 'No suggested values defined')])
     visit_number = fields.Integer(string="Visit Number")
     # This field contains the unique number assigned to each patient visit.
-    financial_class = fields.Char(string="Financial Class")
+    financial_class = fields.Selection([('value', 'No suggested values defined')], string="Financial Class")
     # This field contains the financial class(es) assigned to the patient for the purpose of identifying
     # sources of reimbursement
     charge_price_indicator = fields.Integer(string="Charge Price Code")
