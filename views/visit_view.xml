@@ -112,7 +112,7 @@
             </field>
         </record>
         <!--        create search view-->
-        <record model="ir.ui.view" id="view_doctor_info_search">
+        <record model="ir.ui.view" id="view_visit_search">
             <field name="name">Visits Search</field>
             <field name="model">visit.model</field>
             <field name="arch" type="xml">
