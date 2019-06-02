@@ -57,7 +57,7 @@ class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/officers/', type="http", auth="public", methods=['get'])
     def get_officers(self):
         """
-
+        :param: this function takes nothing
         :return: returns all employees of the role 'officer'
         """
         records = http.request.env["doctor.info.model"].sudo().search(args=[('role','=','officer')])
