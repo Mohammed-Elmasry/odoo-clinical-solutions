@@ -1,89 +1,32 @@
 <odoo>
     <data>
-        <!-- explicit list view definition -->
-
-        <!-- explicit form view definition -->
-        <record model="ir.ui.view" id="view_clinic_management_form_visit">
-            <field name="name">Visit Form </field>
-            <field name="model">odoo.clinic.visit</field>
-            <field name="arch" type="xml">
-
-            </field>
-        </record>
-
-
-        <!-- explicit list view definition -->
-        <record model="ir.ui.view" id="view_clinic_management_list_visit">
-            <field name="name">Visits List</field>
-            <field name="model">odoo.clinic.visit</field>
-            <field name="arch" type="xml">
-                <tree>
-                      <field name="set_id"/>
-                      <field name="visit_number"/>
-                     <field name="account_status"/>
-                     <field name="admitting_doctor"/>
-                    <field name="total_payments"/>
-                </tree>
-            </field>
-        </record>
-
-        <!--        graph view-->
-        <record model="ir.ui.view" id="view_clinic_management_graph_visit">
-             <field name="name">Visits Graph</field>
-            <field name="model">odoo.clinic.visit</field>
-            <field name="arch" type="xml">
-                <graph string="Visit Data and Information" >
-                    <field name="set_id"/>
-                      <field name="visit_number"/>
-                     <field name="account_status"/>
-                     <field name="admitting_doctor"  type="col"/>
-                </graph>
-            </field>
-        </record>
-        <!--        calender view-->
-<!--          <record id="view_calendar_visit" model="ir.ui.view">-->
-<!--            <field name="name">Visits</field>-->
-<!--            <field name="model">odoo.clinic.visit</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <calendar date_start="start_time" date_stop="end_time">-->
-<!--                            <field name="patient_class"/>-->
-<!--                            <field name="patient_type"/>-->
-<!--                            <field name="set_id"/>-->
-<!--                </calendar>-->
-<!--            </field>-->
-<!--        </record>-->
-
-<!--        pivot for visits model-->
-         <record model="ir.ui.view" id="view_doctor_info_pivot">
-             <field name="name">Visits Data and Information </field>
+          <!-- explicit form view definition -->
+        <record model="ir.ui.view"  id="view_visit_form">
+             <field name="name">Visit Form view</field>
              <field name="model">odoo.clinic.visit</field>
              <field name="arch" type="xml">
-            <pivot string="Visit Data and Information">
-               <field name="set_id" type="row"/>
-                <field name="visit_number" type="col"/>
-                 <field name="admitting_doctor" type="col"/>
-            </pivot>
-        </field>
-    </record>
-        <!--        create search view-->
-         <record model="ir.ui.view" id="view_doctor_info_search">
-        <field name="name">Visits Search</field>
-        <field name="model">odoo.clinic.visit</field>
-        <field name="arch" type="xml">
-            <search>
-                 <field name="patient_class"/>
-                 <field name="patient_type"/>
-                 <field name="set_id"/>
-                 <field name="admitting_doctor"/>
-            </search>
-        </field>
-    </record>
+                    <form>
+                        <sheet>
+                            <field name="patient_class"/>
+                            <field name="set_id"/>
+                            <notebook string="Visit Data and Information">
+                                <page string="Patient Data">
+                                    <group>
+                                        <field name="courtesy_code"/>
+                                        <field name="credit_rating"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </sheet>
+                    </form>
+             </field>
+        </record>
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">
             <field name="name">visit</field>
             <field name="res_model">odoo.clinic.visit</field>
-            <field name="view_mode">tree,form,graph,pivot</field>
+            <field name="view_mode">form</field>
         </record>
 
 
