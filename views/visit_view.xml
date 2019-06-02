@@ -2,7 +2,7 @@
     <data>
         <!-- explicit form view definition -->
         <record model="ir.ui.view"  id="view_visit_form">
-            <field name="name">Visit Form view</field>
+            <field name="name">Visit</field>
             <field name="model">visit.model</field>
             <field name="arch" type="xml">
                 <form>
