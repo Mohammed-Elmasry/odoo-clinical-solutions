@@ -39,7 +39,7 @@ class Visit(models.Model):
                                           ('B2', 'Special equipment (tubes, IVs, catheters)'),
                                           ('B3', 'Amputee')], string="Ambulatory Status")
     vip_indicator = fields.Char(string="VIP-Type")
-    admitting_doctor = fields.Char(string="Admitting Doctor")
+    admitting_doctor = fields.Selection([('value', 'No suggested values defined')], string="Admitting Doctor")
     patient_type = fields.Char()
     visit_number = fields.Integer(string="Visit Number")
     # This field contains the unique number assigned to each patient visit.
