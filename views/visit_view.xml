@@ -17,12 +17,12 @@
                                     </group>
                                 </page>
                                 <page string="Financial information">
-                                    <group string="Bad Debt Data" col="3">
+                                    <group string="Bad Debt Data" col="6">
                                         <field name="transfer_bad_debt_code"/>
-                                        <field name="transfer_bad_debt_date "/>
-                                        <field name="  bad_debt_transfer_amount"/>
+                                        <field name="transfer_bad_debt_date"/>
                                         <field name="bad_debt_agency_code"/>
-                                        <field name="bad_debt_recovery_amount "/>
+                                        <field name="bad_debt_transfer_amount"/>
+                                        <field name="bad_debt_recovery_amount"/>
                                     </group>
                                 </page>
                             </notebook>
