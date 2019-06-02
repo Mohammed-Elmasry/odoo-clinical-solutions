@@ -15,17 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="9" column="55" lean-forward="true" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Visit.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="112" column="2" selection-start-line="112" selection-start-column="2" selection-end-line="112" selection-end-column="30" />
+            <state relative-caret-position="333">
+              <caret line="118" column="40" selection-start-line="118" selection-start-column="40" selection-end-line="118" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -41,8 +32,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>clinical_management_system.employee_list_action</find>
-      <find>employee_list_action</find>
       <find>assign</find>
       <find>prior_pa</find>
       <find>tem</find>
@@ -71,6 +60,8 @@
       <find>visit_number</find>
       <find>hospi</find>
       <find>admitting_doctor</find>
+      <find>service</find>
+      <find>set</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -219,13 +210,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32931036" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8906009" visible="true" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8906009" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32931036" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.5741379" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.25862068" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.19137931" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.10939907" side_tool="true" weight="0.6275862" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32931036" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -336,15 +327,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Visit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="112" column="2" selection-start-line="112" selection-start-column="2" selection-end-line="112" selection-end-column="30" />
+        <state relative-caret-position="127">
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="9" column="55" lean-forward="true" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+        <state relative-caret-position="333">
+          <caret line="118" column="40" selection-start-line="118" selection-start-column="40" selection-end-line="118" selection-end-column="40" />
         </state>
       </provider>
     </entry>

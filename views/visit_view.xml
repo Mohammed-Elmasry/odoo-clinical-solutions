@@ -99,6 +99,18 @@
                     </form>
              </field>
         </record>
+        <!--        calender view-->
+          <record id="view_calendar_visit" model="ir.ui.view">
+            <field name="name">Visits</field>
+            <field name="model">odoo.clinic.visit</field>
+            <field name="arch" type="xml">
+                <calendar date_start="start_time" date_stop="end_time">
+                            <field name="patient_class"/>
+                            <field name="patient_type"/>
+                            <field name="set_id"/>
+                </calendar>
+            </field>
+        </record>
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">
