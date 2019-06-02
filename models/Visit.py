@@ -74,6 +74,7 @@ class Visit(models.Model):
     bad_debt_recovery_amount = fields.Integer(string="Amount of Bad Debt Recovery")
     delete_account_indicator = fields.Selection([('value', 'No suggested values defined')],
                                                 string="Delete Account Indicator")
+    delete_account_indicator_reasons = fields.Text(string="Reasons Of Delete Account")
     # This field indicates that the account was deleted from the file and gives the reason
     delete_account_date = fields.Date(string="Delete Account Date")
     discharge_disposition = fields.Char(string="Discharge Disposition")
