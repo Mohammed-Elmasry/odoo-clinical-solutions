@@ -2,7 +2,7 @@ from odoo import models, fields, api
 
 
 class Visit(models.Model):
-    _name = 'odoo.clinic.visit'
+    _name = 'visit.model'
 
     start_time = fields.Datetime()
     end_time = fields.Datetime()
