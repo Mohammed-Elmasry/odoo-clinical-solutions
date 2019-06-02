@@ -18,7 +18,8 @@
                                         <field name="start_time"/>
                                         <field name="end_time"/>
                                     </group>
-                                    <group col="6">
+
+                                    <group string="Additional Data For Visit" col="6">
                                         <field name="admission_type"/>
                                         <field name="re_admission_indicator"/>
                                         <field name="admit_source"/>
@@ -27,13 +28,13 @@
                                     </group>
                                 </page>
                                 <page string="Patient Data">
-                                    <group col="2">
+                                    <group string="Primary Data" col="6" >
                                         <field name="patient_type"/>
                                         <field name="admit_date"/>
                                         <field name="discharge_date"/>
                                         <field name="diet_type"/>
                                     </group>
-                                    <group col="6">
+                                    <group string="Location" col="6">
                                          <field name="assigned_patient_location"/>
                                          <field name="prior_patient_location"/>
                                         <field name="pending_location"/>
@@ -44,18 +45,18 @@
                                         <field name="credit_rating"/>
                                         <field name="vip_indicator"/>
                                     </group>
-                                    <group>
+                                    <group >
                                         <field name="discharge_disposition"/>
                                         <field name="discharged_location"/>
                                     </group>
                                 </page>
                                 <page string="Doctor Information and services" >
-                                    <group string="Doctor Information">
+                                    <group string="Doctor Information" col="6">
                                         <field name="attending_doctor"/>
                                         <field name="referring_doctor"/>
                                         <field name="admitting_doctor"/>
                                     </group>
-                                    <group string="Services">
+                                    <group string="Services" col="6">
                                          <field name="hospital_service"/>
                                          <field name="service_episode_description"/>
                                          <field name="service_episode_identifier"/>
@@ -86,7 +87,7 @@
                                         <field name="bad_debt_transfer_amount"/>
                                         <field name="bad_debt_recovery_amount"/>
                                     </group>
-                                    <group>
+                                    <group string="Payment Data" col="6">
                                         <field name="current_patient_balance"/>
                                         <field name="total_charges"/>
                                         <field name="total_adjustments"/>
