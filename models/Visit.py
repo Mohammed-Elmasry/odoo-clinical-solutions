@@ -59,7 +59,7 @@ class Visit(models.Model):
     contract_amount = fields.Integer(string="Contract Amount")
     # This field contains the amount to be paid by the guarantor each period according to the
     # contract.
-    contract_Period = fields.Integer(string="Contract Period")
+    contract_period = fields.Integer(string="Contract Period")
     # This field contains the amount to be paid by the guarantor each period according to the
     # contract.
     interest_code = fields.Integer(string="Interest Amount")
