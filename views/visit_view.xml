@@ -124,6 +124,19 @@
                 </search>
             </field>
         </record>
+        <record model="ir.ui.view" id="view_visit_list">
+            <field name="name">Visit List</field>
+            <field name="model">visit.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="patient_class"/>
+                    <field name="patient_type"/>
+                    <field name="set_id"/>
+                     <field name="start_time"/>
+                     <field name="end_time"/>
+                </tree>
+            </field>
+        </record>
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">
