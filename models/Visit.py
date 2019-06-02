@@ -62,7 +62,7 @@ class Visit(models.Model):
     contract_period = fields.Integer(string="Contract Period")
     # This field contains the amount to be paid by the guarantor each period according to the
     # contract.
-    interest_code = fields.Integer(string="Interest Amount")
+    interest_code = fields.Selection([('value', 'No suggested values defined')], string="Interest Amount")
     # This field indicates the amount of interest that will be charged
     transfer_bad_debt_code = fields.Selection([('value', 'No suggested values defined')], string="Bad Debt Code")
     # This field indicates that the account was transferred to bad debts and gives the reason.
