@@ -12,8 +12,8 @@ class Visit(models.Model):
     admission_type = fields.Char(string="Admission Type")
     preadmit_number = fields.Integer(string="Preadmit Number")
     prior_patient_location = fields.Text(string="Prior Location")
-    attending_doctor = fields.Selection(['value', 'No suggested values defined'], string="Attending Doctor")
-    referring_doctor = fields.Selection(['value', 'No suggested values defined'], string="Referring Doctor")
+    attending_doctor = fields.Selection([('value', 'No suggested values defined')], string="Attending Doctor")
+    referring_doctor = fields.Selection([('value', 'No suggested values defined')], string="Referring Doctor")
     hospital_service = fields.Selection([('MED', 'Medical Service'),
                                          ('SUR', 'Surgical Service'),
                                          ('URO', 'Urology Service'),
