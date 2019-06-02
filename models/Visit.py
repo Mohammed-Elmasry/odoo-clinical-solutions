@@ -49,7 +49,7 @@ class Visit(models.Model):
     charge_price_indicator = fields.Selection([('value', 'No suggested values defined')], string="Charge Price Code")
     # This field contains the code used to determine which price schedule is to be used for room and bed charges.
     courtesy_code = fields.Selection([('value', 'No suggested values defined')], string="Courtesy Code")
-    credit_rating = fields.Integer(string="Credit Rating")
+    credit_rating = fields.Selection([('value', 'No suggested values defined')], string="Credit Rating")
     # This field contains the user-defined code to determine past credit experience
     contract_code = fields.Selection([('value', 'No suggested values defined')], string="Contract Code")
     # This field identifies the type of contract entered into by the health care facility and the guarantor
