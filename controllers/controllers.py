@@ -45,7 +45,7 @@ class ClinicalManagementSystem(http.Controller):
         result = []
         doctors = []
         for i in range(len(records)):
-            for attr in ["name","license_id","gender","job_title", ]:
+            for attr in ["id", "name","license_id","gender","job_title"]:
                 doctors.append({"doctor %s " % attr: records[i][attr]}) #, {"doctor gender": records[i].gender},
                            # {"doctor license": records[i].license_id})
         result.append(doctors)

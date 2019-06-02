@@ -17,3 +17,15 @@ class Product (models.Model):
     item_category = fields.Selection([("L","L"), ("99zzz","99zzz"), ("ACR ALPHAID2006","ACR ALPHAID2006"),
         ("ALPHAID2007","ALPHAID2007"), ("ALPHAID2008","ALPHAID2008"),("ALPHAID2009","ALPHAID2009"),("ALPHAID2010","ALPHAID2010"),
         ("ALPHAID2011","ALPHAID2011")])
+    subject_to_expiration_indicator = fields.Selection([("Y","Yes"),("N","No"),("NI","No Information"),("NA","Not applicable")])
+    manufacturer_identifier = fields.Char(string="manufacturer identifier")
+    manufacturer_name = fields.Char(string="manufacturer name")
+    manufacturer_catalog_number = fields.Float(string="manufacturer catalog number")
+    manufacturer_labeler_identification_code = fields.Float(string="manufacturer labeler identification code")
+    patient_chargeable_indicator = fields.Selection([("Y","Yes"),("N","No"),("NI","No Information"),("NA","Not applicable")])
+    transaction_code = fields.Selection([("NS","No suggested code value")])
+    transaction_amount = fields.Monetary(string="transaction amount (money paid)")
+    stock_item_indicator = fields.Selection([("Y","Yes"),("N","No"),("NI","No Information"),("NA","Not applicable")])
+    supply_risk_codes = fields.Selection([("COR","Corrosive"),("FLA","Flammable"),("EXP","Explosive"),("INJ","Injury hazard")])
+    approving_regulator_agency = fields.Selection([("FDA","Food and drug Administration"),("AMA","American Medical Association")])
+    latex_indicator = fields.Selection([("Y","Yes"),("N","No"),("NI","No Information"),("NA","Not applicable")])
