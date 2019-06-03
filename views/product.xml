@@ -10,7 +10,8 @@
 <!--</odoo>-->
 
 <odoo>
-    <record id="view_graph_all_products" model="ir.ui.view">
+    <data>
+        <record id="view_graph_all_products" model="ir.ui.view">
         <field name="name">Product graphs</field>
         <field name="model">product.template</field>
         <field name="arch" type="xml">
@@ -43,8 +44,15 @@
     <record id="form_all_services" model="ir.ui.view">
         <field name="name">All services</field>
         <field name="model">product.template</field>
-        <field name="view_mode">tree</field>
+<!--        <field name="view_mode">tree</field>-->
         <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <!--                <field name="description"/>-->
+<!--                <h1><label>This is the biggest label</label></h1>-->
+                                <field name="categ_id"/>
+            </xpath>
+        </field>
     </record>
 
         <!-- search view -->
@@ -59,9 +67,9 @@
         <filter name="filter_is_service" string="services"
                 domain="[('is_medicine','=','False')]"
         />
-        <!--                <field name="fees"/>-->
-        <!--                    <filter name="filter_fees" string="fees"-->
-        <!--                    domain="[('fees','>','0')]"/>-->
+<!--        <field name="fees"/>-->
+<!--        <filter name="filter_fees" string="fees"-->
+<!--                domain="[('fees','>','0')]"/>-->
     </search>
 </field>
 </record>
@@ -97,4 +105,6 @@
         <!--        <field name="name">First aids</field>-->
         <!--        <field name="fees">100</field>-->
         <!--    </record>-->
+    </data>
+
         </odoo>

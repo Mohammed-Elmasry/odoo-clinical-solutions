@@ -46,7 +46,7 @@ class ClinicalManagementSystem(http.Controller):
         result = []
         for i in range(len(records)):
             result.append({"id":records[i]["id"], "name":records[i]["name"], "license number": records[i]["license_id"],
-                               "gender": records[i]["gender"], "job title":records[i]["job_title"]})
+                               "gender": records[i]["gender"], "title":records[i]["job_title"], "rank":records[i]["certificate"]})
         return json.dumps(result)
 
 
@@ -67,3 +67,4 @@ class ClinicalManagementSystem(http.Controller):
         result.append(officers)
         print(officers)
         return json.dumps(officers)
+
