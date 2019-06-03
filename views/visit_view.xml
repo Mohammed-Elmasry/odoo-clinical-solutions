@@ -141,7 +141,7 @@
         <record model="ir.actions.act_window" id="visit_action_window">
             <field name="name">Visits</field>
             <field name="res_model">visit.model</field>
-            <field name="view_mode">form,tree,calendar</field>
+            <field name="view_mode">tree,form,calendar</field>
         </record>
 
 
