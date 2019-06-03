@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class Visit(models.Model):
     _name = 'visit.model'
 
+    doctor_id = fields.Many2one('doctor.info.model', string="doctor")
     start_time = fields.Datetime()
     end_time = fields.Datetime()
     patient_class = fields.Char(string="Patient class", required='true')
