@@ -24,7 +24,7 @@
                             <field name="service_episode_identifier"/>
                         </group>
                         <notebook string="Visit Data and Information">
-                            <page string="Visit Data">
+                            <page string="Visit Additional Data">
                                 <group col="6">
                                     <field name="alternate_visit_id"/>
                                     <field name="visit_indicator"/>
