@@ -69,6 +69,7 @@ class ClinicalManagementSystem(http.Controller):
         return json.dumps(officers)
 
 
-    @http.route('/clinical_management_system/schedule_visit')
+    @http.route('/clinical_management_system/schedule_visit/', type="http", auth="none", methods=['post'], cors="*", csrf=False)
     def schedule_visit(self, **kw):
-        pass
+        print(kw)
+        return json.dumps("shokran")

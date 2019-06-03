@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="964fa5ce-e48c-4339-ad26-0b895505a834" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/controllers.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/controllers.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="73" selection-end-column="12" />
+            <state relative-caret-position="178">
+              <caret line="71" column="119" lean-forward="true" selection-start-line="71" selection-start-column="119" selection-end-line="71" selection-end-column="119" />
               <folding>
                 <element signature="e#24#45#0" expanded="true" />
               </folding>
@@ -196,15 +195,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24944155" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24944155" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.32899022" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32899022" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.32792208" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.32899022" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.40065145" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.40065145" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.3990228" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -443,8 +442,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="73" selection-end-column="12" />
+        <state relative-caret-position="178">
+          <caret line="71" column="119" lean-forward="true" selection-start-line="71" selection-start-column="119" selection-end-line="71" selection-end-column="119" />
           <folding>
             <element signature="e#24#45#0" expanded="true" />
           </folding>
