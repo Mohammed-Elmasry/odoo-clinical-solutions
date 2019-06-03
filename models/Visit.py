@@ -6,6 +6,7 @@ class Visit(models.Model):
     # _rec_name = 'set_id'
 
     # doctor_id = fields.Many2one('doctor.info.model', string="doctor")
+    # visit_id = fields.Integer(string="Visit ID", )
     start_time = fields.Datetime()
     end_time = fields.Datetime()
     patient_class = fields.Char(string="Patient class", required='true')
@@ -44,7 +45,8 @@ class Visit(models.Model):
     vip_indicator = fields.Char(string="VIP-Type")
     admitting_doctor = fields.Selection([('value', 'No suggested values defined')], string="Admitting Doctor")
     patient_type = fields.Selection([('value', 'No suggested values defined')])
-    visit_number = fields.Integer(string="Visit Number")
+    visit_number = fields.Integer(string="Visit Number",
+                                  help="This field contains the unique number assigned to each patient visit.")
     # This field contains the unique number assigned to each patient visit.
     financial_class = fields.Selection([('value', 'No suggested values defined')], string="Financial Class")
     # This field contains the financial class(es) assigned to the patient for the purpose of identifying
