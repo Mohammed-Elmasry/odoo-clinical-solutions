@@ -68,3 +68,7 @@ class ClinicalManagementSystem(http.Controller):
         print(officers)
         return json.dumps(officers)
 
+
+    @http.route('/clinical_management_system/schedule_visit')
+    def schedule_visit(self, **kw):
+        pass
