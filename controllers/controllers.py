@@ -29,7 +29,7 @@ class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/doctor', type="http", auth="none", methods=['get'])
     def get_doctor(self, doctor_id):
         record = http.request.env['doctor.info.model'].sudo().browse(int(doctor_id))
-        return (record.name)
+        return (record.gender)
 
     @http.route('/clinical_management_system/doctor/<model("doctor.info.model"):doctor>/', type="http", auth="none")
     def get_doctor_path(self, doctor):
@@ -38,19 +38,16 @@ class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/doctors/', type="http", auth="public", methods=['get'], cors="*")
     def get_doctors(self):
         """
-            @
+
         :return: returns all employees that have the role of 'doctor'
         """
         records = http.request.env["doctor.info.model"].sudo().search(args=[('role','=','doctor')])
+        doctor = {}
         result = []
-        doctors = []
         for i in range(len(records)):
-            for attr in ["id", "name","license_id","gender","job_title"]:
-                doctors.append({"doctor %s " % attr: records[i][attr]}) #, {"doctor gender": records[i].gender},
-                           # {"doctor license": records[i].license_id})
-        result.append(doctors)
-        print(doctors)
-        return json.dumps(doctors)
+            result.append({"id":records[i]["id"], "name":records[i]["name"], "license number": records[i]["license_id"],
+                               "gender": records[i]["gender"], "job title":records[i]["job_title"]})
+        return json.dumps(result)
 
 
 
