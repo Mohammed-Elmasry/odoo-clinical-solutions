@@ -7,7 +7,7 @@
                 <form>
                     <sheet>
                         <field name="patient_class"/>
-                        <field name="set_id"/>
+                        <field name="name"/>
                         <notebook string="Visit Data and Information">
                             <page string="Visit Data">
                                 <group col="6">
@@ -106,7 +106,7 @@
                 <calendar date_start="start_time" date_stop="end_time">
                     <field name="patient_class"/>
                     <field name="patient_type"/>
-                    <field name="set_id"/>
+                    <field name="name"/>
                 </calendar>
             </field>
         </record>
@@ -118,7 +118,7 @@
                 <search>
                     <field name="patient_class"/>
                     <field name="patient_type"/>
-                    <field name="set_id"/>
+                    <field name="name"/>
                     <field name="admitting_doctor"/>
                 </search>
             </field>
@@ -130,7 +130,7 @@
                 <tree>
                     <field name="patient_class"/>
                     <field name="patient_type"/>
-                    <field name="set_id"/>
+                    <field name="name"/>
                     <field name="start_time"/>
                     <field name="end_time"/>
                 </tree>
