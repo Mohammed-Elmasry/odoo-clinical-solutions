@@ -1,5 +1,4 @@
 <odoo>
-    <data>
         <!-- explicit form view definition -->
         <record model="ir.ui.view"  id="view_visit_form">
             <field name="name">Visit</field>
@@ -164,5 +163,4 @@
 
 
 
-    </data>
 </odoo>
