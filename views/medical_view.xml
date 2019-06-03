@@ -11,9 +11,16 @@
         <form>
           <sheet>
               <group>
+<div>
 
+</div>
                   <field name="obstetric_gynecological_history"/>
+                      <field name="time"/>
             </group>
+              <group>
+                  <field name="time"/>
+
+              </group>
               <group string="medical history" col="10">
                     <field name="dm"/>
                     <field name="htn"/>
@@ -54,10 +61,7 @@
 
               </group>
 
-                            <group>
-                  <field name="time"/>
 
-              </group>
           </sheet>
         </form>
       </field>

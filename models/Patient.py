@@ -4,11 +4,13 @@ class Patient(models.Model):
     _name = 'odoo.clinic.patient'
     _inherit = 'res.partner'
 
+
     mrn = fields.Char()
     blood_group= fields.Char()
     height= fields.Float()
     weight= fields.Float()
-    Religion=fields.Char()
+
+    religion=fields.Char()
     set_id=fields.Integer()
     # sex=fields.Selection((('m','male'),('f','female')))
     # MaritalStatus=fields.selection(['singel','single'],[''])
@@ -16,12 +18,13 @@ class Patient(models.Model):
     # list of tuple
     # Primary_Language=fields.Selection((('a','Arabic'),('e','English')))
     # Marital_Status=fields.Selection((('s','Single'),('m','Married'),))
-    Birth_Place=fields.Char()
-    Birth_Order=fields.Char()
-    Patient_Account_Number=fields.Integer()
-    Patient_Death=fields.Datetime()
-    Patient_Death_Indicator=fields.Char()
-    Multiple_Birth_Indicator=fields.Char()
+    birth_place=fields.Char()
+    birth_order=fields.Char()
+    patient_account_number=fields.Integer()
+    patient_death=fields.Datetime()
+    patient_death_indicator=fields.Char()
+    multiple_birth_indicator=fields.Char()
     # medical_sheet=fields.one2many('odoo.clinic.medical')
-    # visit=fields.one2many('odoo.clinic.visit')
-
+    visit=fields.One2many('odoo.clinic.visit','patient')
+    # medical=fields.One2many('odoo.clinic.medical','patient')
+    # doctor=fields.One2many('odoo.clinic.medical','patient')

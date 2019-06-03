@@ -16,6 +16,7 @@
                      <field name="admission_type"/>
                      <field name="preadmit_number"/>
                      <field name="prior_patient_location"/>
+                     <field name="patient"/>
 
 
 
@@ -43,6 +44,7 @@
                      <field name="admission_type"/>
                      <field name="preadmit_number"/>
                      <field name="prior_patient_location"/>
+                     <field name="patient"/>
 
         </tree>
       </field>

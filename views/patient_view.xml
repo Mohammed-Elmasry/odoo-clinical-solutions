@@ -17,9 +17,10 @@
               <field name="phone"/>
               <field name="mobile"/>
               <field name="date"/>
-                <field name="Religion"/>
+                <field name="religion"/>
 <!--              <field name="sex"/>-->
               <field name="email"/>
+              <field name="lang"/>
 
               <field name="mrn"/>
               <field name="height"/>
@@ -27,11 +28,12 @@
               <field name="blood_group"/>
             </group>
           <group string="address">
-              <field name="country_id"/>
-              <field name="city"/>
-              <field name="contact_address"/>
               <field name="street"/>
               <field name="street2"/>
+              <field name="city"/>
+              <field name="zip"/>
+              <field name="country_id"/>
+
           </group>
               <group string="company info">
 
@@ -45,24 +47,24 @@
 
               <field name="create_uid"/>
               <field name="function"/>
-              <field name="Patient_Account_Number"/>
+              <field name="patient_account_number"/>
 
             </group>
               <group>
-              <field name="Birth_Place"/>
+              <field name="birth_place"/>
 
-              <field name="Birth_Order"/>
+              <field name="birth_order"/>
 
-              <field name="Multiple_Birth_Indicator"/>
+              <field name="multiple_birth_indicator"/>
               </group>
               <group string="death info">
-                  <field name="Patient_Death"/>
+                  <field name="patient_death"/>
 
-              <field name="Patient_Death_Indicator"/>
+              <field name="patient_death_indicator"/>
               </group>
               <group>
-<!--                                <field name="medical_sheet"/>-->
-<!--                                <field name="visit"/>-->
+                                <field name="image"/>
+                                <field name="visit"/>
 
 
               </group>
@@ -115,7 +117,7 @@
               <field name="phone"/>
               <field name="mobile"/>
               <field name="date"/>
-            <field name="Religion"/>
+            <field name="religion"/>
 <!--              <field name="sex"/>-->
               <field name="email"/>
 
@@ -137,16 +139,18 @@
 
               <field name="create_uid"/>
               <field name="function"/>
-              <field name="Patient_Account_Number"/>
+              <field name="patient_account_number"/>
 
-              <field name="Birth_Place"/>
+              <field name="birth_place"/>
 
-              <field name="Birth_Order"/>
+              <field name="birth_order"/>
 
-              <field name="Multiple_Birth_Indicator"/>
-                  <field name="Patient_Death"/>
+              <field name="multiple_birth_indicator"/>
+                  <field name="patient_death"/>
 
-              <field name="Patient_Death_Indicator"/>
+              <field name="patient_death_indicator"/>
+              <field name="image" widget="image"/>
+                                <field name="visit"/>
 
         </tree>
       </field>

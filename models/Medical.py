@@ -1,7 +1,11 @@
 from odoo import models, fields, api
 
+
+
 class Medical(models.Model):
     _name = 'odoo.clinic.medical'
+
+
 
     obstetric_gynecological_history = fields.Text()
     dm = fields.Boolean()
