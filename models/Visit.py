@@ -3,12 +3,14 @@ from odoo import models, fields, api
 
 class Visit(models.Model):
     _name = 'visit.model'
+    # _rec_name = 'set_id'
 
-    doctor_id = fields.Many2one('doctor.info.model', string="doctor")
+    # doctor_id = fields.Many2one('doctor.info.model', string="doctor")
     start_time = fields.Datetime()
     end_time = fields.Datetime()
     patient_class = fields.Char(string="Patient class", required='true')
-    set_id = fields.Integer(string="Set ID")
+    name = fields.Integer(string="Set ID")
+    # change the name of this field to can display it as default when create visit
     assigned_patient_location = fields.Text(string="Assigned Location")
     admission_type = fields.Char(string="Admission Type")
     preadmit_number = fields.Integer(string="Preadmit Number")
