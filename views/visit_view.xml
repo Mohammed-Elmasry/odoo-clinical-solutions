@@ -136,6 +136,17 @@
                 </tree>
             </field>
         </record>
+        <!--        create pivot for visit-->
+        <record model="ir.ui.view" id="view_visit_pivot">
+            <field name="name">Visits</field>
+            <field name="model">visit.model</field>
+            <field name="arch" type="xml">
+              <pivot string="Visit Data and Information">
+                  <field name="start_time" type="row"/>
+                  <field name="end_time" type="row"/>
+              </pivot>
+            </field>
+        </record>
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">
@@ -143,7 +154,6 @@
             <field name="res_model">visit.model</field>
             <field name="view_mode">tree,form,calendar</field>
         </record>
-
 
         <!-- Top menu item -->
 
