@@ -93,8 +93,8 @@
         <field name="res_model">doctor.info.model</field>
         <field name="view_mode">tree,form</field>
     </record>
-      <menuitem name="Employee Data" id="clinical_management_system.menu_1" parent="menu_root"/>
-    <menuitem name="All Employees" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_1"
+      <menuitem name="Employee Data" id="menu_1" parent="menu_root"/>
+    <menuitem name="All Employees" id="menu_1_list" parent="menu_1"
               action="clinical_management_system.employee_list_action"/>
 
 </odoo>
