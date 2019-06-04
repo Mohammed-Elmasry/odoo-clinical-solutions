@@ -5,7 +5,7 @@ class Visit(models.Model):
     _name = 'visit.model'
     # _rec_name = 'set_id'
 
-    doctor_id = fields.One2many('doctor.info.model', "visit_id")
+    doctor = fields.One2many('doctor.info.model', "visit")
     patient = fields.Many2one('odoo.clinic.patient')
     # visit_id = fields.Integer(string="Visit ID", )
     start_time = fields.Datetime()
