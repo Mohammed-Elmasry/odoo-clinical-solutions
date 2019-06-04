@@ -15,6 +15,7 @@
                             <field name="end_time"/>
                         </group>
                         <group string="Doctor Information" col="6">
+                            <field name="doctor"/>
                             <field name="referring_doctor"/>
                             <field name="admitting_doctor"/>
                             <field name="attending_doctor"/>
