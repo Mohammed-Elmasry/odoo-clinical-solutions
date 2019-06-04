@@ -26,12 +26,12 @@ class ClinicalManagementSystem(http.Controller):
     #         'object': obj
     #     })
 
-    @http.route('/clinical_management_system/doctor', type="http", auth="none", methods=['get'])
+    @http.route('/clinical_management_system/doctor', type="http", auth="none", methods=['get'], cors="*")
     def get_doctor(self, doctor_id):
         record = http.request.env['doctor.info.model'].sudo().browse(int(doctor_id))
         return (record.gender)
 
-    @http.route('/clinical_management_system/doctor/<model("doctor.info.model"):doctor>/', type="http", auth="none")
+    @http.route('/clinical_management_system/doctor/<model("doctor.info.model"):doctor>/', type="http", auth="none", cors="*")
     def get_doctor_path(self, doctor):
         return self.get_doctor(doctor.id)
 
@@ -71,5 +71,6 @@ class ClinicalManagementSystem(http.Controller):
 
     @http.route('/clinical_management_system/schedule_visit/', type="http", auth="none", methods=['post'], cors="*", csrf=False)
     def schedule_visit(self, **kw):
-        print(kw)
-        return json.dumps("shokran")
+        # print("Requested data object: ",kw)
+        # print(json.loads(kw))
+        return json.dumps(kw)
