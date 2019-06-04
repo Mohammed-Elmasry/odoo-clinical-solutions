@@ -61,5 +61,4 @@ class Visit(models.Model):
     # Other Healthcare Provider
     service_episode_description=fields.Text()
     service_episode_identifier=fields.Integer()
-
     patient=fields.Many2one('odoo.clinic.patient')

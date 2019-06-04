@@ -26,5 +26,5 @@ class Patient(models.Model):
     multiple_birth_indicator=fields.Char()
     # medical_sheet=fields.one2many('odoo.clinic.medical')
     visit=fields.One2many('odoo.clinic.visit','patient')
-    # medical=fields.One2many('odoo.clinic.medical','patient')
+    medical=fields.One2many('odoo.clinic.medical','patient')
     # doctor=fields.One2many('odoo.clinic.medical','patient')

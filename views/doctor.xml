@@ -13,18 +13,20 @@
 
                 </group>
                 <group string="Job Information" col="6">
+                    <field name="license_id"/>
                     <field name="job_title"/>
                     <field name="job_id"/>
                     <field name="role"/>
                     <field name="work_email"/>
                     <field name="mobile_phone"/>
+                    <field name="work_phone"/>
                     <field name="certificate"/>
                     <field name="speciality"/>
-
+<!--                    attrs="{'invisible':[('role', '!=', 'officer')]}"-->
+<!-- attrs="{'visible':[('role', '!=', 'doctor')]}"-->
                 </group>
                     <group><field name="notes"/> </group>
                 </sheet>
-
             </form>
         </field>
 <!--        List View For Doctor Data Model-->
@@ -32,7 +34,6 @@
     <record model="ir.ui.view" id="view_doctor_info_list">
         <field name="name">Doctor List Info </field>
         <field name="model">doctor.info.model</field>
-<!--         <field name="inherit_id" ref="hr.view_employee_form"/>-->
         <field name="arch" type="xml">
             <tree string="Info List">
                 <field name="name"></field>
@@ -90,38 +91,10 @@
     <record model="ir.actions.act_window" id="employee_list_action">
         <field name="name">Employees</field>
         <field name="res_model">doctor.info.model</field>
-<!--        i can add the name of parent model?!!-->
         <field name="view_mode">tree,form</field>
     </record>
-
-    <!-- Top menu item -->
-    <!-- menu categories -->
-      <menuitem name="Employee Data" id="menu_doctor" parent="menu_root"/>
-    <!-- actions -->
-    <menuitem name="All Employees" id="list_doctor" parent="menu_doctor"
+      <menuitem name="Employee Data" id="menu_1" parent="menu_root"/>
+    <menuitem name="All Employees" id="menu_1_list" parent="menu_1"
               action="employee_list_action"/>
-<!--    <menuitem id="doctor_info_model"-->
-<!--              name="Clinic"-->
-<!--              group="base.group_user"/>-->
-<!--    <menuitem id="doctor_info_menu"-->
-<!--              name="Doctor Info"-->
-<!--              parent="clinical_management_system.menu_root"-->
-<!--              group="base.group_user"-->
-<!--              action="employee_list_action"/>-->
 
-<!--    <record model="ir.actions.act_window" id="action_all_employees_tree">-->
-<!--        <field name="name">clinical_management_system window</field>-->
-<!--        <field name="res_model">doctor.info.model</field>-->
-<!--        <field name="view_mode">form</field>-->
-<!--    </record>-->
-<!--    <menuitem name="clinical_management_system" id="clinical_management_system.menu_root"/>-->
-
-<!--    <menuitem name="all employees" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_root"-->
-<!--              action="action_all_employees_tree"/>-->
-
-<!--    <menuitem id="menu_custom_toplevel" name="my custom menu" />-->
-<!--    <menuitem id="menu_custom_left" parent="menu_custom_toplevel"-->
-<!--              name="this will appear in the left part"/>-->
-<!--    <menuitem id="menu_all_employees" parent="menu_custom_left" action="action_all_employees_tree"-->
-<!--              sequence="10"/>-->
 </odoo>

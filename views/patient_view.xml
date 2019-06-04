@@ -65,6 +65,7 @@
               <group>
                                 <field name="image"/>
                                 <field name="visit"/>
+                                <field name="medical"/>
 
 
               </group>
@@ -151,6 +152,7 @@
               <field name="patient_death_indicator"/>
               <field name="image" widget="image"/>
                                 <field name="visit"/>
+                                <field name="medical"/>
 
         </tree>
       </field>

@@ -17,8 +17,9 @@
                   <field name="obstetric_gynecological_history"/>
                       <field name="time"/>
             </group>
-              <group>
+              <group col="2">
                   <field name="time"/>
+                  <field name="patient"/>
 
               </group>
               <group string="medical history" col="10">
@@ -98,6 +99,7 @@
               <field name="examination"/>
               <field name="drug_allergy"/>
               <field name="time"/>
+              <field name="patient"/>
 
         </tree>
       </field>
