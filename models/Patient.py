@@ -4,6 +4,7 @@ class Patient(models.Model):
     _name = 'odoo.clinic.patient'
     _inherit = 'res.partner'
 
+    visit = fields.One2many('visit.model', 'patient')
     mrn = fields.Char()
     blood_group= fields.Char()
     height= fields.Float()
