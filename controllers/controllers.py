@@ -135,8 +135,6 @@ class ClinicalManagementSystem(http.Controller):
                             "weight " + str(t): record.medical[t].weight,
                             "examination " + str(t): record.medical[t].examination,
                             "drug_allergy " + str(t): record.medical[t].drug_allergy,
-                            # "time " + str(t): record.medical[t].time,
-                            #
                             })
         return json.dumps(medical)
 
