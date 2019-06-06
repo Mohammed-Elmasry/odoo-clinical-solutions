@@ -80,3 +80,10 @@ class ClinicalManagementSystem(http.Controller):
     def get_empty_time_slots(self):
         print("empty slots")
         return json.dumps("empty slots")
+
+    @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
+    def get_visits(self):
+        visits = http.request.env["odoo.clinic.visit"].sudo().search([])
+        for i in range(len(visits)):
+            print(visits[i]["patient_class"])
+        # return json.dumps(visits)
