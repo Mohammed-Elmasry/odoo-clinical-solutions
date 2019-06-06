@@ -88,8 +88,9 @@ class ClinicalManagementSystem(http.Controller):
         time_slots = []
         for i in range(len(visits)):
             doctor = visits[i]["attending_doctor"]
-            my_time = datetime.datetime.strftime(visits[i]["start_time"], "%m/%j/%Y %H:%M")
-            my_date = datetime.datetime.strptime(my_time, "%m/%j/%Y %H:%M").date()
-            my_time = datetime.datetime.strptime(my_time, "%m/%j/%Y %H:%M").time()
-            time_slots.append([my_time.strftime("%I:%M"), my_date.strftime("%m/%d/%Y"),my_time.strftime("%p"), doctor.name])
+            my_time = datetime.datetime.strftime(visits[i]["start_time"], "%m/%j/%Y %I:%M")
+            my_date = datetime.datetime.strptime(my_time, "%m/%j/%Y %I:%M").date()
+            my_time = datetime.datetime.strptime(my_time, "%m/%j/%Y %I:%M").time()
+            # print(type(my_time))
+            time_slots.append([my_time.strftime("%I:%M %p"), my_date.strftime("%m/%d/%Y"),my_time.strftime("%p"), doctor.name])
         return json.dumps(time_slots)

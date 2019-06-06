@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="964fa5ce-e48c-4339-ad26-0b895505a834" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/controllers/controllers.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/controllers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Visit.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Visit.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+            <state relative-caret-position="13">
+              <caret line="83" column="4" selection-start-line="83" selection-start-column="4" selection-end-line="95" selection-end-column="37" />
               <folding>
                 <element signature="e#24#53#0" expanded="true" />
               </folding>
@@ -507,8 +506,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+        <state relative-caret-position="13">
+          <caret line="83" column="4" selection-start-line="83" selection-start-column="4" selection-end-line="95" selection-end-column="37" />
           <folding>
             <element signature="e#24#53#0" expanded="true" />
           </folding>
