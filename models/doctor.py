@@ -5,7 +5,7 @@ class DoctorInfo(models.Model):
     _name = "doctor.info.model"
     _inherits = {'hr.employee': 'emp_id'}
 
-    visit = fields.Many2one('visit.model')
+    visit = fields.One2many('visit.model', "visit")
     emp_id = fields.Many2one('hr.employee')
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True)
     speciality = fields.Char(size=50)
