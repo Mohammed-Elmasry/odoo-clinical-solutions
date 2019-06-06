@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import http
 import json
-
+from ast import literal_eval
 class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/clinical_management_system/', auth='public')
     def index(self, **kw):
@@ -71,6 +71,12 @@ class ClinicalManagementSystem(http.Controller):
 
     @http.route('/clinical_management_system/schedule_visit/', type="http", auth="none", methods=['post'], cors="*", csrf=False)
     def schedule_visit(self, **kw):
-        # print("Requested data object: ",kw)
-        # print(json.loads(kw))
-        return json.dumps(kw)
+        params = http.request.params
+        # print(params)
+        print(params)
+        return json.dumps("enahrada agazaaaaa!!")
+
+    @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
+    def get_empty_time_slots(self):
+        print("empty slots")
+        return json.dumps("empty slots")
