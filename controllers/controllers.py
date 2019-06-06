@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from odoo import http
-import json
+from odoo import http, fields
+import json, datetime
 from ast import literal_eval
 class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/clinical_management_system/', auth='public')
@@ -84,6 +84,11 @@ class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
     def get_visits(self):
         visits = http.request.env["visit.model"].sudo().search([])
+        # time = visits[0]["start_time"]
+        time_slots = []
         for i in range(len(visits)):
-            print(visits[i]["patient_class"])
-        # return json.dumps(visits)
+            my_time = datetime.datetime.strftime(visits[i]["start_time"], "%m/%j/%y %H:%M")
+            my_date = datetime.datetime.strptime(my_time, "%m/%j/%y %H:%M").date()
+            my_time = datetime.datetime.strptime(my_time, "%m/%j/%y %H:%M").time()
+            time_slots.append([my_time.strftime("%I:%M"), my_date.strftime("%m/%d/%y"),my_time.strftime("%p")])
+        return json.dumps(time_slots)
