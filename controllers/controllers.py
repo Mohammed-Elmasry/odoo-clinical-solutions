@@ -83,7 +83,7 @@ class ClinicalManagementSystem(http.Controller):
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
     def get_visits(self):
-        visits = http.request.env["odoo.clinic.visit"].sudo().search([])
+        visits = http.request.env["visit.model"].sudo().search([])
         for i in range(len(visits)):
             print(visits[i]["patient_class"])
         # return json.dumps(visits)
