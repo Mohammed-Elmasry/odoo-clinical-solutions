@@ -125,8 +125,8 @@ class Visit(models.Model):
     #     vals['visit_id'] = self.env['ir.sequence']._create_sequence(1, 1)
     #         # .next_by_code()
 
-    # @api.multi
-    # def _visit_count(self):
-    #     for visits in self:
-    #         visits.id
+    @api.multi
+    def _visit_count(self):
+        for visits in self:
+            visits.visit_count = len(visits.visit_count)
 
