@@ -31,3 +31,4 @@ class Medical(models.Model):
     date = fields.Date()
     time = fields.Datetime()
     patient=fields.Many2one('odoo.clinic.patient')
+    doctor=fields.Many2one('doctor.info.model')

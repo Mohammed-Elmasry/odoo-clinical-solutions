@@ -10,6 +10,7 @@
                     <field name="name"/>
                     <field name="gender"/>
                     <field name="birthday"/>
+<!--                    <field name="sheet"/>-->
 
                 </group>
                 <group string="Job Information" col="6">

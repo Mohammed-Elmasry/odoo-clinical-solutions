@@ -25,6 +25,7 @@ class DoctorInfo(models.Model):
         ('other', 'Other'),
     ], 'Certificate Level', default='master', groups="hr.group_hr_user", required=True)
     mobile_phone = fields.Char('Work Mobile', required=True)
+    sheet=fields.One2many('odoo.clinic.medical','doctor')
     # visit=fields.One2many()
     # visit=fields.Many2one(odoo.clinic.visit)
     # personal_phone = fields.Char('Phone Number', size=25)
