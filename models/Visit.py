@@ -8,7 +8,7 @@ class Visit(models.Model):
     doctor = fields.Many2one('doctor.info.model')
     patient = fields.Many2one('odoo.clinic.patient')
     # visit_id = fields.Integer(string="Visit ID", )
-    visit_id = fields.Char(string="Visit ID", help="Auto Increment")
+    visit_id = fields.Char(string="Visit ID", help="Auto Increment", required=True, readonly=True)
     visit_count = fields.Integer(string="Visit Count", help="To Count Visits in The Clinic ")
     start_time = fields.Datetime()
     end_time = fields.Datetime()
@@ -123,10 +123,5 @@ class Visit(models.Model):
     def create(self, vals):
 
         vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
-    #         # .next_by_code()
 
-    # @api.multi
-    # def _visit_count(self):
-    #     for visits in self:
-    #         visits.visit_count = len(visits.id)
 

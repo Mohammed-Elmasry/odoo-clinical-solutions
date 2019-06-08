@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e14d9f9d-5552-47f2-a06f-be3db97076d9" name="Default Changelist" comment="Merge branch 'eman' of https://github.com/Mohammed-Elmasry/odoo-clinical-solutions into develop_doctor_info_feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;models/Visit.py&#10;#&#9;models/__pycache__/Visit.cpython-36.pyc&#10;#&#9;models/__pycache__/doctor.cpython-36.pyc&#10;#&#9;views/doctor.xml&#10;#&#9;views/visit_view.xml">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Visit.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Visit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/visit_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/views/visit_view.xml" afterDir="false" />
     </list>
@@ -16,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/Visit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="121" column="3" selection-start-line="121" selection-start-column="3" selection-end-line="124" selection-end-column="79" />
+            <state relative-caret-position="92">
+              <caret line="10" column="97" selection-start-line="10" selection-start-column="97" selection-end-line="10" selection-end-column="97" />
             </state>
           </provider>
         </entry>
@@ -25,15 +26,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../odoo/odoo-source/odoo/addons/account/data/account_data.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1134" />
+            <state relative-caret-position="84">
+              <caret line="188" column="79" selection-start-line="188" selection-start-column="62" selection-end-line="188" selection-end-column="79" />
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="12" selection-end-column="34" />
+            <state relative-caret-position="122">
+              <caret line="159" column="12" selection-start-line="159" selection-start-column="12" selection-end-line="166" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -67,7 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>patient_type</find>
       <find>date</find>
       <find>sear</find>
       <find>graph</find>
@@ -96,6 +98,7 @@
       <find>pivo</find>
       <find>id</find>
       <find>visit dat</find>
+      <find>account.reconcile</find>
       <find>count</find>
     </findStrings>
   </component>
@@ -371,22 +374,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
+    <entry file="file://$PROJECT_DIR$/../../../odoo/odoo-source/odoo/addons/account/data/account_data.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="12" selection-end-column="34" />
+        <state relative-caret-position="84">
+          <caret line="188" column="79" selection-start-line="188" selection-start-column="62" selection-end-line="188" selection-end-column="79" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../odoo/odoo-source/odoo/addons/account/data/account_data.xml">
+    <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1134" />
+        <state relative-caret-position="122">
+          <caret line="159" column="12" selection-start-line="159" selection-start-column="12" selection-end-line="166" selection-end-column="21" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Visit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="121" column="3" selection-start-line="121" selection-start-column="3" selection-end-line="124" selection-end-column="79" />
+        <state relative-caret-position="92">
+          <caret line="10" column="97" selection-start-line="10" selection-start-column="97" selection-end-line="10" selection-end-column="97" />
         </state>
       </provider>
     </entry>
