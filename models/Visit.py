@@ -8,6 +8,7 @@ class Visit(models.Model):
     doctor = fields.Many2one('doctor.info.model')
     patient = fields.Many2one('odoo.clinic.patient')
     # visit_id = fields.Integer(string="Visit ID", )
+    visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     start_time = fields.Datetime()
     end_time = fields.Datetime()
     patient_class = fields.Char(string="Patient class", required='true')
@@ -117,3 +118,9 @@ class Visit(models.Model):
                                         ('V', 'Visit level')], string="Visit Indicator", default='A')
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
+    @api.model
+    def create(self, vals):
+
+        vals['visit_id'] = self.env['ir.sequence']._create_sequence(1, 1)
+            # .next_by_code()
+
