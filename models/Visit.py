@@ -128,5 +128,5 @@ class Visit(models.Model):
     @api.multi
     def _visit_count(self):
         for visits in self:
-            visits.visit_count = len(visits.visit_count)
+            visits.visit_count = len(visits.id)
 
