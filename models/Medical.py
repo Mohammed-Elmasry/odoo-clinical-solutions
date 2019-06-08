@@ -1,7 +1,11 @@
 from odoo import models, fields, api
 
+
+
 class Medical(models.Model):
     _name = 'odoo.clinic.medical'
+
+
 
     obstetric_gynecological_history = fields.Text()
     dm = fields.Boolean()
@@ -26,3 +30,5 @@ class Medical(models.Model):
     # physician_signature=
     date = fields.Date()
     time = fields.Datetime()
+    patient=fields.Many2one('odoo.clinic.patient')
+    doctor=fields.Many2one('doctor.info.model')

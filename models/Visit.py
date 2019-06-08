@@ -3,6 +3,10 @@ from odoo import models, fields, api
 class Visit(models.Model):
     _name = 'odoo.clinic.visit'
 
+
+
+    start_datetime = fields.Datetime()
+    end_datetime =fields.Datetime()
     patient_class=fields.Char(string="Patient class",required ='true')
     set_id=fields.Integer()
     assigned_patient_location=fields.Char()
@@ -30,7 +34,7 @@ class Visit(models.Model):
     contract_amount=fields.Integer()
     Contract_Period=fields.Integer()
     interest_code=fields.Integer()
-    transfer_bad_debt_code=fields.Integer
+    transfer_bad_debt_code=fields.Integer()
     transfer_bad_debt_date=fields.Date()
     bad_debt_agency_code=fields.Integer()
 
@@ -57,3 +61,5 @@ class Visit(models.Model):
     # Other Healthcare Provider
     service_episode_description=fields.Text()
     service_episode_identifier=fields.Integer()
+    patient=fields.Many2one('odoo.clinic.patient')
+    # doctor=fields.Many2one('doctor.info.model')

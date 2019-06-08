@@ -1,0 +1,110 @@
+<!--<odoo>-->
+<!--    <data>-->
+<!-- Action to open product list-->           <!--reference model -->
+<!--        <act-window id="action_product" name="product" res_model="product.template"-->
+<!--                    view_mode="tree, form"/>-->
+
+<!-- menuitem to open product list-->
+<!--        <menuitem id="menu _product" name="product" parent="mail.mail_feeds" sequence="20" action="action_product"/>-->
+<!--    </data>-->
+<!--</odoo>-->
+
+<odoo>
+    <data>
+<!--        <record id="view_graph_all_products" model="ir.ui.view">-->
+<!--            <field name="name">Product graphs</field>-->
+<!--            <field name="model">product.template</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <graph>-->
+<!--                    <field name="description" />-->
+<!--                    &lt;!&ndash;                <field name="is_medicine"/>&ndash;&gt;-->
+<!--                </graph>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+
+<!--        <record model="ir.actions.act_window" id="test_action">-->
+<!--            <field name="name">test</field>-->
+<!--            <field name="res_model">product.template</field>-->
+<!--            <field name="view_mode">tree,list,graph</field>-->
+<!--        </record>-->
+
+<!--        <record id="action_all_services_form" model="ir.actions.act_window.view">-->
+<!--            <field name="act_window_id"/>-->
+<!--            <field name="view_id"/>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="sequnce">10</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <field name="name"/>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Form view &ndash;&gt;-->
+<!--        <record id="form_all_services" model="ir.ui.view">-->
+<!--            <field name="name">All services</field>-->
+<!--            <field name="model">product.template</field>-->
+<!--            &lt;!&ndash;        <field name="view_mode">tree</field>&ndash;&gt;-->
+<!--            <field name="inherit_id" ref="product.product_template_form_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='name']" position="after">-->
+<!--                    &lt;!&ndash;                <field name="description"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <h1><label>This is the biggest label</label></h1>&ndash;&gt;-->
+<!--                    <field name="categ_id"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; search view &ndash;&gt;-->
+<!--        <record id="search_all_services" model="ir.ui.view">-->
+<!--            <field name="name">All services</field>-->
+<!--            <field name="model">product.template</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search>-->
+<!--                    <field name="description"/>-->
+<!--                    <filter name="filter_is_medicine" string="medicines"-->
+<!--                            domain="[('is_medicine','=','True')]"/>-->
+<!--                    <filter name="filter_is_service" string="services"-->
+<!--                            domain="[('is_medicine','=','False')]"-->
+<!--                    />-->
+<!--                    &lt;!&ndash;        <field name="fees"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;        <filter name="filter_fees" string="fees"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                domain="[('fees','>','0')]"/>&ndash;&gt;-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+
+<!--        <record model="ir.actions.act_window" id="action_all_services_tree">-->
+<!--            <field name="name">clinical_management_system window</field>-->
+<!--&lt;!&ndash;            <field name="res_model">product.template</field>&ndash;&gt;-->
+<!--            <field name="view_mode">tree,form,graph,pivot,search</field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash;    <menuitem name="clinical_management_system" id="clinical_management_system.menu_root"/>&ndash;&gt;-->
+
+<!--        <menuitem name="services" id="clinical_management_system_menu" parent="clinical_management_system.menu_root"/>-->
+
+<!--        <menuitem name="Products" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_root"-->
+<!--                  action="action_all_services_tree"/>-->
+<!--        <menuitem name="Services" id="clinical_management_system.menu_2_list" parent="clinical_management_system.menu_root"-->
+<!--                  action="action_all_services_tree"/>-->
+
+
+
+<!--        &lt;!&ndash;    <record model="product.template" id="1">&ndash;&gt;-->
+<!--        &lt;!&ndash;        <field name="name">X-Ray</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <field name="fees">10.00</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;     </record>&ndash;&gt;-->
+<!--        &lt;!&ndash;    <record model="product.template" id="2">&ndash;&gt;-->
+<!--        &lt;!&ndash;        <field name="name">Oxygen</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <field name="fees">15.00</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </record>&ndash;&gt;-->
+<!--        &lt;!&ndash;    <record model="product.template" id="3">&ndash;&gt;-->
+<!--        &lt;!&ndash;        <field name="name">First aids</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <field name="fees">100</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </record>&ndash;&gt;-->
+    </data>
+
+</odoo>

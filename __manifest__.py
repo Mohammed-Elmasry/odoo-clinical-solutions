@@ -20,13 +20,15 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'sale', 'hr'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/product.xml', #it contains the _name of the model
+        'views/doctor.xml',
         'views/patient_view.xml',
         'views/medical_view.xml',
         'views/visit_view.xml',
