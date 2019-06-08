@@ -118,9 +118,13 @@ class Visit(models.Model):
                                         ('V', 'Visit level')], string="Visit Indicator", default='A')
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
-    @api.model
-    def create(self, vals):
+    # @api.model
+    # def create(self, vals):
+    #
+    #     vals['visit_id'] = self.env['ir.sequence']._create_sequence(1, 1)
+    #         # .next_by_code()
 
-        vals['visit_id'] = self.env['ir.sequence']._create_sequence(1, 1)
-            # .next_by_code()
+    # @api.multi
+    # def _visit_count(self):
+    #     for visits in self:
 
