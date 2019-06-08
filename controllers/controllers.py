@@ -146,7 +146,7 @@ class ClinicalManagementSystem(http.Controller):
         return self.get_patient(patient.id)
 
 
-    @http.route('/clinical_management_system/patient/new/', type="http", auth="none", methods=['post'], cors="*", csrf=False)
+    @http.route('/clinical_management_system/patient/news/', type="http", auth="none", methods=['post'], cors="*", csrf=False)
     def create_patient(self, **kw):
         print(kw)
         # pp = http.request.env['odoo.clinic.patient'].sudo().create({'name': kw["name"]})
@@ -158,11 +158,13 @@ class ClinicalManagementSystem(http.Controller):
         # print(http.request.params["name"])
         # return json.dumps(http.request.params["name"])
     #
-    @http.route('/clinical_management_system/patient/news/', type="http", auth="none", methods=['POST'], cors="*", csrf=False)
+    @http.route('/clinical_management_system/patient/new/', type="http", auth="none", methods=['POST'], cors="*", csrf=False)
     def create_patient(self, **params):
-        record=http.request.env['odoo.clinic.patient'].sudo().create({'name': http.request.httprequest.data})
-        print(http.request.httprequest.data)
+        record=http.request.env['odoo.clinic.patient'].sudo().create(json.loads(http.request.httprequest.data))
+        print(json.loads(http.request.httprequest.data))
+        # return json.dumps(record.id)
         return json.dumps(record.id)
+
 
 
          # ee = http.request.params
