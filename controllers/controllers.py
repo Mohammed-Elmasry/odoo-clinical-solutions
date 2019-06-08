@@ -71,27 +71,27 @@ class ClinicalManagementSystem(http.Controller):
 
     @http.route('/clinical_management_system/schedule_visit/', type="http", auth="none", methods=['post'], cors="*", csrf=False)
     def schedule_visit(self, **kw):
-        print(kw)
+        print("dsfs",kw)
         return json.dumps("shokran")
 
 
-    @http.route('/clinical_management_system/patient', type="http", auth="none", methods=['get'])
+    @http.route('/clinical_management_system/patient', type="http", auth="none", methods=['get'], cors="*")
     def get_patient(self, patient_id):
         record = http.request.env['odoo.clinic.patient'].sudo().browse(int(patient_id))
         patient={}
         data = []
         print(record.name)
-        data.append({"patientinfo":{"name": record.name, "weight": record.weight}})
+        data.append({"id":record.id})
 
         for t in range(len(record.visit)):
             print(record.visit[t].patient_class)
-            data.append({"visit_patient_class "+str(t) :record.visit[t].patient_class,"visit_patient "+str(t) :record.visit[t].assigned_patient_location})
+            data.append({"visit_start_time "+str(t) :record.visit[t].start_datetime,"visit_end_time "+str(t) :record.visit[t].assigned_patient_location})
         return json.dumps(data)
 
 
 
     @http.route('/clinical_management_system/patient/<model("odoo.clinic.patient"):patient>/', type="http",
-                auth="none")
+                auth="none", cors="*")
     def get_patient_data(self, patient):
         return self.get_patient(patient.id)
 
@@ -113,7 +113,7 @@ class ClinicalManagementSystem(http.Controller):
 
 
 
-    @http.route('/clinical_management_system/medical/patient', type="http", auth="none", methods=['get'])
+    @http.route('/clinical_management_system/medical/patient', type="http", auth="none", methods=['get'], cors="*")
     def get_medical(self, patient_id):
         record = http.request.env['odoo.clinic.patient'].sudo().browse(int(patient_id))
         medical = []
@@ -141,6 +141,46 @@ class ClinicalManagementSystem(http.Controller):
 
 
     @http.route('/clinical_management_system/medical/patient/<model("odoo.clinic.patient"):patient>/', type="http",
-                auth="none")
+                auth="none" , cors="*"  )
     def get_patient_medical(self, patient):
         return self.get_patient(patient.id)
+
+
+    @http.route('/clinical_management_system/patient/new/', type="http", auth="none", methods=['post'], cors="*", csrf=False)
+    def create_patient(self, **kw):
+        print(kw)
+        # pp = http.request.env['odoo.clinic.patient'].sudo().create({'name': kw["name"]})
+        return json.dumps("df")
+        # print(kw.keys())
+        # print(kw.values())
+        # print(kw.items())
+        # print(kw["name"])
+        # print(http.request.params["name"])
+        # return json.dumps(http.request.params["name"])
+    #
+    @http.route('/clinical_management_system/patient/news/', type="http", auth="none", methods=['POST'], cors="*", csrf=False)
+    def create_patient(self, **params):
+        record=http.request.env['odoo.clinic.patient'].sudo().create({'name': http.request.httprequest.data})
+        print(http.request.httprequest.data)
+        return json.dumps(record.id)
+
+
+         # ee = http.request.params
+        # print(ee)
+        # print(ee["name"])
+         # record = http.request.env['odoo.clinic.patient'].sudo().create({"name":kw["name"]})
+        # print(kw.keys())
+        # print(kw.values())
+        # print(kw.items())
+        # print(kw)
+        # record = 	http.request.env['odoo.clinic.patient'].sudo().create({'name':'qqqq'})
+        #
+        #
+        # return json.dumps("done")
+
+        # return (ee)
+        # print((ee))
+        # return json.dumps("Dfdfsd")
+        # print(kw)
+        # return json.dumps("done")
+

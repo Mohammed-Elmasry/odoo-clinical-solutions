@@ -11,13 +11,11 @@
         <form>
           <sheet>
               <group>
-<div>
 
-</div>
                   <field name="obstetric_gynecological_history"/>
-                      <field name="time"/>
+
             </group>
-              <group col="2">
+              <group col="4">
                   <field name="time"/>
                   <field name="patient"/>
 

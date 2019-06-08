@@ -9,24 +9,30 @@
       <field name="arch" type="xml">
         <form>
           <sheet>
+
             <group  string="Personal info" col="4">
-              <field name="id"/>
+<!--              <field name="id"/>-->
               <field name="name"/>
               <field name="set_id"/>
-
               <field name="phone"/>
               <field name="mobile"/>
+                <field name="email"/>
               <field name="date"/>
                 <field name="religion"/>
 <!--              <field name="sex"/>-->
-              <field name="email"/>
-              <field name="lang"/>
+            </group>
+                <notebook string="Visit Data and Information">
+            <page string="medical info">
+              <group>
+                <field name="lang"/>
 
               <field name="mrn"/>
               <field name="height"/>
               <field name="weight"/>
               <field name="blood_group"/>
             </group>
+            </page>
+              <page  string="address">
           <group string="address">
               <field name="street"/>
               <field name="street2"/>
@@ -35,6 +41,8 @@
               <field name="country_id"/>
 
           </group>
+              </page>
+                </notebook>
               <group string="company info">
 
               <field name="child_ids"/>
