@@ -123,5 +123,6 @@ class Visit(models.Model):
     def create(self, vals):
 
         vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
-
+        res = super('visit.model', self).create(vals)
+        return res
 
