@@ -157,6 +157,12 @@
     <!--
         Visit Statement Sequences
         -->
+    <record id="visit_seq" model="ir.sequence">
+        <field name="name">visit</field>
+        <field name="code">clinic.visit</field>
+        <field name="prefix">visit</field>
+        <field name="company_id" eval="False"/>
+    </record>
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">
