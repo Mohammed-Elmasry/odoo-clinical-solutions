@@ -157,14 +157,6 @@
     <!--
         Visit Statement Sequences
         -->
-<!--        <record id="sequence_reconcile_seq_visit" model="ir.sequence">-->
-<!--            <field name="name">visit reconcile sequence</field>-->
-<!--            <field name="code">visit.model</field>-->
-<!--            <field name="prefix">1</field>-->
-<!--            <field eval="1" name="number_next"/>-->
-<!--            <field eval="1" name="number_increment"/>-->
-<!--&lt;!&ndash;            <field eval="False" name="company_id"/>&ndash;&gt;-->
-<!--        </record>-->
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">
