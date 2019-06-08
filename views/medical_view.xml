@@ -11,9 +11,7 @@
         <form>
           <sheet>
               <group>
-
                   <field name="obstetric_gynecological_history"/>
-
             </group>
               <group col="4">
                   <field name="time"/>
@@ -27,6 +25,8 @@
                     <field name="heptic"/>
 
                     <field name="renal"/>
+              </group>
+              <group>
                   <field name="others"/>
 
 
@@ -36,7 +36,7 @@
               </group>
 
 
-              <group string="vitual signs" col="12">
+              <group string="vitual signs" col="9">
                     <field name="bp"/><span>mm Hg</span>
                     <field name="rr"/><span>/m</span>
                     <field name="hr"/><span>p/m</span>

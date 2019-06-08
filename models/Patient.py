@@ -9,15 +9,16 @@ class Patient(models.Model):
     blood_group= fields.Char()
     height= fields.Float()
     weight= fields.Float()
-
     religion=fields.Char()
     set_id=fields.Integer()
-    # sex=fields.Selection((('m','male'),('f','female')))
-    # MaritalStatus=fields.selection(['singel','single'],[''])
+    gender=fields.Selection([('m','male'),('f','female'),('U','Unknown')])
+    MaritalStatus=fields.Selection([('A','Separated'),('D','Divorced'),('M','Married'),('S','Single'),('W','Widowed')])
     mother_name=fields.Char()
-    # list of tuple
-    # Primary_Language=fields.Selection((('a','Arabic'),('e','English')))
-    # Marital_Status=fields.Selection((('s','Single'),('m','Married'),))
+    race=fields.Selection([('1002-5','American Indian or Alaska Native'),
+                           ('2028-9','Asian'),('2054-5','Black or African American'),
+                           ('2076-8','Native Hawaiian or Other Pacific Islander'),
+                           ('2106-3','White'),
+                           ('2131-1','Other Race')])
     birth_place=fields.Char()
     birth_order=fields.Char()
     patient_account_number=fields.Integer()

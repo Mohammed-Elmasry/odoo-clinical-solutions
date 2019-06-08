@@ -10,68 +10,87 @@
         <form>
           <sheet>
 
+            <group>
+                <field name="active"/>
+
+            </group>
+
+
             <group  string="Personal info" col="4">
-<!--              <field name="id"/>-->
+                <field name="image"/>
+
+                <!--              <field name="id"/>-->
               <field name="name"/>
-              <field name="set_id"/>
+<!--              <field name="set_id"/>-->
               <field name="phone"/>
               <field name="mobile"/>
                 <field name="email"/>
               <field name="date"/>
                 <field name="religion"/>
-<!--              <field name="sex"/>-->
+                <field name="lang"/>
+<!--                <field name="state"/>-->
+
+              <field name="gender"/>
             </group>
                 <notebook string="Visit Data and Information">
             <page string="medical info">
               <group>
-                <field name="lang"/>
 
+                  <field name="comment"/>
               <field name="mrn"/>
               <field name="height"/>
               <field name="weight"/>
               <field name="blood_group"/>
             </group>
             </page>
-              <page  string="address">
+                    <page  string="address">
           <group string="address">
               <field name="street"/>
               <field name="street2"/>
-              <field name="city"/>
-              <field name="zip"/>
               <field name="country_id"/>
-
           </group>
-              </page>
-                </notebook>
-              <group string="company info">
+                        <group col="9">
 
-              <field name="child_ids"/>
-              <field name="company_name"/>
-              <field name="company_type"/>
-                  <field name="mother_name"/>
+                  <field name="city"/>
+              <field name="state_id"/>
+              <field name="zip"/>
+
               </group>
-              <group >
-              <field name="create_date"/>
-
-              <field name="create_uid"/>
-              <field name="function"/>
-              <field name="patient_account_number"/>
-
-            </group>
-              <group>
+              </page>
+                    <page string="bith info">
+                        <group>
               <field name="birth_place"/>
 
               <field name="birth_order"/>
 
               <field name="multiple_birth_indicator"/>
-              </group>
-              <group string="death info">
+                        </group>
+                    </page>
+                <page string="death info">
+                   <group string="death info">
                   <field name="patient_death"/>
 
               <field name="patient_death_indicator"/>
               </group>
+                </page>
+                    <page string="others">
+                        <group>
+                            <field name="MaritalStatus"/>
+                            <field name="race"/>
+                            <field name="function"/>
+                            <field name="mother_name"/>
+                            <field name="patient_account_number"/>
+                            <field name="company_name"/>
+                            <field name="company_type"/>
+                            <field name="child_ids"/>
+                            <field name="bank_account_count"/>
+                            <field name="bank_ids"/>
+
+                        </group>
+                    </page>
+                </notebook>
+
               <group>
-                                <field name="image"/>
                                 <field name="visit"/>
                                 <field name="medical"/>
 
