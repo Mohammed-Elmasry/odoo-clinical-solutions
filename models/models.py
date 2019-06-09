@@ -1,35 +1,15 @@
 # -*- coding: utf-8 -*-
+
 from odoo import models, fields, api
 
+# class clinical_management_system(models.Model):
+#     _name = 'clinical_management_system.clinical_management_system'
 
-
-class Medical(models.Model):
-    _name = 'odoo.clinic.medical'
-
-
-
-    obstetric_gynecological_history = fields.Text()
-    dm = fields.Boolean()
-    htn = fields.Boolean()
-    cardiac = fields.Boolean()
-    heptic = fields.Boolean()
-    renal = fields.Boolean()
-    others = fields.Text()
-
-    surgical_history = fields.Text()
-    bp = fields.Float()
-    rr = fields.Float()
-    hr = fields.Float()
-    temp = fields.Float()
-    fhc = fields.Float()
-    weight = fields.Float()
-    obese = fields.Boolean()
-    average_weight = fields.Boolean()
-    under_weight = fields.Boolean()
-    examination = fields.Text()
-    drug_allergy = fields.Text()
-    # physician_signature=
-    date = fields.Date()
-    time = fields.Datetime()
-    patient=fields.Many2one('odoo.clinic.patient')
-    doctor=fields.Many2one('doctor.info.model')
+#     name = fields.Char()
+#     value = fields.Integer()
+#     value2 = fields.Float(compute="_value_pc", store=True)
+#     description = fields.Text()
+#
+#     @api.depends('value')
+#     def _value_pc(self):
+#         self.value2 = float(self.value) / 100
