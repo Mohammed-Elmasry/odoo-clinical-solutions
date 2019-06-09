@@ -6,11 +6,11 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-<!--                        <div class="oe_button_box" name="button_box" position="inside">-->
-<!--                         <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">-->
-<!--                                <field name="visit_count" widget="statinfo"/>-->
-<!--                         </button>-->
-<!--                        </div>-->
+                        <div class="oe_button_box" name="button_box" position="inside">
+                         <button name="visit_active" type="object" class="oe_stat_button" icon="fa-user">
+                                <field name="visit_count" widget="statinfo"/>
+                         </button>
+                        </div>
                         <group string="Basic Data" col="6">
                             <field name="patient_class"/>
                             <field name="patient"/>
