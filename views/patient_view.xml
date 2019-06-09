@@ -29,6 +29,7 @@
                 <field name="religion"/>
                 <field name="lang"/>
 <!--                <field name="state"/>-->
+                <field name="token"/>
 
               <field name="gender"/>
             </group>

@@ -7,7 +7,7 @@
             <form>
                 <sheet>
                     <group string="Personal Information" col="6">
-                    <field name="name"/>
+                    <field name="name" required="1"/>
                     <field name="gender"/>
                     <field name="birthday"/>
 <!--                    <field name="sheet"/>-->

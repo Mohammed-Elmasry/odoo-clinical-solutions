@@ -28,7 +28,7 @@ class Medical(models.Model):
     examination = fields.Text()
     drug_allergy = fields.Text()
     # physician_signature=
-    date = fields.Date()
+    # date = fields.Date()
     time = fields.Datetime()
     patient=fields.Many2one('odoo.clinic.patient')
     doctor=fields.Many2one('doctor.info.model')

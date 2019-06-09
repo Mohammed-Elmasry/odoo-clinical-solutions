@@ -80,12 +80,15 @@ class ClinicalManagementSystem(http.Controller):
         record = http.request.env['odoo.clinic.patient'].sudo().browse(int(patient_id))
         patient={}
         data = []
-        print(record.name)
+        print(record.visit[1].doctor.name)
         data.append({"id":record.id})
-
+        #
         for t in range(len(record.visit)):
-            print(record.visit[t].patient_class)
-            data.append({"visit_start_time "+str(t) :record.visit[t].start_datetime,"visit_end_time "+str(t) :record.visit[t].assigned_patient_location})
+            print(record.visit[t].visit_number)
+            data.append({
+                        "visit_start_time "+str(t) :str(record.visit[t].start_time),
+                         "visit_id "+str(t) :record.visit[t].visit_number,
+                         "visit_DOCTOR "+str(t) :record.visit[t].doctor.name})
         return json.dumps(data)
 
 
@@ -145,11 +148,18 @@ class ClinicalManagementSystem(http.Controller):
     def get_patient_medical(self, patient):
         return self.get_patient(patient.id)
 
-    @http.route('/clinical_management_system/patient/new/', type="http", auth="none", methods=['POST'], cors="*", csrf=False)
+    @http.route('/clinical_management_system/patient/new/', type="http", auth="none", methods=['POST'], cors="*",
+                csrf=False)
     def create_patient(self, **params):
-        record=http.request.env['odoo.clinic.patient'].sudo().create(json.loads(http.request.httprequest.data))
+        ee = json.loads(http.request.httprequest.data)
+        print (ee["name"])
         print(json.loads(http.request.httprequest.data))
-        # return json.dumps(record.id)
+        #
+        record = http.request.env['odoo.clinic.patient'].sudo().create(
+            {"name": ee["name"], "email": ee["email"], "phone": ee["phone"]
+                , "city": ee["city"], "date": ee["date"]
+                , "gender": ee["gender"], "token": ee["token"]})
         return json.dumps(record.id)
+        # return json.dumps(record.id)
 
 
