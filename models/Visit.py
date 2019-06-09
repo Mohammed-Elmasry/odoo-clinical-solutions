@@ -131,6 +131,7 @@ class Visit(models.Model):
 
     @api.multi
     def visits_count(self):
+        # does we add like this return as new action
         view_id = self.env.ref('visit.model.view_visit_list').id
         # context = self._context.copy()
         return {
