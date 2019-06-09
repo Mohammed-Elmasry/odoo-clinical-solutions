@@ -120,7 +120,7 @@ class Visit(models.Model):
     service_episode_identifier = fields.Integer(string="Service Identifier")
     @api.model
     def create(self, vals):
-
+        # print(vals['visit_count'])
         vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
         records = self.env['visit.model'].sudo().search([])
         # print(records)
@@ -129,3 +129,18 @@ class Visit(models.Model):
         # res = super('visit.model', self).create(vals)
         # return res
 
+    @api.multi
+    def visits_count(self):
+        view_id = self.env.ref('visit.model.view_visit_list').id
+        # context = self._context.copy()
+        return {
+            'name': 'Visit List',
+            'view_type': 'tree',
+            'view_mode': 'tree',
+            'views': [('view_visit_list', 'tree')],
+            'res_model': 'visit.model',
+            'view_id': view_id,
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+            # 'context': context
+        }
