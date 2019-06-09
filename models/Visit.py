@@ -123,6 +123,10 @@ class Visit(models.Model):
     def create(self, vals):
 
         vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
+        records = self.env['visit.model'].sudo().search([])
+        # print(records)
+        vals['visit_count'] = len(records)
+        print(vals['visit_count'])
         # res = super('visit.model', self).create(vals)
         # return res
 
