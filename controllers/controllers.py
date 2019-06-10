@@ -71,10 +71,9 @@ class ClinicalManagementSystem(http.Controller):
 
     @http.route('/clinical_management_system/schedule_visit/', type="http", auth="none", methods=['post'], cors="*", csrf=False)
     def schedule_visit(self, **kw):
-        params = http.request.params
-        # print(params)
-        print(params)
-        return json.dumps("enahrada agazaaaaa!!")
+        params = http.request.httprequest.data
+        x = json.loads(params)
+        return x.items()
 
     @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
     def get_empty_time_slots(self):
@@ -86,8 +85,9 @@ class ClinicalManagementSystem(http.Controller):
         visits = http.request.env["visit.model"].sudo().search([])
         # time = visits[0]["start_time"]
         time_slots = []
-        for i in range(len(visits)):
-            doctor = visits[i]["attending_doctor"]
+        for visit in visits:
+            doctor = visit["attending_doctor"]
+            fields.Datetime.from_string(visit)
             my_time = datetime.datetime.strftime(visits[i]["start_time"], "%m/%j/%Y %I:%M")
             my_date = datetime.datetime.strptime(my_time, "%m/%j/%Y %I:%M").date()
             my_time = datetime.datetime.strptime(my_time, "%m/%j/%Y %I:%M").time()
