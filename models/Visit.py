@@ -8,10 +8,11 @@ class Visit(models.Model):
     doctor = fields.Many2one('doctor.info.model')
     patient = fields.Many2one('odoo.clinic.patient')
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
-    visit_count = fields.Integer(string="Visit Count", help="To Count Visits in The Clinic ")
+    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
     end_time = fields.Datetime()
     patient_class = fields.Char(string="Patient class", required='true')
+    # patient_name = fields.related('patient', 'name', type='char', string='Patient Name')
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
     assigned_patient_location = fields.Text(string="Assigned Location")
@@ -123,25 +124,36 @@ class Visit(models.Model):
         # print(vals['visit_count'])
         vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
         records = self.env['visit.model'].sudo().search([])
-        # print(records)
+        print(records)
         vals['visit_count'] = len(records)
         print(vals['visit_count'])
-        # res = super('visit.model', self).create(vals)
-        # return res
+        res = super(Visit, self).create(vals)
+        return res
 
-    @api.multi
-    def visits_count(self):
-        # does we add like this return as new action
-        view_id = self.env.ref('visit.model.view_visit_list').id
-        # context = self._context.copy()
-        return {
-            'name': 'Visit List',
-            'view_type': 'tree',
-            'view_mode': 'tree',
-            'views': [('view_visit_list', 'tree')],
-            'res_model': 'visit.model',
-            'view_id': view_id,
-            'type': 'ir.actions.act_window',
-            'target': 'new',
-            # 'context': context
-        }
+
+    # @api.model
+
+    # def default_get(self, visit_count):
+    #     res = super('visit.model', self).default_get(visit_count)
+    #     records = self.env['visit.model'].sudo().search([])
+    #     visit_count = len(records)
+    #     res['visit_count'] = visit_count
+    #     # res.update({'visit_count':visit_count})
+    #     return res
+
+    # @api.returns
+    # def visits_list(self):
+    #     # does we add like this return as new action
+    #     view_id = self.env.ref('visit.model.view_visit_list').id
+    #     # context = self._context.copy()
+    #     return {
+    #         'name': 'Visit List',
+    #         'view_type': 'tree',
+    #         'view_mode': 'tree',
+    #         'views': [('view_visit_list', 'tree')],
+    #         'res_model': 'visit.model',
+    #         'view_id': view_id,
+    #         'type': 'ir.actions.act_window',
+    #         'target': 'new',
+    #         # 'context': context
+    #     }

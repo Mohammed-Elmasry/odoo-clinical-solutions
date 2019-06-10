@@ -7,9 +7,9 @@
                 <form>
                     <sheet>
                         <div class="oe_button_box" name="button_box" position="inside">
-                         <button name="visit_active" type="object" class="oe_stat_button" icon="fa-user">
-<!--                                <field name="visit_count" widget="statinfo"/>-->
-                             <button name="visits_count" widget="statinfo" string="Visit List" type="object"/>
+                         <button name="visit_count" type="object" class="oe_stat_button" icon="fa-user">
+                                <field name="visit_count" widget="statinfo" readonly="1"/>
+<!--                             <button name="visit_count" widget="statinfo" string="Visit List" type="object"/>-->
                          </button>
                         </div>
                         <group string="Basic Data" col="6">
