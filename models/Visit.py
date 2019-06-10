@@ -129,31 +129,3 @@ class Visit(models.Model):
         print(vals['visit_count'])
         res = super(Visit, self).create(vals)
         return res
-
-
-    # @api.model
-
-    # def default_get(self, visit_count):
-    #     res = super('visit.model', self).default_get(visit_count)
-    #     records = self.env['visit.model'].sudo().search([])
-    #     visit_count = len(records)
-    #     res['visit_count'] = visit_count
-    #     # res.update({'visit_count':visit_count})
-    #     return res
-
-    # @api.returns
-    # def visits_list(self):
-    #     # does we add like this return as new action
-    #     view_id = self.env.ref('visit.model.view_visit_list').id
-    #     # context = self._context.copy()
-    #     return {
-    #         'name': 'Visit List',
-    #         'view_type': 'tree',
-    #         'view_mode': 'tree',
-    #         'views': [('view_visit_list', 'tree')],
-    #         'res_model': 'visit.model',
-    #         'view_id': view_id,
-    #         'type': 'ir.actions.act_window',
-    #         'target': 'new',
-    #         # 'context': context
-    #     }
