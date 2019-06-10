@@ -73,7 +73,8 @@ class ClinicalManagementSystem(http.Controller):
     def schedule_visit(self, **kw):
         params = http.request.httprequest.data
         x = json.loads(params)
-        return x.items()
+        print(x)
+        return "a7san naaaaas"
 
     @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
     def get_empty_time_slots(self):
