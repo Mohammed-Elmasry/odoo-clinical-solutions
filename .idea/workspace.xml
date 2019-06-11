@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e14d9f9d-5552-47f2-a06f-be3db97076d9" name="Default Changelist" comment="Merge branch 'eman' of https://github.com/Mohammed-Elmasry/odoo-clinical-solutions into develop_doctor_info_feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;models/Visit.py&#10;#&#9;models/__pycache__/Visit.cpython-36.pyc&#10;#&#9;models/__pycache__/doctor.cpython-36.pyc&#10;#&#9;views/doctor.xml&#10;#&#9;views/visit_view.xml">
-      <change beforePath="$PROJECT_DIR$/models/doctor.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/doctor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Visit.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Visit.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/Visit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2082">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="90">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -39,7 +39,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/doctor.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
@@ -87,8 +87,8 @@
       <find>account.reconcile</find>
       <find>Visit</find>
       <find>action_visit_list_view</find>
-      <find>tree</find>
       <find>status</find>
+      <find>tree</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -104,10 +104,10 @@
         <option value="$PROJECT_DIR$/__manifest__.py" />
         <option value="$PROJECT_DIR$/models/Patient.py" />
         <option value="$PROJECT_DIR$/views/visit_view.xml" />
-        <option value="$PROJECT_DIR$/models/Visit.py" />
         <option value="$PROJECT_DIR$/views/doctor.xml" />
         <option value="$PROJECT_DIR$/views/views.xml" />
         <option value="$PROJECT_DIR$/models/doctor.py" />
+        <option value="$PROJECT_DIR$/models/Visit.py" />
       </list>
     </option>
   </component>
@@ -359,27 +359,6 @@
         <state relative-caret-position="-194" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Visit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2082">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2448">
-          <caret line="136" column="40" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/doctor.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="41" column="44" lean-forward="true" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/views.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
@@ -391,6 +370,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="27" column="59" lean-forward="true" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/doctor.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="41" column="44" lean-forward="true" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2448">
+          <caret line="136" column="40" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Visit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>

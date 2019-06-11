@@ -4,9 +4,7 @@ from odoo import models, fields, api
 class Visit(models.Model):
     _name = 'visit.model'
 
-    # doctor = fields.Many2one('doctor.info.model')
     doctor = fields.Many2one('doctor.info.model')
-    # visit_id = fields.Integer(string="Visit ID", )
     patient = fields.Many2one('odoo.clinic.patient')
     patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
