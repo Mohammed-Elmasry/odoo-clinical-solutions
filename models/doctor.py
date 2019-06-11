@@ -10,12 +10,12 @@ class DoctorInfo(models.Model):
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True
                             , help="Employee's Role in Our Clinic")
     speciality = fields.Char(size=50)
-    license_id = fields.Char(size=14, string="License ID")
+    license_id = fields.Char(size=14, string="License ID", help="Licence ID Related to Employee in Our Clinic")
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'Other')
-    ], groups="hr.group_hr_user", default="male", required=True)
+    ], groups="hr.group_hr_user", default="male", required=True, help="Gender Related to Employee In The Clinic ")
     birthday = fields.Date('Date of Birth', groups="hr.group_hr_user", required=True)
     job_title = fields.Char("Job Title", required=True)
     work_phone = fields.Char('Work Phone', required=True)
