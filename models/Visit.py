@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 
+
 class Visit(models.Model):
     _name = 'visit.model'
 
