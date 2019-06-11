@@ -28,8 +28,8 @@
                 </sheet>
             </form>
         </field>
-<!--        List View For Doctor Data Model-->
     </record>
+    <!--        List View For Doctor Data Model-->
     <record model="ir.ui.view" id="view_doctor_info_list">
         <field name="name">Doctor List Info </field>
         <field name="model">doctor.info.model</field>
@@ -84,9 +84,6 @@
                 <field name="job_title"/>
             </search>
         </field>
-    </record>
-    <record id="action_visit_view_list" model="ir.actions.act_window">
-
     </record>
 <!--Action of our model-->
     <record model="ir.actions.act_window" id="employee_list_action">
