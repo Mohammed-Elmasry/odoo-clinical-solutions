@@ -20,6 +20,9 @@
                             <field name="visit_number"/>
                             <field name="start_time"/>
                             <field name="end_time"/>
+                            <field name="visit_type"/>
+                            <field name="visit_status"/>
+
                         </group>
                         <group string="Doctor Information" col="6">
 <!--                            <field name="doctor"/>-->

@@ -8,6 +8,8 @@ class Visit(models.Model):
     # visit_id = fields.Integer(string="Visit ID", )
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     start_time = fields.Datetime()
+    visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
+                                  , help="To Detect The Type Of Visit")
     end_time = fields.Datetime()
     patient_class = fields.Char(string="Patient class", required='true')
     name = fields.Integer(string="Set ID")
@@ -117,7 +119,7 @@ class Visit(models.Model):
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
     patient = fields.Many2one('odoo.clinic.patient')
-
+    visit_status=fields.Selection([('Draft', 'Draft'), ('Inplace', 'Inplace'),('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')])
     # @api.model
     # def create(self, vals):
     #

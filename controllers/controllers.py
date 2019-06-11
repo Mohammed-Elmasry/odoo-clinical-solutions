@@ -87,12 +87,13 @@ class ClinicalManagementSystem(http.Controller):
         for t in range(len(record.visit)):
             print(record.visit[t].visit_number)
             data.append({
-                        "visit_start_time "+str(t) :str(record.visit[t].start_time),
-                         "visit_id "+str(t) :record.visit[t].visit_number,
-                        "speciality " + str(t): record.visit[t].doctor.speciality,
-                        "visit_status " + str(t): "in progress",
+                        "visittime "+str(t) :str(record.visit[t].start_time),
+                         "visitid "+str(t) :record.visit[t].visit_number,
+                         "visit_doctor " + str(t): record.visit[t].doctor.name,
+                        "visitstatus " + str(t): record.visit[t].visit_status,
+                        "visittype " + str(t): record.visit[t].visit_type,
 
-                "visit_doctor "+str(t) :record.visit[t].doctor.name})
+            })
         return json.dumps(data)
 
 
