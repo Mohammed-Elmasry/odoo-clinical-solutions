@@ -67,6 +67,19 @@
                     <field name="manufacturer_catalog_number"/>
                     <field name="manufacturer_labeler_identification_code"/>
                 </xpath>
+
+                <!--medicine information page-->
+                <xpath expr="//page[@name='inventory']" position="after" attrs="{'invisible' : [('is_medicine','=','False')]}">
+                    <page string="medicine information" name="medicine_information">
+                        <group string="medicine general info" col="4">
+                            <field name="item_description"/>
+                            <field name="item_status"/>
+                            <field name="item_type"/>
+                            <field name="item_category"/>
+                            <field name="subject_to_expiration_indicator"/>
+                        </group>
+                    </page>
+                </xpath>
             </field>
         </record>
 

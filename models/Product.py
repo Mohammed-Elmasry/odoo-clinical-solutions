@@ -23,14 +23,14 @@ class Product (models.Model):
     subject_to_expiration_indicator = fields.Selection([("Y","Yes"),("N","No"),("NI","No Information"),("NA","Not applicable")])
 
     # manufacturer information
-
+    #done in xml
     manufacturer_identifier = fields.Char(string="manufacturer identifier")
     manufacturer_name = fields.Char(string="manufacturer name")
     manufacturer_catalog_number = fields.Float(string="manufacturer catalog number")
     manufacturer_labeler_identification_code = fields.Float(string="manufacturer labeler identification code")
 
     # monetary information
-
+    #done in xml
     patient_chargeable_indicator = fields.Selection([("Y","Yes"),("N","No"),("NI","No Information"),("NA","Not applicable")])
     transaction_code = fields.Selection([("NS","No suggested code value")])
     transaction_amount = fields.Monetary(string="transaction amount (money paid)")
