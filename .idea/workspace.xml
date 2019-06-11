@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="964fa5ce-e48c-4339-ad26-0b895505a834" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/models/Product.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Product.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/views/product.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/product.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
+            <state relative-caret-position="78">
+              <caret line="72" column="78" lean-forward="true" selection-start-line="72" selection-start-column="78" selection-end-line="72" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -533,8 +532,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/product.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
+        <state relative-caret-position="78">
+          <caret line="72" column="78" lean-forward="true" selection-start-line="72" selection-start-column="78" selection-end-line="72" selection-end-column="78" />
         </state>
       </provider>
     </entry>

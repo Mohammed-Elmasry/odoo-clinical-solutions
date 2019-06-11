@@ -47,8 +47,9 @@
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
                 <!-- -->
-                <xpath expr="//field[@name='type']" position="before">
+                <xpath expr="//div[@name='options']" position="before">
                     <field name="is_medicine"/>
+                    <label for="is_medicine" modifiers="{}"/>
                 </xpath>
 
                 <!--sales page-->
@@ -69,7 +70,7 @@
                 </xpath>
 
                 <!--medicine information page-->
-                <xpath expr="//page[@name='inventory']" position="after" attrs="{'invisible' : [('is_medicine','=','False')]}">
+                <xpath expr="//page[@name='inventory']" position="after" attrs="{'invisible' : [('is_medicine', '=', False)]}">
                     <page string="medicine information" name="medicine_information">
                         <group string="medicine general info" col="4">
                             <field name="item_description"/>
