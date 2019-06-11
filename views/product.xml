@@ -70,8 +70,8 @@
                 </xpath>
 
                 <!--medicine information page-->
-                <xpath expr="//page[@name='inventory']" position="after" attrs="{'invisible' : [('is_medicine', '=', False)]}">
-                    <page string="medicine information" name="medicine_information">
+                <xpath expr="//page[@name='inventory']" position="after" >
+                    <page string="medicine information" name="medicine_information" attrs="{'invisible': [('is_medicine','=',False)]}">
                         <group string="medicine general info" col="4">
                             <field name="item_description"/>
                             <field name="item_status"/>
