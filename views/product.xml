@@ -59,6 +59,14 @@
                         <field name="transaction_amount"/>
                     </group>
                 </xpath>
+
+                <!-- purchases page-->
+                <xpath expr="//field[@name='supplier_taxes_id']" position="after">
+                    <field name="manufacturer_identifier"/>
+                    <field name="manufacturer_name"/>
+                    <field name="manufacturer_catalog_number"/>
+                    <field name="manufacturer_labeler_identification_code"/>
+                </xpath>
             </field>
         </record>
 
