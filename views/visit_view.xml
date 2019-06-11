@@ -9,6 +9,8 @@
                         <group string="Basic Data" col="6">
                             <field name="patient_class"/>
                             <field name="patient"/>
+                                                        <field name="doctor"/>
+
                             <field name="name"/>
                             <field name="visit_id" readonly="1"/>
                             <field name="visit_number"/>
@@ -16,7 +18,7 @@
                             <field name="end_time"/>
                         </group>
                         <group string="Doctor Information" col="6">
-                            <field name="doctor"/>
+<!--                            <field name="doctor"/>-->
                             <field name="referring_doctor"/>
                             <field name="admitting_doctor"/>
                             <field name="attending_doctor"/>

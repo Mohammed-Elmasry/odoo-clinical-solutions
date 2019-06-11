@@ -5,7 +5,6 @@ class DoctorInfo(models.Model):
     _name = "doctor.info.model"
     _inherits = {'hr.employee': 'emp_id'}
 
-    visit = fields.One2many('visit.model', "doctor")
     emp_id = fields.Many2one('hr.employee')
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True)
     speciality = fields.Char(size=50)
@@ -26,6 +25,9 @@ class DoctorInfo(models.Model):
         ('other', 'Other'),
     ], 'Certificate Level', default='master', groups="hr.group_hr_user", required=True)
     mobile_phone = fields.Char('Work Mobile', required=True)
+    sheet=fields.One2many('odoo.clinic.medical','doctor')
+    visit=fields.One2many('visit.model','doctor')
+    # visit=fields.Many2one(odoo.clinic.visit)
     # personal_phone = fields.Char('Phone Number', size=25)
     # personal_address = fields.Text('Address', size=50)
 

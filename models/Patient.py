@@ -4,51 +4,30 @@ class Patient(models.Model):
     _name = 'odoo.clinic.patient'
     _inherit = 'res.partner'
 
-    visit = fields.One2many('visit.model', 'patient')
     mrn = fields.Char()
-    blood_group= fields.Char()
-    height= fields.Float()
-    weight= fields.Float()
-    Religion=fields.Char()
-    set_id=fields.Integer()
-    # sex=fields.Selection((('m','male'),('f','female')))
-    # MaritalStatus=fields.selection(['singel','single'],[''])
-    mother_name=fields.Char()
-    # list of tuple
-    # Primary_Language=fields.Selection((('a','Arabic'),('e','English')))
-    # Marital_Status=fields.Selection((('s','Single'),('m','Married'),))
-    Birth_Place=fields.Char()
-    Birth_Order=fields.Char()
-    Patient_Account_Number=fields.Integer()
-    Patient_Death=fields.Datetime()
-    Patient_Death_Indicator=fields.Char()
-    Multiple_Birth_Indicator=fields.Char()
-
-    # from odoo import models, fields, api
-
-    # class Sheet(models.Model):
-    #     _name = 'odoo.clinic.clinical.sheet'
-    #
-    #     obstetric_gynecological_history = fields.Text()
-    #     DM = fields.Boolean()
-    #     HTN = fields.Boolean()
-    #     cardiac = fields.Boolean()
-    #     heptic = fields.Boolean()
-    #     renal = fields.Boolean()
-    #     others = fields.Text()
-    #     surgical_history = fields.Text()
-    #     BP = fields.Float()
-    #     RR = fields.Float()
-    #     HR = fields.Float()
-    #     Temp = fields.Float()
-    #     FHC = fields.Float()
-    #     Weight = fields.Float()
-    #     Obese = fields.Boolean()
-    #     Average_weight = fields.Boolean()
-    #     Under_weight = fields.Boolean()
-    #     Examination = fields.Text()
-    #     Drug_Allergy = fields.Text()
-    #     # physician_signature=
-    #     Date = fields.Date()
-    #
-    #     time = fields.Datetime()
+    blood_group = fields.Char()
+    height = fields.Float()
+    weight = fields.Float()
+    religion = fields.Char()
+    set_id = fields.Integer()
+    gender = fields.Selection([('Male', 'Male'), ('Female', 'Female')])
+    MaritalStatus = fields.Selection(
+        [('A', 'Separated'), ('D', 'Divorced'), ('M', 'Married'), ('S', 'Single'), ('W', 'Widowed')])
+    mother_name = fields.Char()
+    race = fields.Selection([('1002-5', 'American Indian or Alaska Native'),
+                             ('2028-9', 'Asian'), ('2054-5', 'Black or African American'),
+                             ('2076-8', 'Native Hawaiian or Other Pacific Islander'),
+                             ('2106-3', 'White'),
+                             ('2131-1', 'Other Race')])
+    birth_place = fields.Char()
+    birth_order = fields.Char()
+    patient_account_number = fields.Integer()
+    patient_death = fields.Datetime()
+    patient_death_indicator = fields.Char()
+    multiple_birth_indicator = fields.Char()
+    token = fields.Text()
+    password = fields.Char()
+    # medical_sheet=fields.one2many('odoo.clinic.medical')
+    visit = fields.One2many('visit.model', 'patient')
+    medical = fields.One2many('odoo.clinic.medical', 'patient')
+    # doctor=fields.One2many('odoo.clinic.medical','patient')

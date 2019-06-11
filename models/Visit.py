@@ -1,18 +1,17 @@
 from odoo import models, fields, api
 
-
 class Visit(models.Model):
     _name = 'visit.model'
-    # _rec_name = 'set_id'
 
+    # doctor = fields.Many2one('doctor.info.model')
     doctor = fields.Many2one('doctor.info.model')
+    # visit_id = fields.Integer(string="Visit ID", )
     patient = fields.Many2one('odoo.clinic.patient')
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
     end_time = fields.Datetime()
     patient_class = fields.Char(string="Patient class", required='true')
-    # patient_name = fields.related('patient', 'name', type='char', string='Patient Name')
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
     assigned_patient_location = fields.Text(string="Assigned Location")

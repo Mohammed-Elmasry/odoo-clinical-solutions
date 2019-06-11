@@ -6,3 +6,5 @@ from . import Patient
 from . import Medical
 from . import Visit
 
+
+from . import Product

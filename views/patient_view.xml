@@ -9,56 +9,93 @@
       <field name="arch" type="xml">
         <form>
           <sheet>
-            <group  string="Personal info" col="4">
-              <field name="id"/>
-              <field name="name"/>
-              <field name="set_id"/>
 
+            <group>
+                <field name="active"/>
+
+            </group>
+
+
+            <group  string="Personal info" col="4">
+                <field name="image"/>
+
+                <!--              <field name="id"/>-->
+              <field name="name"/>
+<!--              <field name="set_id"/>-->
               <field name="phone"/>
               <field name="mobile"/>
+                <field name="email"/>
               <field name="date"/>
-                <field name="Religion"/>
-<!--              <field name="sex"/>-->
-              <field name="email"/>
+                <field name="religion"/>
+                <field name="lang"/>
+<!--                <field name="state"/>-->
+                <field name="token"/>
 
+              <field name="gender"/>
+            </group>
+                <notebook string="Visit Data and Information">
+            <page string="medical info">
+              <group>
+
+                  <field name="comment"/>
               <field name="mrn"/>
               <field name="height"/>
               <field name="weight"/>
               <field name="blood_group"/>
             </group>
+            </page>
+                    <page  string="address">
           <group string="address">
-              <field name="country_id"/>
-              <field name="city"/>
-              <field name="contact_address"/>
               <field name="street"/>
               <field name="street2"/>
+              <field name="country_id"/>
           </group>
-              <group string="company info">
+                        <group col="9">
 
-              <field name="child_ids"/>
-              <field name="company_name"/>
-              <field name="company_type"/>
-                  <field name="mother_name"/>
+                  <field name="city"/>
+              <field name="state_id"/>
+              <field name="zip"/>
+
               </group>
-              <group >
-              <field name="create_date"/>
+              </page>
+                    <page string="bith info">
+                        <group>
+              <field name="birth_place"/>
 
-              <field name="create_uid"/>
-              <field name="function"/>
-              <field name="Patient_Account_Number"/>
+              <field name="birth_order"/>
 
-            </group>
+              <field name="multiple_birth_indicator"/>
+                        </group>
+                    </page>
+                <page string="death info">
+                   <group string="death info">
+                  <field name="patient_death"/>
+
+              <field name="patient_death_indicator"/>
+              </group>
+                </page>
+                    <page string="others">
+                        <group>
+                            <field name="MaritalStatus"/>
+                            <field name="race"/>
+                            <field name="function"/>
+                            <field name="mother_name"/>
+                            <field name="patient_account_number"/>
+                            <field name="company_name"/>
+                            <field name="company_type"/>
+                            <field name="child_ids"/>
+                            <field name="bank_account_count"/>
+                            <field name="bank_ids"/>
+
+                        </group>
+                    </page>
+                </notebook>
+
               <group>
-              <field name="Birth_Place"/>
+                                <field name="visit"/>
+                                <field name="medical"/>
 
-              <field name="Birth_Order"/>
 
-              <field name="Multiple_Birth_Indicator"/>
-              </group>
-              <group string="death info">
-                  <field name="Patient_Death"/>
-
-              <field name="Patient_Death_Indicator"/>
               </group>
 
           </sheet>
@@ -109,7 +146,7 @@
               <field name="phone"/>
               <field name="mobile"/>
               <field name="date"/>
-            <field name="Religion"/>
+            <field name="religion"/>
 <!--              <field name="sex"/>-->
               <field name="email"/>
 
@@ -131,16 +168,19 @@
 
               <field name="create_uid"/>
               <field name="function"/>
-              <field name="Patient_Account_Number"/>
+              <field name="patient_account_number"/>
 
-              <field name="Birth_Place"/>
+              <field name="birth_place"/>
 
-              <field name="Birth_Order"/>
+              <field name="birth_order"/>
 
-              <field name="Multiple_Birth_Indicator"/>
-                  <field name="Patient_Death"/>
+              <field name="multiple_birth_indicator"/>
+                  <field name="patient_death"/>
 
-              <field name="Patient_Death_Indicator"/>
+              <field name="patient_death_indicator"/>
+              <field name="image" widget="image"/>
+                                <field name="visit"/>
+                                <field name="medical"/>
 
         </tree>
       </field>

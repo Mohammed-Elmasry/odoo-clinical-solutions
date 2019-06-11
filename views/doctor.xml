@@ -10,6 +10,7 @@
                     <field name="name" required="1"/>
                     <field name="gender"/>
                     <field name="birthday"/>
+<!--                    <field name="sheet"/>-->
 
                 </group>
                 <group string="Job Information" col="6">
@@ -95,6 +96,6 @@
     </record>
       <menuitem name="Employee Data" id="menu_1" parent="menu_root"/>
     <menuitem name="All Employees" id="menu_1_list" parent="menu_1"
-              action="clinical_management_system.employee_list_action"/>
+              action="employee_list_action"/>
 
 </odoo>
