@@ -13,6 +13,7 @@
                             <field name="doctor"/>
                             <field name="name"/>
                             <field name="visit_id" readonly="1"/>
+                            <field name="visit_type"/>
                             <field name="visit_number"/>
                             <field name="start_time"/>
                             <field name="end_time"/>
