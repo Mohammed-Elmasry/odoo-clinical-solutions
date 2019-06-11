@@ -79,21 +79,20 @@ class ClinicalManagementSystem(http.Controller):
         time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
                       '02:00 PM']
         params = http.request.httprequest.data
+        print(params)
         params = json.loads(params)
         time_slot = datetime.datetime.strptime((params["doc_date"] + " " + params["doc_time"]), "%m/%d/%Y %I:%M %p")
         CONST_EG_TIME_ADDITION = datetime.timedelta(hours=2)
         end_time = time_slot + CONST_EG_TIME_ADDITION
-        print(end_time)
-        http.request.env['visit.model'].sudo().create(
-            {'doctor_id': params["doc_id"],
+
+        http.request.env['visit.model'].sudo().create({
+             'doctor_id': params["doc_id"],
              'attending_doctor': params["doc_id"],
              "start_time": time_slot,
-             'patient_class': '{}'.format('OBGYN'),
+             'patient_class': 'OBGYN',
              "end_time": end_time,
              })
-        # print(CONST_EG_TIME_ADDITION)
-        print(time_slot)
-        # print(end_time)
+        # new_record.sudo().write()
         return json.dumps("visit scheduled successfully")
 
     @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
