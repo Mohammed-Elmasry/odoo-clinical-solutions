@@ -10,8 +10,6 @@
                     <field name="name" required="1"/>
                     <field name="gender"/>
                     <field name="birthday"/>
-<!--                    <field name="sheet"/>-->
-
                 </group>
                 <group string="Job Information" col="6">
                     <field name="license_id"/>
