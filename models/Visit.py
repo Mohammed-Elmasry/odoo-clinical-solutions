@@ -128,3 +128,4 @@ class Visit(models.Model):
         # print(vals['visit_count'])
         res = super(Visit, self).create(vals)
         return res
+

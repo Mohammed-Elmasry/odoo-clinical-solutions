@@ -1,4 +1,5 @@
 <odoo>
+
         <!-- explicit form view definition -->
         <record model="ir.ui.view"  id="view_visit_form">
             <field name="name">Visit</field>
@@ -171,6 +172,7 @@
             <field name="res_model">visit.model</field>
             <field name="view_mode">tree,form,pivot,calendar</field>
         </record>
+
 
         <!-- Top menu item -->
 
