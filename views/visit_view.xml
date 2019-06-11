@@ -6,11 +6,6 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <div class="oe_button_box" name="button_box">
-                        <button name="visits_list" type="object" class="oe_stat_button" icon="fa-list">
-
-                        </button>
-                        </div>
                         <group string="Basic Data" col="6">
                             <field name="patient_class"/>
                             <field name="patient"/>
@@ -166,6 +161,7 @@
         <field name="number_next">1</field>
         <field name="padding">3</field>
     </record>
+
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="visit_action_window">
