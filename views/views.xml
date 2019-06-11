@@ -41,7 +41,7 @@
     </record>
     -->
 
-    <menuitem name="clinic" id="menu_root"/>
+    <menuitem name="Clinic" id="menu_root"/>
 
     <!-- menu categories -->
 
