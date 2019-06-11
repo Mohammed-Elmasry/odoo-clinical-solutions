@@ -17,6 +17,8 @@
                   <field name="time"/>
                   <field name="patient"/>
                   <field name="doctor"/>
+                  <field name="doctor"/>
+                  <field name="visit"/>
 
               </group>
               <group string="medical history" col="10">

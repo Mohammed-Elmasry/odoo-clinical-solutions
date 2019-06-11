@@ -87,11 +87,11 @@ class ClinicalManagementSystem(http.Controller):
         for t in range(len(record.visit)):
             print(record.visit[t].visit_number)
             data.append({
-                        "visittime "+str(t) :str(record.visit[t].start_time),
-                         "visitid "+str(t) :record.visit[t].visit_number,
-                         "visit_doctor " + str(t): record.visit[t].doctor.name,
-                        "visitstatus " + str(t): record.visit[t].visit_status,
-                        "visittype " + str(t): record.visit[t].visit_type,
+                        "visittime" :str(record.visit[t].start_time),
+                         "visitid" :record.visit[t].visit_id,
+                         "visitdoctor" : record.visit[t].doctor.name,
+                        "visitstatus" : record.visit[t].visit_status,
+                        "visittype" : record.visit[t].visit_type,
 
             })
         return json.dumps(data)
@@ -129,32 +129,32 @@ class ClinicalManagementSystem(http.Controller):
         medical = []
         for t in range(len(record.medical)):
             print(record.medical[t].dm)
-            medical.append({"obstetric_gynecological_history "+str(t) :record.medical[t].obstetric_gynecological_history,
+            medical.append({"obstetric_gynecological_history"+str(t) :record.medical[t].obstetric_gynecological_history,
 
-                            "dm "+str(t) :record.medical[t].dm,
-                            "time " + str(t): str(record.medical[t].time),
-                            "patient " + str(t): record.medical[t].patient.name,
-                            "doctor " + str(t): record.medical[t].doctor.name,
-                            "htn "+str(t) :record.medical[t].htn,
-                            "cardiac "+str(t) :record.medical[t].cardiac,
-                            "heptic " + str(t): record.medical[t].heptic,
+                            "dm"+str(t) :record.medical[t].dm,
+                            "time" + str(t): str(record.medical[t].time),
+                            "patient" + str(t): record.medical[t].patient.name,
+                            "doctor" + str(t): record.medical[t].doctor.name,
+                            "htn"+str(t) :record.medical[t].htn,
+                            "cardiac"+str(t) :record.medical[t].cardiac,
+                            "heptic" + str(t): record.medical[t].heptic,
 
 
-                            "renal " + str(t): record.medical[t].renal,
-                            "others " + str(t): record.medical[t].others,
-                            "surgical_history " + str(t): record.medical[t].surgical_history,
-                            "bp " + str(t): str(record.medical[t].bp) +"mm Hg",
-                            "rr " + str(t): str(record.medical[t].rr) +" /m",
-                            "hr " + str(t): str(record.medical[t].hr) + "p/m",
-                            "temp " + str(t): str(record.medical[t].temp) + "c",
-                            "fhc " + str(t): record.medical[t].fhc,
-                            "weight " + str(t): record.medical[t].weight,
-                            "obese " + str(t): record.medical[t].obese,
-                            "average_weight " + str(t): record.medical[t].average_weight,
-                            "under_weight " + str(t): record.medical[t].under_weight,
+                            "renal" + str(t): record.medical[t].renal,
+                            "others" + str(t): record.medical[t].others,
+                            "surgical_history" + str(t): record.medical[t].surgical_history,
+                            "bp" + str(t): str(record.medical[t].bp) +"mm Hg",
+                            "rr" + str(t): str(record.medical[t].rr) +" /m",
+                            "hr" + str(t): str(record.medical[t].hr) + "p/m",
+                            "temp" +str(t): str(record.medical[t].temp) + "c",
+                            "fhc" + str(t): record.medical[t].fhc,
+                            "weight" + str(t): record.medical[t].weight,
+                            "obese" + str(t): record.medical[t].obese,
+                            "average_weight" + str(t): record.medical[t].average_weight,
+                            "under_weight" + str(t): record.medical[t].under_weight,
 
-                            "examination " + str(t): record.medical[t].examination,
-                            "drug_allergy " + str(t): record.medical[t].drug_allergy,
+                            "examination" + str(t): record.medical[t].examination,
+                            "drug_allergy" + str(t): record.medical[t].drug_allergy,
                             })
         return json.dumps(medical)
 
@@ -193,3 +193,50 @@ class ClinicalManagementSystem(http.Controller):
         # print(record.name)
         record.write({"token": patient["token"]})
         return json.dumps("done")
+
+
+
+
+    @http.route('/clinical_management_system/medical/visit', type="http", auth="none", methods=['get'], cors="*")
+    def get_visit(self, visit_id):
+        record = http.request.env['visit.model'].sudo().browse(int(visit_id))
+        medical = []
+        # print(record.sheet[1].dm)
+        #
+        # for t in range(len(record.sheet)):
+        #     print(record.medical[t].dm)
+        medical.append({"obstetric_gynecological_history":record.sheet.obstetric_gynecological_history,
+
+                        "dm" :record.sheet.dm,
+                        "time" : str(record.sheet.time),
+                        "patient" : record.sheet.patient.name,
+                        "doctor": record.sheet.doctor.name,
+                        "htn":record.sheet.htn,
+                        "cardiac" :record.sheet.cardiac,
+                        "heptic" : record.sheet.heptic,
+
+
+                        "renal" : record.sheet.renal,
+                        "others" : record.sheet.others,
+                        "surgical_history": record.sheet.surgical_history,
+                        "bp" : str(record.sheet.bp) +"mm Hg",
+                        "rr": str(record.sheet.rr) +" /m",
+                        "hr" : str(record.sheet.hr) + "p/m",
+                        "temp" :str(record.sheet.temp) + "c",
+                        "fhc" : record.sheet.fhc,
+                        "weight" : record.sheet.weight,
+                        "obese" : record.sheet.obese,
+                        "average_weight" : record.sheet.average_weight,
+                        "under_weight" : record.sheet.under_weight,
+
+                        "examination" : record.sheet.examination,
+                        "drug_allergy": record.sheet.drug_allergy,
+                        })
+        return json.dumps(medical)
+        # return json.dumps(record.start_time)
+
+
+    @http.route('/clinical_management_system/medical/visit/<model("visit.model"):visit>/', type="http",
+                auth="none" , cors="*"  )
+    def get_visit_medical(self, visit):
+        return self.get_visit(visit.id)

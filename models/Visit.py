@@ -120,6 +120,7 @@ class Visit(models.Model):
     service_episode_identifier = fields.Integer(string="Service Identifier")
     patient = fields.Many2one('odoo.clinic.patient')
     visit_status=fields.Selection([('Draft', 'Draft'), ('Inplace', 'Inplace'),('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')])
+    sheet=fields.One2many('odoo.clinic.medical','visit')
     # @api.model
     # def create(self, vals):
     #

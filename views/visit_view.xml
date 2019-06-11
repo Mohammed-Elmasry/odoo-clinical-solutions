@@ -14,7 +14,7 @@
                         <group string="Basic Data" col="6">
                             <field name="patient_class"/>
                             <field name="patient"/>
-                                                        <field name="doctor"/>
+                            <field name="doctor"/>
 
                             <field name="name"/>
                             <field name="visit_number"/>
@@ -22,6 +22,11 @@
                             <field name="end_time"/>
                             <field name="visit_type"/>
                             <field name="visit_status"/>
+                            <field name="visit_id"/>
+
+                        </group>
+                        <group>
+                            <field name="sheet"/>
 
                         </group>
                         <group string="Doctor Information" col="6">
@@ -140,6 +145,9 @@
             <field name="model">visit.model</field>
             <field name="arch" type="xml">
                 <tree>
+
+                    <field name="visit_id"/>
+
                     <field name="patient_class"/>
                     <field name="patient_type"/>
                     <field name="name"/>
