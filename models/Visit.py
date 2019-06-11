@@ -7,6 +7,7 @@ class Visit(models.Model):
     doctor = fields.Many2one('doctor.info.model')
     # visit_id = fields.Integer(string="Visit ID", )
     patient = fields.Many2one('odoo.clinic.patient')
+    patient_name = fields.Char(related="patient.name")
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
