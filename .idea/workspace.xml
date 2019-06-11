@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="964fa5ce-e48c-4339-ad26-0b895505a834" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/controllers.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/controllers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Visit.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Visit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/visit_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/views/visit_view.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
@@ -28,8 +28,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Visit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
+            <state relative-caret-position="169">
+              <caret line="122" column="67" selection-start-line="122" selection-start-column="67" selection-end-line="122" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="160" column="29" selection-start-line="160" selection-start-column="29" selection-end-line="160" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -101,10 +110,11 @@
         <option value="$PROJECT_DIR$/../../../Odoo Source/odoo-20181003/setup/odoo-wsgi.example.py" />
         <option value="$PROJECT_DIR$/views/views.xml" />
         <option value="$USER_HOME$/PycharmProjects/hackerrank/minimumbribes.py" />
-        <option value="$PROJECT_DIR$/models/Visit.py" />
         <option value="$PROJECT_DIR$/models/Product.py" />
         <option value="$PROJECT_DIR$/views/product.xml" />
         <option value="$PROJECT_DIR$/controllers/controllers.py" />
+        <option value="$PROJECT_DIR$/models/Visit.py" />
+        <option value="$PROJECT_DIR$/views/visit_view.xml" />
       </list>
     </option>
   </component>
@@ -133,7 +143,7 @@
             <path>
               <item name="clinical_management_system" type="b2602c69:ProjectViewProjectNode" />
               <item name="clinical_management_system" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -513,13 +523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Visit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -527,6 +530,20 @@
           <folding>
             <element signature="e#24#53#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Visit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="122" column="67" selection-start-line="122" selection-start-column="67" selection-end-line="122" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="160" column="29" selection-start-line="160" selection-start-column="29" selection-end-line="160" selection-end-column="29" />
         </state>
       </provider>
     </entry>
