@@ -81,7 +81,7 @@ class ClinicalManagementSystem(http.Controller):
         print(params)
         params = json.loads(params)
         time_slot = datetime.datetime.strptime((params["doc_date"] + " " + params["doc_time"]), "%m/%d/%Y %I:%M %p")
-        CONST_EG_TIME_ADDITION = datetime.timedelta(hours=2)
+        CONST_EG_TIME_ADDITION = datetime.timedelta(minutes=30)
         end_time = time_slot + CONST_EG_TIME_ADDITION
 
         http.request.env['visit.model'].sudo().create({
