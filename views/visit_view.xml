@@ -166,17 +166,15 @@
 <!--            </graph>-->
 <!--        </field>-->
 <!--    </record>-->
-     <record model="ir.ui.view" id="view_visit_graph">
-                <field name="name">Visits</field>
-                <field name="model">visit.model</field>
-                <field name="type">graph</field>
-                <field name="arch" type="xml">
-                    <graph string="Visits Data" >
-                        <field name="name"/>
-                        <field name="patient_name"/>
-                    </graph>
-                </field>
-        </record>
+    <record model="ir.ui.view" id="view_visit_graph">
+      <field name="name">Visits</field>
+      <field name="model">visit.model</field>
+      <field name="arch" type="xml">
+        <graph string="Visits Data">
+          <field name="name"/>
+        </graph>
+      </field>
+    </record>
     <!--
         Visit Statement Sequences
         -->
