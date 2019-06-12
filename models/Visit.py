@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-
+import datetime
 
 class Visit(models.Model):
     _name = 'visit.model'
@@ -12,7 +12,7 @@ class Visit(models.Model):
     start_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
                                   , help="To Detect The Type Of Visit")
-    end_time = fields.Datetime()
+    end_time = fields.Datetime(compute='calculate_end_time')
     patient_class = fields.Char(string="Patient class", required='true')
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
@@ -120,10 +120,12 @@ class Visit(models.Model):
                                         ('V', 'Visit level')], string="Visit Indicator", default='A')
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
+
     @api.model
     def create(self, vals):
         # print(vals['visit_count'])
         vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
+        # vals['end_time'] = vals['start_time']
         # records = self.env['visit.model'].sudo().search([])
         # print(records)
         # vals['visit_count'] = len(records)
@@ -131,3 +133,9 @@ class Visit(models.Model):
         res = super(Visit, self).create(vals)
         return res
 
+    @api.depends('start_time')
+    def calculate_end_time(self):
+
+            for visit in self.filtered('start_time'):
+                delta = datetime.timedelta(minutes = 30)
+                visit.end_time = visit.start_time + delta
