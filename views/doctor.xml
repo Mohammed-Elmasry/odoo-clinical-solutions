@@ -85,6 +85,8 @@
             </search>
         </field>
     </record>
+
+
 <!--Action of our model-->
     <record model="ir.actions.act_window" id="employee_list_action">
         <field name="name">Employees</field>
