@@ -97,7 +97,9 @@ class Visit(models.Model):
     pending_location = fields.Text(string="Pending Location")
     admit_date = fields.Datetime(string="Admit Date/Time")
     discharge_date = fields.Datetime(string="Discharge Date/Time")
-    current_patient_balance = fields.Integer(string="Current Balance", compute='calculate_current_patient_balance')
+    current_patient_balance = fields.Integer(string="Current Balance", compute='calculate_current_patient_balance'
+                                             , help="Computed Field To Display Difference between Payment and "
+                                                    "total Charges")
     # This field contains the visit balance due.
     total_charges = fields.Integer(string="Total Visit Charges")
     total_adjustments = fields.Integer(string="Total Adjustments")
