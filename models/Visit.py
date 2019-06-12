@@ -1,9 +1,10 @@
 from odoo import models, fields, api
 import datetime
 
+
 class Visit(models.Model):
     _name = 'visit.model'
-
+    _description = "visits that will be related to patients in the Clinic"
     doctor = fields.Many2one('doctor.info.model')
     patient = fields.Many2one('odoo.clinic.patient')
     patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
@@ -136,6 +137,6 @@ class Visit(models.Model):
     @api.depends('start_time')
     def calculate_end_time(self):
 
-            for visit in self.filtered('start_time'):
-                delta = datetime.timedelta(minutes = 30)
-                visit.end_time = visit.start_time + delta
+        for visit in self.filtered('start_time'):
+            delta = datetime.timedelta(minutes = 30)
+            visit.end_time = visit.start_time + delta
