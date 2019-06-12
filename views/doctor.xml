@@ -10,7 +10,6 @@
                     <field name="name" required="1"/>
                     <field name="gender"/>
                     <field name="birthday"/>
-
                 </group>
                 <group string="Job Information" col="6">
                     <field name="license_id"/>
@@ -29,8 +28,8 @@
                 </sheet>
             </form>
         </field>
-<!--        List View For Doctor Data Model-->
     </record>
+    <!--        List View For Doctor Data Model-->
     <record model="ir.ui.view" id="view_doctor_info_list">
         <field name="name">Doctor List Info </field>
         <field name="model">doctor.info.model</field>
@@ -86,7 +85,6 @@
             </search>
         </field>
     </record>
-
 <!--Action of our model-->
     <record model="ir.actions.act_window" id="employee_list_action">
         <field name="name">Employees</field>
@@ -95,6 +93,6 @@
     </record>
       <menuitem name="Employee Data" id="menu_1" parent="menu_root"/>
     <menuitem name="All Employees" id="menu_1_list" parent="menu_1"
-              action="clinical_management_system.employee_list_action"/>
+              action="employee_list_action"/>
 
 </odoo>

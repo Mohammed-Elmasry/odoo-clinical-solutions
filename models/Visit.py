@@ -1,14 +1,19 @@
 from odoo import models, fields, api
-
+import datetime
 
 class Visit(models.Model):
     _name = 'visit.model'
     # _rec_name = 'set_id'
 
-    doctor_id = fields.One2many('doctor.info.model', "visit_id")
-    # visit_id = fields.Integer(string="Visit ID", )
+    doctor = fields.Many2one('doctor.info.model')
+    patient = fields.Many2one('odoo.clinic.patient')
+    patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
+    visit_id = fields.Char(string="Visit ID", help="Auto Increment")
+    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
-    end_time = fields.Datetime()
+    visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
+                                  , help="To Detect The Type Of Visit")
+    end_time = fields.Datetime(compute='calculate_end_time')
     patient_class = fields.Char(string="Patient class", required='true')
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
@@ -117,9 +122,23 @@ class Visit(models.Model):
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
 
-
     @api.model
     def create(self, vals):
+        vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
         vals['name'] = self.env['ir.sequence'].next_by_code('set_id')
         res = super(Visit, self).create(vals)
         return res
+
+    @api.depends('start_time')
+    def calculate_end_time(self):
+
+            for visit in self.filtered('start_time'):
+                delta = datetime.timedelta(minutes = 30)
+                visit.end_time = visit.start_time + delta
+
+    #
+    # @api.model
+    # def create(self, vals):
+    #     vals['name'] = self.env['ir.sequence'].next_by_code('set_id')
+    #     res = super(Visit, self).create(vals)
+    #     return res
