@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from odoo import http
-import json
+from odoo import http, fields
+import json, datetime
+from ast import literal_eval
+
 
 class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/clinical_management_system/', auth='public')
@@ -11,7 +13,7 @@ class ClinicalManagementSystem(http.Controller):
         # print("Your Email is: ", kw["Email"])
         # for i in http.request.env["product.template"]:
         #     print(i)
-        return  json.dumps({'id': 'yy'})
+        return json.dumps({'id': 'yy'})
 
     @http.route('/clinical_management_system/clinical_management_system/objects/', auth='public')
     def list(self, **kw):
@@ -26,12 +28,13 @@ class ClinicalManagementSystem(http.Controller):
     #         'object': obj
     #     })
 
-    @http.route('/clinical_management_system/doctor', type="http", auth="none", methods=['get'])
+    @http.route('/clinical_management_system/doctor', type="http", auth="none", methods=['get'], cors="*")
     def get_doctor(self, doctor_id):
         record = http.request.env['doctor.info.model'].sudo().browse(int(doctor_id))
         return (record.gender)
 
-    @http.route('/clinical_management_system/doctor/<model("doctor.info.model"):doctor>/', type="http", auth="none")
+    @http.route('/clinical_management_system/doctor/<model("doctor.info.model"):doctor>/', type="http", auth="none",
+                cors="*")
     def get_doctor_path(self, doctor):
         return self.get_doctor(doctor.id)
 
@@ -41,15 +44,14 @@ class ClinicalManagementSystem(http.Controller):
 
         :return: returns all employees that have the role of 'doctor'
         """
-        records = http.request.env["doctor.info.model"].sudo().search(args=[('role','=','doctor')])
+        records = http.request.env["doctor.info.model"].sudo().search(args=[('role', '=', 'doctor')])
         doctor = {}
         result = []
         for i in range(len(records)):
-            result.append({"id":records[i]["id"], "name":records[i]["name"], "license number": records[i]["license_id"],
-                               "gender": records[i]["gender"], "title":records[i]["job_title"], "rank":records[i]["certificate"]})
+            result.append(
+                {"id": records[i]["id"], "name": records[i]["name"], "license number": records[i]["license_id"],
+                 "gender": records[i]["gender"], "title": records[i]["job_title"], "rank": records[i]["certificate"]})
         return json.dumps(result)
-
-
 
     @http.route('/clinical_management_system/officers/', type="http", auth="public", methods=['get'], cors="*")
     def get_officers(self):
@@ -57,109 +59,71 @@ class ClinicalManagementSystem(http.Controller):
         :param: this function takes nothing
         :return: returns all employees of the role 'officer'
         """
-        records = http.request.env["doctor.info.model"].sudo().search(args=[('role','=','officer')])
+        records = http.request.env["doctor.info.model"].sudo().search(args=[('role', '=', 'officer')])
         result = []
         officers = []
         for i in range(len(records)):
-            for attr in ["name","license_id","gender"]:
-                officers.append({"officer %s " % str(attr): records[i][attr]}) #, {"doctor gender": records[i].gender},
-                           # {"doctor license": records[i].license_id})
+            for attr in ["name", "license_id", "gender"]:
+                officers.append(
+                    {"officer %s " % str(attr): records[i][attr]})  # , {"doctor gender": records[i].gender},
+                # {"doctor license": records[i].license_id})
         result.append(officers)
         print(officers)
         return json.dumps(officers)
 
-
-    @http.route('/clinical_management_system/schedule_visit/', type="http", auth="none", methods=['post'], cors="*", csrf=False)
-    def schedule_visit(self, **kw):
-        print("dsfs",kw)
-        return json.dumps("shokran")
-
-
-    @http.route('/clinical_management_system/patient', type="http", auth="none", methods=['get'], cors="*")
-    def get_patient(self, patient_id):
-        record = http.request.env['odoo.clinic.patient'].sudo().browse(int(patient_id))
-        patient={}
-        data = []
-        print(record.visit[1].doctor.name)
-        data.append({"id":record.id})
-        #
-        for t in range(len(record.visit)):
-            print(record.visit[t].visit_number)
-            data.append({
-                        "visit_start_time "+str(t) :str(record.visit[t].start_time),
-                         "visit_id "+str(t) :record.visit[t].visit_number,
-                         "visit_DOCTOR "+str(t) :record.visit[t].doctor.name})
-        return json.dumps(data)
-
-
-
-    @http.route('/clinical_management_system/patient/<model("odoo.clinic.patient"):patient>/', type="http",
-                auth="none", cors="*")
-    def get_patient_data(self, patient):
-        return self.get_patient(patient.id)
-
-    @http.route('/clinical_management_system/patients/', type="http", auth="public", methods=['get'])
-    def get_patients(self):
-
-        records = http.request.env["odoo.clinic.patient"].sudo().search([])
-        result = []
-        patients = []
-        for i in range(len(records)):
-            for attr in ["name", "phone"]:
-                patients.append(
-                    {"patient %s " % str(attr): records[i][attr]})  # , {"doctor gender": records[i].gender},
-                # {"doctor license": records[i].license_id})
-        result.append(patients)
-        print(patients)
-
-        return json.dumps(patients)
-
-
-
-    @http.route('/clinical_management_system/medical/patient', type="http", auth="none", methods=['get'], cors="*")
-    def get_medical(self, patient_id):
-        record = http.request.env['odoo.clinic.patient'].sudo().browse(int(patient_id))
-        medical = []
-        for t in range(len(record.medical)):
-            print(record.medical[t].dm)
-            medical.append({"history "+str(t) :record.medical[t].obstetric_gynecological_history,
-                            "dm "+str(t) :record.medical[t].dm,
-                            "htn "+str(t) :record.medical[t].htn,
-                            "cardiac "+str(t) :record.medical[t].cardiac,
-                            "heptic " + str(t): record.medical[t].heptic,
-                            "renal " + str(t): record.medical[t].renal,
-                            "others " + str(t): record.medical[t].others,
-                            "surgical_history " + str(t): record.medical[t].surgical_history,
-                            "bp " + str(t): record.medical[t].bp,
-                            "rr " + str(t): record.medical[t].rr,
-                            "hr " + str(t): record.medical[t].hr,
-                            "temp " + str(t): record.medical[t].temp,
-                            "fhc " + str(t): record.medical[t].fhc,
-                            "weight " + str(t): record.medical[t].weight,
-                            "examination " + str(t): record.medical[t].examination,
-                            "drug_allergy " + str(t): record.medical[t].drug_allergy,
-                            })
-        return json.dumps(medical)
-
-
-
-    @http.route('/clinical_management_system/medical/patient/<model("odoo.clinic.patient"):patient>/', type="http",
-                auth="none" , cors="*"  )
-    def get_patient_medical(self, patient):
-        return self.get_patient(patient.id)
-
-    @http.route('/clinical_management_system/patient/new/', type="http", auth="none", methods=['POST'], cors="*",
+    @http.route('/clinical_management_system/schedule_visit/', type="http", auth="none", methods=['post'], cors="*",
                 csrf=False)
-    def create_patient(self, **params):
-        ee = json.loads(http.request.httprequest.data)
-        print (ee["name"])
-        print(json.loads(http.request.httprequest.data))
-        #
-        record = http.request.env['odoo.clinic.patient'].sudo().create(
-            {"name": ee["name"], "email": ee["email"], "phone": ee["phone"]
-                , "city": ee["city"], "date": ee["date"]
-                , "gender": ee["gender"], "token": ee["token"]})
-        return json.dumps(record.id)
-        # return json.dumps(record.id)
+    def schedule_visit(self, **kw):
 
+        # {'doc_name': 'Mohamed', 'doc_id': '1', 'doc_date': '10/6/2019', 'doc_time': '8-2', 'pat_id': 0}
+        time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
+                      '02:00 PM']
+        params = http.request.httprequest.data
+        params = json.loads(params)
+        time_slot = datetime.datetime.strptime((params["doc_date"] + " " + params["doc_time"]), "%m/%d/%Y %I:%M %p")
+        CONST_EG_TIME_ADDITION = datetime.timedelta(hours=2)
+        end_time = time_slot + CONST_EG_TIME_ADDITION
+        print(end_time)
+        http.request.env['visit.model'].sudo().create(
+            {'doctor_id': params["doc_id"],
+             'attending_doctor': params["doc_id"],
+             "start_time": time_slot,
+             'patient_class': '{}'.format('OBGYN'),
+             "end_time": end_time,
+             })
+        # print(CONST_EG_TIME_ADDITION)
+        print(time_slot)
+        # print(end_time)
+        return json.dumps("visit scheduled successfully")
 
+    @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
+    def get_empty_time_slots(self):
+        print("empty slots")
+        return json.dumps("empty slots")
+
+    @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
+    def get_visits(self):
+        # {'doc_name': 'Mohamed', 'doc_id': '1', 'doc_date': '10/6/2019', 'doc_time': '8-2', 'pat_id': 0}
+        visits = http.request.env["visit.model"].sudo().search([])
+        for visit in visits:
+            print(type(visit["start_time"]))
+            CONST_EG_TIME_ADDITION = datetime.timedelta(hours=2)
+            time = visit["start_time"] + CONST_EG_TIME_ADDITION
+            print(visit["start_time"])
+            print(time)
+            twelve_hour_format = datetime.datetime.strftime(time, "%I:%M %p")
+            visit_date = datetime.datetime.strftime(time, "%m/%d/%Y")
+            print(twelve_hour_format)
+            print(visit_date)
+
+        # time = visits[0]["start_time"]
+        # time_slots = []
+        # for visit in visits:
+        #     doctor = visit["attending_doctor"]
+        #     fields.Datetime.from_string(visit)
+        #     my_time = datetime.datetime.strftime(visits[i]["start_time"], "%m/%j/%Y %I:%M")
+        #     my_date = datetime.datetime.strptime(my_time, "%m/%j/%Y %I:%M").date()
+        #     my_time = datetime.datetime.strptime(my_time, "%m/%j/%Y %I:%M").time()
+        #     print(type(my_time))
+        #     time_slots.append([my_time.strftime("%I:%M %p"), my_date.strftime("%m/%d/%Y"),my_time.strftime("%p"), doctor.name])
+        return json.dumps("wallahy gada3")
