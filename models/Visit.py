@@ -1,4 +1,6 @@
 from odoo import models, fields, api
+import requests
+import json
 
 class Visit(models.Model):
     _name = 'visit.model'
@@ -119,7 +121,8 @@ class Visit(models.Model):
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
     patient = fields.Many2one('odoo.clinic.patient')
-    visit_status=fields.Selection([('Draft', 'Draft'), ('Inplace', 'Inplace'),('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')])
+    visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'Inplace'),
+                                   ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')])
     sheet=fields.One2many('odoo.clinic.medical','visit')
     # @api.model
     # def create(self, vals):
@@ -130,4 +133,37 @@ class Visit(models.Model):
     # @api.multi
     # def _visit_count(self):
     #     for visits in self:
+
+    # fn to send notification when change visit status
+    #
+    # url = 'https://fcm.googleapis.com/fcm/send'
+    # payload = {
+    #   "notification": {
+    #    "title": "Hello World",
+    #    "body": "This is Message from Admin"
+    #   },
+    #   "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+    # }
+    # headers = {'content-type': 'application/json','Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
+    #
+    #
+    # r = requests.post(url, data=json.dumps(payload), headers=headers)
+    #
+    @api.onchange('visit_status')
+    def on_change_state(self):
+        print (self.visit_status)
+        if self.visit_status=="Comfirmed":
+            url = 'https://fcm.googleapis.com/fcm/send'
+            payload = {
+              "notification": {
+               "title": "Hello "+self.patient.name,
+               "body": "welcome to our clinic your visit is confirmed in " +str(self.start_time)
+              },
+              "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+            }
+            headers = {'content-type': 'application/json','Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
+
+
+            r = requests.post(url, data=json.dumps(payload), headers=headers)
+            print(r.json)
 
