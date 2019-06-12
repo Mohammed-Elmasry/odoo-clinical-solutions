@@ -7,6 +7,7 @@ class Visit(models.Model):
     _description = "visits that will be related to patients in the Clinic"
     doctor = fields.Many2one('doctor.info.model')
     patient = fields.Many2one('odoo.clinic.patient')
+    # services_and_products = fields.Many2one('product.template')
     patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
@@ -96,7 +97,7 @@ class Visit(models.Model):
     pending_location = fields.Text(string="Pending Location")
     admit_date = fields.Datetime(string="Admit Date/Time")
     discharge_date = fields.Datetime(string="Discharge Date/Time")
-    current_patient_balance = fields.Char(string="Current Balance")
+    current_patient_balance = fields.Integer(string="Current Balance")
     # This field contains the visit balance due.
     total_charges = fields.Integer(string="Total Visit Charges")
     total_adjustments = fields.Integer(string="Total Adjustments")
