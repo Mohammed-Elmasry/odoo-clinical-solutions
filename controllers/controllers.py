@@ -2,7 +2,6 @@
 from odoo import http, fields
 import json, datetime
 
-
 class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/clinical_management_system/', auth='public')
     def index(self, **kw):
@@ -90,14 +89,24 @@ class ClinicalManagementSystem(http.Controller):
              "start_time": time_slot,
              'patient_class': 'OBGYN',
              "end_time": end_time,
+             "patient":params["pat_id"],
              })
         # new_record.sudo().write()
         return json.dumps("visit scheduled successfully")
 
     @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
     def get_empty_time_slots(self):
-        print("empty slots")
-        return json.dumps("empty slots")
+        dates = []
+        day = datetime.timedelta(days=1)
+        today = datetime.datetime.today()
+        dates.append(today) # first day of week
+        #loop to calculate a whole week from today
+        next_day = today
+        for i in range(6):
+            next_day = next_day + day
+            if next_day.strftime("%a") not in("Sat", "Fri"):
+                dates.append(next_day)
+        return json.dumps("a7san naaaas")
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
     def get_visits(self):
