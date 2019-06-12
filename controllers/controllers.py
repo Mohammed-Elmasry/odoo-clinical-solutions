@@ -94,19 +94,33 @@ class ClinicalManagementSystem(http.Controller):
         # new_record.sudo().write()
         return json.dumps("visit scheduled successfully")
 
+
+
     @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
     def get_empty_time_slots(self):
+        time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
+                      '02:00 PM']
         dates = []
         day = datetime.timedelta(days=1)
         today = datetime.datetime.today()
-        dates.append(today) # first day of week
+        dates.append(today.date()) # first day of week
         #loop to calculate a whole week from today
         next_day = today
         for i in range(6):
             next_day = next_day + day
             if next_day.strftime("%a") not in("Sat", "Fri"):
-                dates.append(next_day)
+                dates.append(next_day.date())
+        for day in dates:
+            for slot in time_slots:
+                #combine slots with dates into a time_string (as a single unit)
+                time_string = datetime.datetime.strptime(day.strftime("%d/%m/%Y") + " " + slot, "%d/%m/%Y %I:%M %p")
+                print(time_string.strftime("%d/%m/%Y"), time_string.strftime("%I:%M %p"))
+        # concatinate the dates and the time slots
+        visits = http.request.env['visit.model'].sudo().search([])
+
         return json.dumps("a7san naaaas")
+
+
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
     def get_visits(self):
