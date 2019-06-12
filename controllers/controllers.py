@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import http, fields
 import json, datetime
-from ast import literal_eval
 
 
 class ClinicalManagementSystem(http.Controller):
