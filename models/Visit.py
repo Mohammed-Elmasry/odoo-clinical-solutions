@@ -97,7 +97,7 @@ class Visit(models.Model):
     pending_location = fields.Text(string="Pending Location")
     admit_date = fields.Datetime(string="Admit Date/Time")
     discharge_date = fields.Datetime(string="Discharge Date/Time")
-    current_patient_balance = fields.Integer(string="Current Balance")
+    current_patient_balance = fields.Integer(string="Current Balance", compute='calculate_current_patient_balance')
     # This field contains the visit balance due.
     total_charges = fields.Integer(string="Total Visit Charges")
     total_adjustments = fields.Integer(string="Total Adjustments")
@@ -141,3 +141,9 @@ class Visit(models.Model):
         for visit in self.filtered('start_time'):
             delta = datetime.timedelta(minutes = 30)
             visit.end_time = visit.start_time + delta
+
+    @api.depends('total_charges', 'total_payments')
+    def calculate_current_patient_balance(self):
+
+        for visit in self.filtered('total_charges'):
+            visit.current_patient_balance = visit.total_payments - visit.total_charges
