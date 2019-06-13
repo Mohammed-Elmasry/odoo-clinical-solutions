@@ -109,7 +109,7 @@ class ClinicalManagementSystem(http.Controller):
         next_day = today
         for i in range(6):
             next_day = next_day + day
-            if next_day.strftime("%a") not in("Sat", "Fri"):
+            if next_day.strftime("%a") not in ("Sat", "Fri"):
                 dates.append(next_day.date())
 
         # concatinate the dates and the time slots
@@ -125,11 +125,13 @@ class ClinicalManagementSystem(http.Controller):
 
         #get visits of each doctor
         for doctor in doctors:
-            visits = http.request.env['visit.model'].sudo().search([('doctor','=',doctor.id),()])
+            visits = http.request.env['visit.model'].sudo().search([('doctor','=',doctor.id),
+                                                                        ('visit_status','!=','Inplace'),
+                                                                        ('visit_status','!=','Done')])
             for visit in visits:
+                pass
+
         return json.dumps("a7san naaaas")
-
-
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
     def get_visits(self):

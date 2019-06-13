@@ -1,19 +1,16 @@
 from odoo import models, fields, api
-import datetime
 
 class Visit(models.Model):
     _name = 'visit.model'
-    # _rec_name = 'set_id'
 
+    # doctor = fields.Many2one('doctor.info.model')
     doctor = fields.Many2one('doctor.info.model')
-    patient = fields.Many2one('odoo.clinic.patient')
-    patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
+    # visit_id = fields.Integer(string="Visit ID", )
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
-    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
                                   , help="To Detect The Type Of Visit")
-    end_time = fields.Datetime(compute='calculate_end_time')
+    end_time = fields.Datetime()
     patient_class = fields.Char(string="Patient class", required='true')
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
@@ -21,7 +18,7 @@ class Visit(models.Model):
     admission_type = fields.Char(string="Admission Type")
     preadmit_number = fields.Integer(string="Preadmit Number")
     prior_patient_location = fields.Text(string="Prior Location")
-    attending_doctor = fields.Many2one('doctor.info.model', string="attending doctor")#fields.Selection([('value', 'No suggested values defined')], string="Attending Doctor")
+    attending_doctor = fields.Selection([('value', 'No suggested values defined')], string="Attending Doctor")
     referring_doctor = fields.Selection([('value', 'No suggested values defined')], string="Referring Doctor")
     hospital_service = fields.Selection([('MED', 'Medical Service'),
                                          ('SUR', 'Surgical Service'),
@@ -121,24 +118,17 @@ class Visit(models.Model):
                                         ('V', 'Visit level')], string="Visit Indicator", default='A')
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
-
-    @api.model
-    def create(self, vals):
-        vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
-        vals['name'] = self.env['ir.sequence'].next_by_code('set_id')
-        res = super(Visit, self).create(vals)
-        return res
-
-    @api.depends('start_time')
-    def calculate_end_time(self):
-
-            for visit in self.filtered('start_time'):
-                delta = datetime.timedelta(minutes = 30)
-                visit.end_time = visit.start_time + delta
-
-    #
+    patient = fields.Many2one('odoo.clinic.patient')
+    visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'Inplace'),
+                                   ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')])
+    sheet=fields.One2many('odoo.clinic.medical','visit')
     # @api.model
     # def create(self, vals):
-    #     vals['name'] = self.env['ir.sequence'].next_by_code('set_id')
-    #     res = super(Visit, self).create(vals)
-    #     return res
+    #
+    #     vals['visit_id'] = self.env['ir.sequence']._create_sequence(1, 1)
+    #         # .next_by_code()
+
+    # @api.multi
+    # def _visit_count(self):
+    #     for visits in self:
+

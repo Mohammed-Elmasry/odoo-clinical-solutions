@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_clinical_management_system_clinical_management_system,clinical_management_system.clinical_management_system,model_clinical_management_system_clinical_management_system,,1,0,0,0
+odoo_clinic_patient,patient,model_odoo_clinic_patient,odoo_clinic_doctor,1,0,0,0

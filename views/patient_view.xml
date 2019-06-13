@@ -34,17 +34,18 @@
               <field name="gender"/>
             </group>
                 <notebook string="Visit Data and Information">
-            <page string="medical info">
+            <page string="Medical Info">
               <group>
 
-                  <field name="comment"/>
               <field name="mrn"/>
               <field name="height"/>
               <field name="weight"/>
               <field name="blood_group"/>
+                  <field name="comment"/>
+
             </group>
             </page>
-                    <page  string="address">
+                    <page  string="Address">
           <group string="address">
               <field name="street"/>
               <field name="street2"/>
@@ -58,7 +59,7 @@
 
               </group>
               </page>
-                    <page string="bith info">
+                      <page string="Bith Info">
                         <group>
               <field name="birth_place"/>
 
@@ -67,14 +68,28 @@
               <field name="multiple_birth_indicator"/>
                         </group>
                     </page>
-                <page string="death info">
+
+                    <page string="Visit Info">
+                        <group>
+                                <field name="visit"/>
+
+                        </group>
+                    </page>
+                                        <page string="Medical Sheet">
+                        <group>
+                                <field name="medical"/>
+
+                        </group>
+                    </page>
+
+                <page string="Death Info">
                    <group string="death info">
                   <field name="patient_death"/>
 
               <field name="patient_death_indicator"/>
               </group>
                 </page>
-                    <page string="others">
+                    <page string="Others">
                         <group>
                             <field name="MaritalStatus"/>
                             <field name="race"/>
@@ -90,13 +105,6 @@
                         </group>
                     </page>
                 </notebook>
-
-              <group>
-                                <field name="visit"/>
-                                <field name="medical"/>
-
-
-              </group>
 
           </sheet>
         </form>
