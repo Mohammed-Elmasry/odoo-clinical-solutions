@@ -151,14 +151,15 @@ class Visit(models.Model):
             delta = datetime.timedelta(minutes = 30)
             visit.end_time = visit.start_time + delta
 
+    @api.depends('sales_price')
+    def get_current_charges(self):
+
+        for visit in self.filtered('sales_price'):
+            visit.total_charges = visit.sales_price
+
     @api.depends('total_charges', 'total_payments')
     def calculate_current_patient_balance(self):
 
         for visit in self.filtered('total_charges'):
             visit.current_patient_balance = visit.total_payments - visit.total_charges
 
-    @api.depends('sales_price')
-    def get_current_charges(self):
-
-        for visit in self.filtered('sales_price'):
-            visit.total_charges = visit.sales_price
