@@ -7,6 +7,7 @@ class Product (models.Model):
     _description = "resources, products, and services offered by the clinic"
     _order = "date_added desc, name"
     visit = fields.Many2one('visit.model')
+    doctor = fields.Many2one('doctor.info.model')
     name = fields.Char('Name',required=True)
     # fees = fields.Monetary('fees', currency_field='currency_id')
     date_added = fields.Date('creation date')
