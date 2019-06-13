@@ -12,7 +12,7 @@ class Visit(models.Model):
                               , help="Service and Product Price Related to Doctor's Services")
     patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
-    doctor_name = fields.Char(related="doctor", string="Doctor Name", help="Doctor Name")
+    doctor_name = fields.Char(related="doctor.name", string="Doctor Name", help="Doctor Name")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
@@ -25,7 +25,8 @@ class Visit(models.Model):
     admission_type = fields.Char(string="Admission Type")
     preadmit_number = fields.Integer(string="Preadmit Number")
     prior_patient_location = fields.Text(string="Prior Location")
-    attending_doctor = fields.Many2one('doctor.info.model', string="attending doctor")
+    attending_doctor = fields.Many2one('doctor.info.model', string="attending doctor"
+                                       , compute="assign_doctor_name_to_attending_doctor")
     referring_doctor = fields.Selection([('value', 'No suggested values defined')], string="Referring Doctor")
     hospital_service = fields.Selection([('MED', 'Medical Service'),
                                          ('SUR', 'Surgical Service'),
