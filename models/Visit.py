@@ -153,3 +153,4 @@ class Visit(models.Model):
 
         for visit in self.filtered('total_charges'):
             visit.current_patient_balance = visit.total_payments - visit.total_charges
+
