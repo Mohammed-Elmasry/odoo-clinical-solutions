@@ -11,7 +11,6 @@
                         <field name="patient_class"/>
                         <field name="patient"/>
                         <field name="doctor" />
-                        <field name="services_and_products"/>
                         <field name="name"/>
                         <field name="visit_id" readonly="1"/>
                         <field name="visit_type"/>
@@ -26,6 +25,7 @@
                         <field name="attending_doctor"/>
                     </group>
                     <group string="Services" col="6">
+                         <field name="services_and_products"/>
                         <field name="hospital_service"/>
                         <field name="service_episode_description"/>
                         <field name="service_episode_identifier"/>
