@@ -34,5 +34,5 @@ class DoctorInfo(models.Model):
     @api.model
     def create(self, vals):
         vals['doctor_id'] = self.env['ir.sequence'].next_by_code('clinic.employee')
-        res = super(Visit, self).create(vals)
+        res = super(DoctorInfo, self).create(vals)
         return res
