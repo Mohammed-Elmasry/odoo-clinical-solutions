@@ -122,13 +122,10 @@ class Visit(models.Model):
     visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'Inplace'),
                                    ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')])
     sheet=fields.One2many('odoo.clinic.medical','visit')
-    # @api.model
-    # def create(self, vals):
-    #
-    #     vals['visit_id'] = self.env['ir.sequence']._create_sequence(1, 1)
-    #         # .next_by_code()
 
-    # @api.multi
-    # def _visit_count(self):
-    #     for visits in self:
-
+    @api.model
+    def create(self, vals):
+        vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
+        vals['name'] = self.env['ir.sequence'].next_by_code('set_id')
+        res = super(Visit, self).create(vals)
+        return res
