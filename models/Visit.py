@@ -8,6 +8,8 @@ class Visit(models.Model):
     doctor = fields.Many2one('doctor.info.model')
     patient = fields.Many2one('odoo.clinic.patient')
     services_and_products = fields.Many2one('product.template')
+    sales_price = fields.Char(related="services_and_products.list_price", string="Service Price"
+                              , help="Service and Product Price Related to Doctor's Services")
     patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
