@@ -14,7 +14,7 @@ class Product (models.Model):
 
     # categorization (service vs medicine)
 
-    is_medicine = fields.Boolean(string="is medicine")
+    is_medicine = fields.Boolean(string="Is medicine")
     # item_identifier = fields.Char(string="item identifier", required=True)
     item_description = fields.Text(string="item description")
     item_status = fields.Selection([("A", "Active"),("P","Pending inactive"),("I","Inactive")])

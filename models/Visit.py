@@ -8,7 +8,7 @@ class Visit(models.Model):
     doctor = fields.Many2one('doctor.info.model')
     patient = fields.Many2one('odoo.clinic.patient')
     services_and_products = fields.Many2one('product.template')
-    sales_price = fields.Char(related="services_and_products.list_price", string="Service Price"
+    sales_price = fields.Float(related="services_and_products.list_price", string="Service Price"
                               , help="Service and Product Price Related to Doctor's Services")
     patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
@@ -111,7 +111,8 @@ class Visit(models.Model):
                                              , help="it is the visit balance Computed Field"
                                                     "To Display Difference between Payment and "
                                                     "total Charges")
-    total_charges = fields.Integer(string="Total Visit Charges", help="This field contains the total visit charges.")
+    total_charges = fields.Integer(string="Total Visit Charges", compute="get_current_charges"
+                                   , help="This field contains the total visit charges.")
     total_adjustments = fields.Integer(string="Total Adjustments", help="This field contains the total adjustments "
                                                                         "for visit.")
     total_payments = fields.Integer(string="Total Payment", help="This field contains the total payments for visit.")
@@ -156,3 +157,8 @@ class Visit(models.Model):
         for visit in self.filtered('total_charges'):
             visit.current_patient_balance = visit.total_payments - visit.total_charges
 
+    @api.depends('sales_price')
+    def get_current_charges(self):
+
+        for visit in self.filtered('sales_price'):
+            visit.total_charges = visit.sales_price

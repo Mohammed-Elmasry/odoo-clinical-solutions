@@ -31,8 +31,9 @@ class DoctorInfo(models.Model):
     mobile_phone = fields.Char('Work Mobile', required=True)
     sheet = fields.One2many('odoo.clinic.medical', 'doctor')
 
-    @api.model
-    def create(self, vals):
-        vals['doctor_id'] = self.env['ir.sequence'].next_by_code('clinic.employee')
-        res = super(DoctorInfo, self).create(vals)
-        return res
+    # @api.model
+    # def create(self, vals):
+    #
+    #     vals['doctor_id'] = self.env['ir.sequence'].next_by_code('clinic.employee')
+    #     res = super(DoctorInfo, self).create(vals)
+    #     return res
