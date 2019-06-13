@@ -30,3 +30,9 @@ class DoctorInfo(models.Model):
     ], 'Certificate Level', default='master', groups="hr.group_hr_user", required=True)
     mobile_phone = fields.Char('Work Mobile', required=True)
     sheet = fields.One2many('odoo.clinic.medical', 'doctor')
+
+    @api.model
+    def create(self, vals):
+        vals['doctor_id'] = self.env['ir.sequence'].next_by_code('clinic.employee')
+        res = super(Visit, self).create(vals)
+        return res
