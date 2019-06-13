@@ -12,6 +12,7 @@ class Visit(models.Model):
                               , help="Service and Product Price Related to Doctor's Services")
     patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
+    doctor_name = fields.Char(related="doctor", string="Doctor Name", help="Doctor Name")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
