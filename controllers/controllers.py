@@ -101,7 +101,7 @@ class ClinicalManagementSystem(http.Controller):
         time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
                       '02:00 PM']
         dates = []
-        doctors_visits = []
+        doctors_visits = [] #these are the empty visits
         day = datetime.timedelta(days=1)
         today = datetime.datetime.today()
         dates.append(today.date()) # first day of week
@@ -128,9 +128,12 @@ class ClinicalManagementSystem(http.Controller):
             visits = http.request.env['visit.model'].sudo().search([('doctor','=',doctor.id),
                                                                         ('visit_status','!=','Inplace'),
                                                                         ('visit_status','!=','Done')])
-            for visit in visits:
-                pass
+            for day in dates: # this
+                for visit in visits:
+                    if day != visit.start_time:
+                        doctors_visits.append({doctor.id : day})
 
+        print(doctors_visits)
         return json.dumps("a7san naaaas")
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
@@ -159,3 +162,7 @@ class ClinicalManagementSystem(http.Controller):
         #     print(type(my_time))
         #     time_slots.append([my_time.strftime("%I:%M %p"), my_date.strftime("%m/%d/%Y"),my_time.strftime("%p"), doctor.name])
         return json.dumps("wallahy gada3")
+
+
+def helper():
+    print("Hello from helper")
