@@ -101,6 +101,7 @@ class ClinicalManagementSystem(http.Controller):
         time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
                       '02:00 PM']
         dates = []
+        doctors_visits = []
         day = datetime.timedelta(days=1)
         today = datetime.datetime.today()
         dates.append(today.date()) # first day of week
@@ -110,14 +111,22 @@ class ClinicalManagementSystem(http.Controller):
             next_day = next_day + day
             if next_day.strftime("%a") not in("Sat", "Fri"):
                 dates.append(next_day.date())
+
+        # concatinate the dates and the time slots
         for day in dates:
             for slot in time_slots:
                 #combine slots with dates into a time_string (as a single unit)
                 time_string = datetime.datetime.strptime(day.strftime("%d/%m/%Y") + " " + slot, "%d/%m/%Y %I:%M %p")
                 print(time_string.strftime("%d/%m/%Y"), time_string.strftime("%I:%M %p"))
-        # concatinate the dates and the time slots
-        visits = http.request.env['visit.model'].sudo().search([])
 
+
+        #get all doctors from database
+        doctors = http.request.env["doctor.info.model"].sudo().search([('role','=','doctor')])
+
+        #get visits of each doctor
+        for doctor in doctors:
+            visits = http.request.env['visit.model'].sudo().search([('doctor','=',doctor.id),()])
+            for visit in visits:
         return json.dumps("a7san naaaas")
 
 
