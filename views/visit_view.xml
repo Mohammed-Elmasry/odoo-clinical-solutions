@@ -25,7 +25,7 @@
                         <field name="attending_doctor"/>
                     </group>
                     <group string="Services" col="6">
-                         <field name="services_and_products"/>
+                        <field name="services_and_products"/>
                         <field name="hospital_service"/>
                         <field name="service_episode_description"/>
                         <field name="service_episode_identifier"/>
