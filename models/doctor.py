@@ -10,6 +10,7 @@ class DoctorInfo(models.Model):
     visit = fields.One2many('visit.model', 'doctor')
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True
                             , help="Employee's Role in Our Clinic")
+    services_and_products = fields.Many2one('product.template')
     speciality = fields.Char(size=50)
     license_id = fields.Char(size=14, string="License ID", help="Licence ID Related to Employee in Our Clinic")
     gender = fields.Selection([
