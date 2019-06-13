@@ -130,7 +130,6 @@ class ClinicalManagementSystem(http.Controller):
         for t in range(len(record.medical)):
             print(record.medical[t].dm)
             medical.append({"obstetric_gynecological_history"+str(t) :record.medical[t].obstetric_gynecological_history,
-
                             "dm"+str(t) :record.medical[t].dm,
                             "time" + str(t): str(record.medical[t].time),
                             "patient" + str(t): record.medical[t].patient.name,
@@ -138,8 +137,6 @@ class ClinicalManagementSystem(http.Controller):
                             "htn"+str(t) :record.medical[t].htn,
                             "cardiac"+str(t) :record.medical[t].cardiac,
                             "heptic" + str(t): record.medical[t].heptic,
-
-
                             "renal" + str(t): record.medical[t].renal,
                             "others" + str(t): record.medical[t].others,
                             "surgical_history" + str(t): record.medical[t].surgical_history,
@@ -205,7 +202,7 @@ class ClinicalManagementSystem(http.Controller):
         #
         # for t in range(len(record.sheet)):
         #     print(record.medical[t].dm)
-        medical.append({"obstetric_gynecological_history":record.sheet.obstetric_gynecological_history,
+        medical.append({"obstetricgynecologicalhistory":record.sheet.obstetric_gynecological_history,
 
                         "dm" :record.sheet.dm,
                         "time" : str(record.sheet.time),
@@ -240,3 +237,15 @@ class ClinicalManagementSystem(http.Controller):
                 auth="none" , cors="*"  )
     def get_visit_medical(self, visit):
         return self.get_visit(visit.id)
+    @http.route('/clinical_management_system/visit/status', type="http", auth="none", methods=['POST'], cors="*",
+                csrf=False)
+    def update_visit(self, **params):
+        visit = json.loads(http.request.httprequest.data)
+
+        print(visit["id"])
+        record = http.request.env['visit.model'].sudo().search(args=[('visit_id', '=',str(visit["id"]))])
+
+        # record = http.request.env['odoo.clinic.patient'].sudo().search(args=[('id', '=', patient["id"])])
+        # print(record.name)
+        record.write({"visit_status": "Canceled"})
+        return json.dumps("visit is Canceled")

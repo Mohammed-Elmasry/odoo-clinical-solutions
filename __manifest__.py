@@ -24,6 +24,7 @@
 
     # always loaded
     'data': [
+        # 'security/clinic_security.xml',
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
@@ -32,6 +33,7 @@
         'views/patient_view.xml',
         'views/medical_view.xml',
         'views/visit_view.xml',
+
 
     ],
     # only loaded in demonstration mode

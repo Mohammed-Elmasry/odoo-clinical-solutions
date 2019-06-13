@@ -1,2 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-odoo_clinic_patient,patient,model_odoo_clinic_patient,odoo_clinic_doctor,1,0,0,0
+acess_visit,doctors,model_visit_model,,1,0,0,0
+acess_patient,doctors,model_odoo_clinic_patient,,1,0,0,0
+acess_medical,doctors,model_odoo_clinic_medical,,1,0,0,0
+acess_doctors,doctors,model_doctor_info_model,,1,0,0,0
+acess_product,doctors,model_product_template,,1,0,0,0
+
+
+
+
+acess_doctor_data_visit,doctors,model_visit_model,clinic_doctor,1,1,1,0
+acess_doctor_data_patient,doctors,model_odoo_clinic_patient,clinic_doctor,1,1,1,0

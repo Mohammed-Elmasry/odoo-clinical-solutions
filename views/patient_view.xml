@@ -274,7 +274,7 @@
 
     <!-- menu categories -->
 
-    <menuitem name="patient" id="menu_4" parent="menu_root"/>
+    <menuitem name="patient" id="menu_4" parent="menu_root" />
 
     <!-- actions -->
 

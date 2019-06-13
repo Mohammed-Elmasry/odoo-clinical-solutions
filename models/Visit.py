@@ -166,7 +166,7 @@ class Visit(models.Model):
 
             r = requests.post(url, data=json.dumps(payload), headers=headers)
             print(r.json)
-        elif self.visit_status=="Done":
+        if self.visit_status=="Done":
             url = 'https://fcm.googleapis.com/fcm/send'
             payload = {
               "notification": {
