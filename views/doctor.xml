@@ -86,7 +86,7 @@
         </field>
     </record>
     <!--        employee statement sequence-->
-    <record id="visit_seq" model="ir.sequence">
+    <record id="employee_seq" model="ir.sequence">
         <field name="name">Employee</field>
         <field name="code">clinic.employee</field>
         <field name="prefix">000</field>
