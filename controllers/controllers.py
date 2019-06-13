@@ -106,8 +106,7 @@ class ClinicalManagementSystem(http.Controller):
         #get visits of each doctor
         visits = http.request.env['visit.model'].sudo().search([('visit_status','!=','Draft'),
                                                                 ('visit_status', '!=', 'Inplace')])
-        for i in visits:
-            print(i)
+        print(len(visits))
         # for doctor in doctors:
         #     pass
         #     for day in dates: # these are the empty time slots
