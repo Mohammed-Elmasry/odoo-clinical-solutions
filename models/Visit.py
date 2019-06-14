@@ -5,7 +5,7 @@ import datetime
 class Visit(models.Model):
     _name = 'visit.model'
     _description = "visits that will be related to patients in the Clinic"
-    doctor = fields.Many2one('doctor.info.model')
+    doctor = fields.Many2one('doctor.info.model', domain="[('role', '=', 'doctor')]")
     patient = fields.Many2one('odoo.clinic.patient')
     services_and_products = fields.Many2one('product.template')
     sales_price = fields.Float(related="services_and_products.list_price", string="Service Price"
@@ -170,3 +170,4 @@ class Visit(models.Model):
 
         for visit in self.filtered('doctor'):
             visit.attending_doctor = visit.doctor_name
+    # creat method to filter the relation

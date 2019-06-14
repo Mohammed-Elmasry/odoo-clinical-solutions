@@ -11,6 +11,7 @@
                         <field name="patient_class"/>
                         <field name="patient"/>
                         <field name="doctor" />
+<!--                        domain="[('role', '=',doctor)]"-->
                         <field name="name"/>
                         <field name="visit_id" readonly="1"/>
                         <field name="visit_type"/>
