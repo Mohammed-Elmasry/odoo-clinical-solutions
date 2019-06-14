@@ -24,8 +24,8 @@
 
     # always loaded
     'data': [
-        # 'security/clinic_security.xml',
-        # 'security/ir.model.access.csv',
+        'security/clinic_security.xml',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
         'views/product.xml', #it contains the _name of the model

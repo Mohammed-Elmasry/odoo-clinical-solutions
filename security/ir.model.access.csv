@@ -7,6 +7,5 @@ acess_product,doctors,model_product_template,,1,0,0,0
 
 
 
-
 acess_doctor_data_visit,doctors,model_visit_model,clinic_doctor,1,1,1,0
 acess_doctor_data_patient,doctors,model_odoo_clinic_patient,clinic_doctor,1,1,1,0
