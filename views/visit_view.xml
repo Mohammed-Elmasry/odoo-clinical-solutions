@@ -144,9 +144,10 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="patient_class"/>
                 <field name="patient_name"/>
+                <field name="patient_class"/>
                 <field name="patient_type"/>
+                <field name="attending_doctor"/>
                 <field name="start_time"/>
                 <field name="end_time"/>
             </tree>
