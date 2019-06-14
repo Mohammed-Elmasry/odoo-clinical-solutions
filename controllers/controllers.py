@@ -74,18 +74,19 @@ class ClinicalManagementSystem(http.Controller):
     def schedule_visit(self, **kw):
 
         # {'doc_name': 'Mohamed', 'doc_id': '1', 'doc_date': '10/6/2019', 'doc_time': '8-2', 'pat_id': 0}
-        time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
-                      '02:00 PM']
+        # time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
+        #               '02:00 PM']
         params = http.request.httprequest.data
         print(params)
         params = json.loads(params)
         time_slot = datetime.datetime.strptime((params["doc_date"] + " " + params["doc_time"]), "%m/%d/%Y %I:%M %p")
-        CONST_EG_TIME_ADDITION = datetime.timedelta(minutes=30)
-        end_time = time_slot + CONST_EG_TIME_ADDITION
+        CONST_EG_TIME_REMOVAL = datetime.timedelta(minutes = 120)
+        start_time = time_slot - CONST_EG_TIME_REMOVAL
+        end_time = time_slot + datetime.timedelta(minutes=30) - CONST_EG_TIME_REMOVAL
 
         http.request.env['visit.model'].sudo().create({
              'doctor': params["doc_id"],
-             "start_time": time_slot,
+             "start_time": start_time,
              'patient_class': 'OBGYN',
              "end_time": end_time,
              "patient":params["pat_id"],
@@ -98,30 +99,21 @@ class ClinicalManagementSystem(http.Controller):
 
     @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
     def get_empty_time_slots(self):
-        dates = get_dates() # these are the potential visits
-        doctor_empty_times = []
-        all_empty_times = []
-        start_times = []
-        #get all doctors from database
+        """
+        :return: a list of available time slots
+        """
         doctors = http.request.env["doctor.info.model"].sudo().search([('role','=','doctor')])
-
-        #get visits of each doctor
-        for doctor in doctors:
-            visits = http.request.env['visit.model'].sudo().search([('doctor','=', doctor.id)])
-            # print(visits)
-            for visit in visits:
-                start_times.append(visit.start_time)
-            doctor_times = {doctor.id : start_times}
+        potential_visit_times = get_dates() #all potential dates
+        dates = get_current_week_days()
         for date in dates:
-            if date in start_times:
-                doctor_empty_times.append(date.strftime("%I:%M %p"))
-            all_empty_times.append({"name" : doctor.name,
-                                    "appintments" : doctor_empty_times,
-                                    })
-
-        # print(len(all_empty_times[0]["mohammed"]))
-        # print(len(all_empty_times))
-        return json.dumps(all_empty_times)
+            for doctor in doctors:
+                #get all visits for current doctor
+                visits = http.request.env['visit.model'].sudo().search([('doctor','=',doctor.id)])
+                for visit in visits:
+                    # print(type(visit.start_time.strftime("%m/%d/%Y")))
+                    if visit.start_time.strftime("%m/%d/%Y") == date.strftime("%m/%d/%Y") and visit.doctor == doctor:
+                        print(doctor.name, " will see ", visit.patient.name, " on ", visit.start_time)
+        return json.dumps("a7san nas")
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
     def get_visits(self):
@@ -157,7 +149,7 @@ def get_dates():
     """
     :return: a list of the available time slots for the upcoming week
     """
-    time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM']
+    time_slots = ['10:00 AM', '10:30 AM', '11:00 AM']#, '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM']
     empty_time_slots = []
     dates = get_current_week_days()
 
@@ -176,8 +168,8 @@ def get_current_week_days():
     dates = []
     day = datetime.timedelta(days=1)
     today = datetime.datetime.today()
-    dates.append(today.date())  # first day of week
-
+    if today.strftime("%a") not in ("Fri", "Say"):
+        dates.append(today.date())  # first day of week
     # loop to calculate a whole week from today
     next_day = today
     for i in range(6):
