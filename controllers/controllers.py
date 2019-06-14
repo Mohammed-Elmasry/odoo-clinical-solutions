@@ -84,12 +84,12 @@ class ClinicalManagementSystem(http.Controller):
         end_time = time_slot + CONST_EG_TIME_ADDITION
 
         http.request.env['visit.model'].sudo().create({
-             'doctor_id': params["doc_id"],
-             'attending_doctor': params["doc_id"],
+             'doctor': params["doc_id"],
              "start_time": time_slot,
              'patient_class': 'OBGYN',
              "end_time": end_time,
              "patient":params["pat_id"],
+             "visit_status":"Draft"
              })
         # new_record.sudo().write()
         return json.dumps("visit scheduled successfully")
@@ -99,25 +99,29 @@ class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
     def get_empty_time_slots(self):
         dates = get_dates() # these are the potential visits
-
+        doctor_empty_times = []
+        all_empty_times = []
+        start_times = []
         #get all doctors from database
         doctors = http.request.env["doctor.info.model"].sudo().search([('role','=','doctor')])
 
         #get visits of each doctor
-        visits = http.request.env['visit.model'].sudo().search([('visit_status','!=','Draft'),
-                                                                ('visit_status', '!=', 'Inplace')])
-        print(len(visits))
-        # for doctor in doctors:
-        #     pass
-        #     for day in dates: # these are the empty time slots
-        #         for visit in visits:
-        #             print(visit.start_time)
-        #             # if day != visit.start_time time_slots
-        #                 # doctors_visits.append({doctor.id : day})
+        for doctor in doctors:
+            visits = http.request.env['visit.model'].sudo().search([('doctor','=', doctor.id)])
+            # print(visits)
+            for visit in visits:
+                start_times.append(visit.start_time)
+            doctor_times = {doctor.id : start_times}
+        for date in dates:
+            if date in start_times:
+                doctor_empty_times.append(date.strftime("%I:%M %p"))
+            all_empty_times.append({"name" : doctor.name,
+                                    "appintments" : doctor_empty_times,
+                                    })
 
-        # print(len(time_slots))
-        # print(len(potential_visits))
-        return json.dumps("a7san naaaas")
+        # print(len(all_empty_times[0]["mohammed"]))
+        # print(len(all_empty_times))
+        return json.dumps(all_empty_times)
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
     def get_visits(self):
@@ -153,24 +157,31 @@ def get_dates():
     """
     :return: a list of the available time slots for the upcoming week
     """
-    time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
-                  '02:00 PM']
-    dates = []
+    time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM']
     empty_time_slots = []
+    dates = get_current_week_days()
+
+    # concatinate the dates and the time slots
+    for date in dates:
+        for slot in time_slots:
+    #combine slots with dates into a time_string (as a single unit)
+            empty_time_slots.append(datetime.datetime.strptime(date.strftime("%m/%d/%Y") + " " + slot, "%m/%d/%Y %I:%M %p"))
+    return empty_time_slots
+
+
+def get_current_week_days():
+    """
+    :return: a list of 5 datetime objects representing days of the current week (starting today)
+    """
+    dates = []
     day = datetime.timedelta(days=1)
     today = datetime.datetime.today()
     dates.append(today.date())  # first day of week
+
     # loop to calculate a whole week from today
     next_day = today
     for i in range(6):
         next_day = next_day + day
         if next_day.strftime("%a") not in ("Sat", "Fri"):
             dates.append(next_day.date())
-    # concatinate the dates and the time slots
-
-    for date in dates:
-        for slot in time_slots:
-    #combine slots with dates into a time_string (as a single unit)
-            empty_time_slots.append(datetime.datetime.strptime(date.strftime("%m/%d/%Y") + " " + slot, "%m/%d/%Y %I:%M %p"))
-    print(len(empty_time_slots))
-    return empty_time_slots
+    return dates
