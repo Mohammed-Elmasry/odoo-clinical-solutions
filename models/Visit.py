@@ -1,18 +1,27 @@
 from odoo import models, fields, api
+import datetime
 import requests
 import json
 
 class Visit(models.Model):
     _name = 'visit.model'
-
-    # doctor = fields.Many2one('doctor.info.model')
+    _description = "visits that will be related to patients in the Clinic"
     doctor = fields.Many2one('doctor.info.model')
-    # visit_id = fields.Integer(string="Visit ID", )
+    patient = fields.Many2one('odoo.clinic.patient')
+    services_and_products = fields.Many2one('product.template')
+    sales_price = fields.Float(related="services_and_products.list_price", string="Service Price"
+                              , help="Service and Product Price Related to Doctor's Services")
+    patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
+    doctor_name = fields.Char(related="doctor.name", string="Doctor Name", help="Doctor Name")
+    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
                                   , help="To Detect The Type Of Visit")
     end_time = fields.Datetime()
+    visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
+                                  , help="To Detect The Type Of Visit")
+    end_time = fields.Datetime(compute='calculate_end_time')
     patient_class = fields.Char(string="Patient class", required='true')
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
@@ -20,7 +29,8 @@ class Visit(models.Model):
     admission_type = fields.Char(string="Admission Type")
     preadmit_number = fields.Integer(string="Preadmit Number")
     prior_patient_location = fields.Text(string="Prior Location")
-    attending_doctor = fields.Selection([('value', 'No suggested values defined')], string="Attending Doctor")
+    attending_doctor = fields.Char(string="Attending doctor", help="Attending Doctor for This Visit"
+                                   , compute="assign_doctor_name_to_attending_doctor")
     referring_doctor = fields.Selection([('value', 'No suggested values defined')], string="Referring Doctor")
     hospital_service = fields.Selection([('MED', 'Medical Service'),
                                          ('SUR', 'Surgical Service'),
@@ -51,55 +61,67 @@ class Visit(models.Model):
     patient_type = fields.Selection([('value', 'No suggested values defined')])
     visit_number = fields.Integer(string="Visit Number",
                                   help="This field contains the unique number assigned to each patient visit.")
-    # This field contains the unique number assigned to each patient visit.
-    financial_class = fields.Selection([('value', 'No suggested values defined')], string="Financial Class")
-    # This field contains the financial class(es) assigned to the patient for the purpose of identifying
-    # sources of reimbursement
-    charge_price_indicator = fields.Selection([('value', 'No suggested values defined')], string="Charge Price Code")
-    # This field contains the code used to determine which price schedule is to be used for room and bed charges.
+    financial_class = fields.Selection([('value', 'No suggested values defined')], string="Financial Class"
+                                       , help="    This field contains the financial class(es)"
+                                              " assigned to the patient for the purpose of identifying"
+                                              " sources of reimbursement")
+    charge_price_indicator = fields.Selection([('value', 'No suggested values defined')], string="Charge Price Code"
+                                              , help="This field contains the code used to determine which"
+                                                     " price schedule is to be used for room and bed charges.")
     courtesy_code = fields.Selection([('value', 'No suggested values defined')], string="Courtesy Code")
-    credit_rating = fields.Selection([('value', 'No suggested values defined')], string="Credit Rating")
-    # This field contains the user-defined code to determine past credit experience
-    contract_code = fields.Selection([('value', 'No suggested values defined')], string="Contract Code")
-    # This field identifies the type of contract entered into by the health care facility and the guarantor
-    # for the purpose of settling outstanding account balances.
-    contract_effective_date = fields.Date(string="Contract Date")
-    # This field contains the date that the contract is to start or started.
-    contract_amount = fields.Integer(string="Contract Amount")
-    # This field contains the amount to be paid by the guarantor each period according to the
-    # contract.
-    contract_period = fields.Integer(string="Contract Period")
-    # This field contains the amount to be paid by the guarantor each period according to the
-    # contract.
-    interest_code = fields.Selection([('value', 'No suggested values defined')], string="Interest Amount")
-    # This field indicates the amount of interest that will be charged
-    transfer_bad_debt_code = fields.Selection([('value', 'No suggested values defined')], string="Bad Debt Code")
-    # This field indicates that the account was transferred to bad debts and gives the reason.
-    transfer_bad_debt_date = fields.Date(string="Bad Debt Date")
-    # This field contains the date that the account was transferred to a bad debt status.
+    credit_rating = fields.Selection([('value', 'No suggested values defined')], string="Credit Rating"
+                                     , help="This field contains the user-defined code to determine past"
+                                            " credit experience")
+    contract_code = fields.Selection([('value', 'No suggested values defined')], string="Contract Code"
+                                     , help="This field identifies the type of contract entered into by "
+                                            "the health care facility and the guarantorfor the purpose of "
+                                            "settling outstanding account balances.")
+    contract_effective_date = fields.Date(string="Contract Date", help="This field contains the date that"
+                                                                       " the contract is to start or started.")
+    contract_amount = fields.Integer(string="Contract Amount", help="This field contains the amount to be"
+                                                                    " paid by the guarantor each period according"
+                                                                    " to the contract.")
+    contract_period = fields.Integer(string="Contract Period", help="This field contains the amount to"
+                                                                    " be paid by the guarantor each period"
+                                                                    " according to the contract.")
+    interest_code = fields.Selection([('value', 'No suggested values defined')], string="Interest Amount"
+                                     , help="This field indicates the amount of interest that will be charged")
+    transfer_bad_debt_code = fields.Selection([('value', 'No suggested values defined')], string="Bad Debt Code"
+                                              , help="This field indicates that the account was transferred"
+                                                     " to bad debts and gives the reason.")
+    transfer_bad_debt_date = fields.Date(string="Bad Debt Date", help="This field contains the date that "
+                                                                      "the account was transferred to a bad"
+                                                                      " debt status.")
     bad_debt_agency_code = fields.Integer(string="Bad Debt Agency Code")
 
     bad_debt_transfer_amount = fields.Integer(string="Amount of Bad Debt Transfer")
     bad_debt_recovery_amount = fields.Integer(string="Amount of Bad Debt Recovery")
     delete_account_indicator = fields.Selection([('value', 'No suggested values defined')],
-                                                string="Delete Account Indicator")
-    delete_account_indicator_reasons = fields.Text(string="Reasons Of Delete Account")
-    # This field indicates that the account was deleted from the file and gives the reason
+                                                string="Delete Account Indicator"
+                                                ,help="This field indicates that the account was deleted from "
+                                                      "the file")
+    delete_account_indicator_reasons = fields.Text(string="Reasons Of Delete Account"
+                                                   , help="gives the reason for delete the account ")
     delete_account_date = fields.Date(string="Delete Account Date")
     discharge_disposition = fields.Selection([('value', 'No suggested values defined')], string="Discharge Disposition")
-    discharged_location = fields.Text(string="Discharged Location")
-    # This field indicates the health care facility to which the patient was discharged and the date.
+    discharged_location = fields.Text(string="Discharged Location"
+                                      , help="This field indicates the health care "
+                                             "facility to which the patient was discharged and the date.")
     diet_type = fields.Selection([('value', 'No suggested values defined')])
     servicing_facility = fields.Selection([('value', 'No suggested values defined')], string="Servicing Facility")
     account_status = fields.Selection([('value', 'No suggested values defined')], string="Account Status")
     pending_location = fields.Text(string="Pending Location")
     admit_date = fields.Datetime(string="Admit Date/Time")
     discharge_date = fields.Datetime(string="Discharge Date/Time")
-    current_patient_balance = fields.Char(string="Current Balance")
-    # This field contains the visit balance due.
-    total_charges = fields.Integer(string="Total Visit Charges")
-    total_adjustments = fields.Integer(string="Total Adjustments")
-    total_payments = fields.Integer(string="Total Payment")
+    current_patient_balance = fields.Integer(string="Current Balance", compute='calculate_current_patient_balance'
+                                             , help="it is the visit balance Computed Field"
+                                                    "To Display Difference between Payment and "
+                                                    "total Charges")
+    total_charges = fields.Integer(string="Total Visit Charges", compute="get_current_charges"
+                                   , help="This field contains the total visit charges.")
+    total_adjustments = fields.Integer(string="Total Adjustments", help="This field contains the total adjustments "
+                                                                        "for visit.")
+    total_payments = fields.Integer(string="Total Payment", help="This field contains the total payments for visit.")
     alternate_visit_id = fields.Selection([('BCV', 'Bank Card Validation Number'),
                                            ('NPI', 'Check digit algorithm in the US National Provider Identifier'),
                                            ('ISO', 'ISO 7064: 1983'),
@@ -130,25 +152,26 @@ class Visit(models.Model):
     #     vals['visit_id'] = self.env['ir.sequence']._create_sequence(1, 1)
     #         # .next_by_code()
 
-    # @api.multi
-    # def _visit_count(self):
-    #     for visits in self:
+    @api.model
+    def create(self, vals):
 
-    # fn to send notification when change visit status
-    #
-    # url = 'https://fcm.googleapis.com/fcm/send'
-    # payload = {
-    #   "notification": {
-    #    "title": "Hello World",
-    #    "body": "This is Message from Admin"
-    #   },
-    #   "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
-    # }
-    # headers = {'content-type': 'application/json','Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
-    #
-    #
-    # r = requests.post(url, data=json.dumps(payload), headers=headers)
-    #
+        vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
+        res = super(Visit, self).create(vals)
+        return res
+
+    @api.depends('start_time')
+    def calculate_end_time(self):
+
+        for visit in self.filtered('start_time'):
+            delta = datetime.timedelta(minutes = 30)
+            visit.end_time = visit.start_time + delta
+
+    @api.depends('sales_price')
+    def get_current_charges(self):
+        for visit in self.filtered('sales_price'):
+
+            visit.total_charges = visit.sales_price
+
     @api.onchange('visit_status')
     def on_change_state(self):
         print (self.visit_status)
@@ -175,8 +198,22 @@ class Visit(models.Model):
               },
               "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
             }
-            headers = {'content-type': 'application/json','Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
+            headers = {'content-type': 'application/json','Aut'
+                                                          'horization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
 
 
             r = requests.post(url, data=json.dumps(payload), headers=headers)
             print(r.json)
+
+
+    @api.depends('total_charges', 'total_payments')
+    def calculate_current_patient_balance(self):
+
+        for visit in self.filtered('total_charges'):
+            visit.current_patient_balance = visit.total_payments - visit.total_charges
+
+    @api.depends('doctor')
+    def assign_doctor_name_to_attending_doctor(self):
+
+        for visit in self.filtered('doctor'):
+            visit.attending_doctor = visit.doctor_name

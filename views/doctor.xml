@@ -7,31 +7,29 @@
             <form>
                 <sheet>
                     <group string="Personal Information" col="6">
-                    <field name="name" required="1"/>
-                    <field name="gender"/>
-                    <field name="birthday"/>
-<!--                    <field name="sheet"/>-->
-
-                </group>
-                <group string="Job Information" col="6">
-                    <field name="license_id"/>
-                    <field name="job_title"/>
-                    <field name="job_id"/>
-                    <field name="role"/>
-                    <field name="work_email"/>
-                    <field name="mobile_phone"/>
-                    <field name="work_phone"/>
-                    <field name="certificate"/>
-                    <field name="speciality"/>
-<!--                    attrs="{'invisible':[('role', '!=', 'officer')]}"-->
-<!-- attrs="{'visible':[('role', '!=', 'doctor')]}"-->
-                </group>
+                        <field name="name" required="1"/>
+                        <field name="gender"/>
+                        <field name="birthday"/>
+                    </group>
+                    <group string="Job Information" col="6">
+                        <field name="license_id"/>
+                        <field name="job_title"/>
+                        <field name="job_id"/>
+                        <field name="role"/>
+                        <field name="work_email"/>
+                        <field name="mobile_phone"/>
+                        <field name="work_phone"/>
+                        <field name="certificate"/>
+                        <field name="speciality"/>
+                        <!--                    attrs="{'invisible':[('role', '!=', 'officer')]}"-->
+                        <!-- attrs="{'visible':[('role', '!=', 'doctor')]}"-->
+                    </group>
                     <group><field name="notes"/> </group>
                 </sheet>
             </form>
         </field>
-<!--        List View For Doctor Data Model-->
     </record>
+    <!--        List View For Doctor Data Model-->
     <record model="ir.ui.view" id="view_doctor_info_list">
         <field name="name">Doctor List Info </field>
         <field name="model">doctor.info.model</field>
@@ -45,36 +43,36 @@
             </tree>
         </field>
     </record>
-<!--            Graph View For Doctor Data Model-->
-<!--    <record model="ir.ui.view" id="view_doctor_info_graph">-->
-<!--            <field name="name">Doctor Data and Information Graph</field>-->
-<!--            <field name="model">doctor.info.model</field>-->
-<!--            <field name="type">graph</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <graph string="Doctor Data and Information" >-->
-<!--                    <field name="name" />-->
-<!--                    <field name="job_title"/>-->
-<!--                    <field name="personal_phone"/>-->
-<!--                    <field name="speciality"/>-->
-<!--                    <field name="work_email"/>-->
-<!--                    <field name="personal_address"/>-->
-<!--                    <field name="mobile_phone"/>-->
-<!--                </graph>-->
-<!--            </field>-->
-<!--    </record>-->
-<!--        Pivot View For Doctor Data Model-->
-<!--    <record model="ir.ui.view" id="view_doctor_info_pivot">-->
-<!--        <field name="name">Doctor Data and Information Pivot </field>-->
-<!--        <field name="model">doctor.info.model</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <pivot string="Doctor Data and Information">-->
-<!--                <field name="name" type="row"/>-->
-<!--                <field name="job_title" type="col"/>-->
-<!--                 <field name="speciality" type="col"/>-->
-<!--                 <field name="role" type="row"/>-->
-<!--            </pivot>-->
-<!--        </field>-->
-<!--    </record>-->
+    <!--            Graph View For Doctor Data Model-->
+    <!--    <record model="ir.ui.view" id="view_doctor_info_graph">-->
+    <!--            <field name="name">Doctor Data and Information Graph</field>-->
+    <!--            <field name="model">doctor.info.model</field>-->
+    <!--            <field name="type">graph</field>-->
+    <!--            <field name="arch" type="xml">-->
+    <!--                <graph string="Doctor Data and Information" >-->
+    <!--                    <field name="name" />-->
+    <!--                    <field name="job_title"/>-->
+    <!--                    <field name="personal_phone"/>-->
+    <!--                    <field name="speciality"/>-->
+    <!--                    <field name="work_email"/>-->
+    <!--                    <field name="personal_address"/>-->
+    <!--                    <field name="mobile_phone"/>-->
+    <!--                </graph>-->
+    <!--            </field>-->
+    <!--    </record>-->
+    <!--        Pivot View For Doctor Data Model-->
+    <!--    <record model="ir.ui.view" id="view_doctor_info_pivot">-->
+    <!--        <field name="name">Doctor Data and Information Pivot </field>-->
+    <!--        <field name="model">doctor.info.model</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <pivot string="Doctor Data and Information">-->
+    <!--                <field name="name" type="row"/>-->
+    <!--                <field name="job_title" type="col"/>-->
+    <!--                 <field name="speciality" type="col"/>-->
+    <!--                 <field name="role" type="row"/>-->
+    <!--            </pivot>-->
+    <!--        </field>-->
+    <!--    </record>-->
     <!--    Search View-->
     <record model="ir.ui.view" id="view_doctor_info_search">
         <field name="name">Doctor Data and Information Search</field>
@@ -82,19 +80,27 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
-                 <field name="speciality"/>
+                <field name="speciality"/>
                 <field name="job_title"/>
+                <group expand="0" string="Group By">
+                    <filter name="name" string="Employee or Doctor" domain="[]" context="{'group_by':'name'}"
+                        help="Group  by Employee or Doctor name "/>
+                    <filter name="name" string="Speciality" domain="[]" context="{'group_by':'speciality'}"
+                        help="Group by Speciality"/>
+                    <filter name="name" string="Job Title" domain="[]" context="{'group_by':'job_title'}"
+                        help="Group by Job Title"/>
+                </group>
             </search>
         </field>
     </record>
 
-<!--Action of our model-->
+    <!--Action of our model-->
     <record model="ir.actions.act_window" id="employee_list_action">
         <field name="name">Employees</field>
         <field name="res_model">doctor.info.model</field>
         <field name="view_mode">tree,form</field>
     </record>
-      <menuitem name="Employee Data" id="menu_1" parent="menu_root"/>
+    <menuitem name="Employee Data" id="menu_1" parent="menu_root"/>
     <menuitem name="All Employees" id="menu_1_list" parent="menu_1"
               action="employee_list_action"/>
 

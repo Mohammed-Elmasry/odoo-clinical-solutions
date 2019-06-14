@@ -1,6 +1,38 @@
 <odoo>
   <data>
+<!--     explicit list view definition-->
+<!--    &lt;!&ndash;-->
 
+      <!-- defining actions-->
+
+      <record model="ir.actions.act_window" id="action_window">
+          <field name="name">clinical_management_system window</field>
+          <field name="res_model">product.template</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+<!--      <menuitem id="menu_custom_toplevel" name="All Services" />-->
+<!--      <menuitem id="menu_custom_left" parent="menu_custom_toplevel" name="This will appear in the left bar"/>-->
+<!--      <menuitem id="menu_all_services" parent="menu_custom_left" action="clinical_management_system.action_window" />-->
+
+      <record model="ir.ui.view" id="list">
+          <field name="name">clinical_management_system list</field>
+          <field name="model">product.template</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="description"/>
+<!--                  <field name="fees"/>-->
+<!--                  <field name="value2"/>-->
+              </tree>
+          </field>
+      </record>
+
+<!--    <record model="ir.actions.act_window" id="employee_list_action">-->
+<!--        <field name="name">Employees</field>-->
+<!--        <field name="res_model">doctor.info.model</field>-->
+<!--&lt;!&ndash;        i can add the name of parent model?!!&ndash;&gt;-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
     <!-- explicit list view definition -->
     <!--
     <record model="ir.ui.view" id="clinical_management_system.list">
@@ -41,18 +73,21 @@
     </record>
     -->
 
-    <menuitem name="clinic" id="menu_root"/>
+    <menuitem name="Clinic" id="menu_root"/>
 
     <!-- menu categories -->
 
 <!--    <menuitem name="special" id="lab1.menu_1" parent="lab1_menu_root"/>-->
 
     <!-- Top menu item -->
-
+<!--    &lt;!&ndash;-->
+    <menuitem name="Clinic" id="menu_root"/>
+    -->
     <!-- menu categories -->
 
 <!--    <menuitem name="Employee Data" id="clinical_management_system.menu_1" parent="menu_root"/>&ndash;&gt;-->
 <!--    <menuitem name="Menu 2" id="clinical_management_system.menu_2" parent="clinical_management_system.menu_root"/>-->
+    -->
     <!-- actions -->
 
 <!--    <menuitem name="All Employees" id="clinical_management_system.menu_1_list" parent="clinical_management_system.menu_1"-->
