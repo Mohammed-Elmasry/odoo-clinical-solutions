@@ -9,3 +9,10 @@ acess_product,doctors,model_product_template,,1,0,0,0
 
 acess_doctor_data_visit,doctors,model_visit_model,clinic_doctor,1,1,1,0
 acess_doctor_data_patient,doctors,model_odoo_clinic_patient,clinic_doctor,1,1,1,0
+acess_doctor_data_medical,doctors,model_odoo_clinic_medical,clinic_doctor,1,1,1,1
+
+acess_doctor_crud,officer,model_doctor_info_model,clinic_officer,1,1,1,1
+acess_patient_crud,officer,model_odoo_clinic_patient,clinic_officer,1,1,1,1
+acess_product_crud,officer,model_product_template,clinic_officer,1,1,1,1
+acess_visit_crud,officer,model_visit_model,clinic_officer,1,1,1,0
+

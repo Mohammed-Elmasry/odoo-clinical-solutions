@@ -185,7 +185,7 @@
 
     <!-- menu categories -->
 
-    <menuitem name="medical sheet" id="menu_sheet" parent="menu_root"/>
+    <menuitem name="medical sheet" id="menu_sheet" parent="menu_root" groups="clinic_doctor"/>
 
     <!-- actions -->
 
