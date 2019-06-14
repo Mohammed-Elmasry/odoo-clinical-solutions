@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e14d9f9d-5552-47f2-a06f-be3db97076d9" name="Default Changelist" comment="Merge branch 'eman' of https://github.com/Mohammed-Elmasry/odoo-clinical-solutions into develop_doctor_info_feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;models/Visit.py&#10;#&#9;models/__pycache__/Visit.cpython-36.pyc&#10;#&#9;models/__pycache__/doctor.cpython-36.pyc&#10;#&#9;views/doctor.xml&#10;#&#9;views/visit_view.xml">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Visit.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Visit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/visit_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/views/visit_view.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/Visit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="7" column="80" selection-start-line="7" selection-start-column="80" selection-end-line="7" selection-end-column="80" />
+            <state relative-caret-position="298">
+              <caret line="172" column="5" selection-start-line="172" selection-start-column="5" selection-end-line="172" selection-end-column="5" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -38,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+              <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -47,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/views/doctor.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="191">
-              <caret line="92" column="21" lean-forward="true" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+              <caret line="92" column="21" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -65,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/views/patient_view.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="157">
-              <caret line="228" column="56" lean-forward="true" selection-start-line="227" selection-start-column="20" selection-end-line="228" selection-end-column="56" />
+              <caret line="228" column="56" selection-start-line="227" selection-start-column="20" selection-end-line="228" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -74,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/models/doctor.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="38" column="20" lean-forward="true" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+              <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -143,7 +143,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="45" />
     <option name="y" value="27" />
     <option name="width" value="1181" />
@@ -270,13 +270,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32931036" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8906009" visible="true" weight="0.56206894" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8906009" weight="0.56206894" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32931036" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.5741379" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.36206895" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.08275862" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.10939907" side_tool="true" weight="0.6275862" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32931036" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -410,7 +410,7 @@
     <entry file="file://$PROJECT_DIR$/models/doctor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="38" column="20" lean-forward="true" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -431,28 +431,28 @@
     <entry file="file://$PROJECT_DIR$/views/patient_view.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
-          <caret line="228" column="56" lean-forward="true" selection-start-line="227" selection-start-column="20" selection-end-line="228" selection-end-column="56" />
+          <caret line="228" column="56" selection-start-line="227" selection-start-column="20" selection-end-line="228" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/doctor.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="92" column="21" lean-forward="true" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+          <caret line="92" column="21" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+          <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Visit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="7" column="80" selection-start-line="7" selection-start-column="80" selection-end-line="7" selection-end-column="80" />
+        <state relative-caret-position="298">
+          <caret line="172" column="5" selection-start-line="172" selection-start-column="5" selection-end-line="172" selection-end-column="5" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>

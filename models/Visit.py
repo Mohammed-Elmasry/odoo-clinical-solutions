@@ -170,4 +170,4 @@ class Visit(models.Model):
 
         for visit in self.filtered('doctor'):
             visit.attending_doctor = visit.doctor_name
-    # creat method to filter the relation
+    #
