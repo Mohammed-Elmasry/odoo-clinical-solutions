@@ -103,21 +103,29 @@ class ClinicalManagementSystem(http.Controller):
         :return: a list of available time slots
         """
         doctors = http.request.env["doctor.info.model"].sudo().search([('role','=','doctor')])
-        potential_visit_times = get_dates() #all potential dates
-        dates = get_current_week_days()
-        for date in dates:
+        week = get_current_week_days()
+        result = []
+        names = []
+        appointments = []
+        session_times = []
+        for day in week:
+            session_times.extend(get_dates(day))
+
+        for day in week:
             for doctor in doctors:
-                #get all visits for current doctor
-                visits = http.request.env['visit.model'].sudo().search([('doctor','=',doctor.id)])
-                for visit in visits:
-                    # print(type(visit.start_time.strftime("%m/%d/%Y")))
-                    if visit.start_time.strftime("%m/%d/%Y") == date.strftime("%m/%d/%Y") and visit.doctor == doctor:
-                        print(doctor.name, " will see ", visit.patient.name, " on ", visit.start_time)
-        return json.dumps("a7san nas")
+                for session in session_times:
+                    if is_free(doctor, session) and session.strftime("%m/%d/%Y") == day.strftime("%m/%d/%Y"):
+                        appointments.append(session.strftime("%I:%M %p"))
+                names.append({"name": doctor.name, "appointments": appointments})
+            result.append({"date": day.strftime("%m/%d/%Y"), "doctors" : names})
+            names = []
+
+            # print(result)
+        return json.dumps(result)
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
     def get_visits(self):
-        # {'doc_name': 'Mohamed', 'doc_id': '1', 'doc_date': '10/6/2019', 'doc_time': '8-2', 'pat_id': 0}
+        # {'doc_name': 'Mohamed', 'doc_id': `'1', 'doc_date': '10/6/2019', 'doc_time': '8-2', 'pat_id': 0}
         visits = http.request.env["visit.model"].sudo().search([])
         for visit in visits:
             print(type(visit["start_time"]))
@@ -145,19 +153,16 @@ class ClinicalManagementSystem(http.Controller):
 
 
 
-def get_dates():
+def get_dates(date):
     """
     :return: a list of the available time slots for the upcoming week
     """
-    time_slots = ['10:00 AM', '10:30 AM', '11:00 AM']#, '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM']
+    session_times = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM']
     empty_time_slots = []
-    dates = get_current_week_days()
 
-    # concatinate the dates and the time slots
-    for date in dates:
-        for slot in time_slots:
-    #combine slots with dates into a time_string (as a single unit)
-            empty_time_slots.append(datetime.datetime.strptime(date.strftime("%m/%d/%Y") + " " + slot, "%m/%d/%Y %I:%M %p"))
+    #concat the slots to given date
+    for slot in session_times:
+        empty_time_slots.append(datetime.datetime.strptime(date.strftime("%m/%d/%Y") + " " + slot, "%m/%d/%Y %I:%M %p"))
     return empty_time_slots
 
 
@@ -168,7 +173,7 @@ def get_current_week_days():
     dates = []
     day = datetime.timedelta(days=1)
     today = datetime.datetime.today()
-    if today.strftime("%a") not in ("Fri", "Say"):
+    if today.strftime("%a") not in ("Fri", "Sat"):
         dates.append(today.date())  # first day of week
     # loop to calculate a whole week from today
     next_day = today
@@ -177,3 +182,18 @@ def get_current_week_days():
         if next_day.strftime("%a") not in ("Sat", "Fri"):
             dates.append(next_day.date())
     return dates
+
+
+
+def is_free(doctor, time):
+    """
+    :param doctor: given doctor object
+    :param time: given datetime object
+    :return: boolean denoting whether given doctor is available at the given time
+    """
+    visits = http.request.env['visit.model'].sudo().search([('doctor','=',doctor.id)])
+    #get time stamps for each visit
+    stamps = []
+    for visit in visits:
+        stamps.append(visit.start_time.strftime("%m/%d/%Y %I:%M %p"))
+    return time.strftime("%m/%d/%Y %I:%M %p") not in stamps
