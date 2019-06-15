@@ -48,7 +48,7 @@ class ClinicalManagementSystem(http.Controller):
         for i in range(len(records)):
             result.append(
                 {"id": records[i]["id"], "name": records[i]["name"], "license number": records[i]["license_id"],
-                 "gender": records[i]["gender"], "title": records[i]["job_title"], "rank": records[i]["certificate"]})
+                 "gender": records[i]["gender"], "title": records[i]["job_title"], "rank": records[i]["certificate"],"rate":3})
         return json.dumps(result)
 
     @http.route('/clinical_management_system/officers/', type="http", auth="public", methods=['get'], cors="*")
@@ -111,16 +111,19 @@ class ClinicalManagementSystem(http.Controller):
         for day in week:
             session_times.extend(get_dates(day))
 
+        for session in session_times:
+            print(session.strftime("%m/%d/%Y %I:%M %p"))
         for day in week:
             for doctor in doctors:
                 for session in session_times:
                     if is_free(doctor, session) and session.strftime("%m/%d/%Y") == day.strftime("%m/%d/%Y"):
                         appointments.append(session.strftime("%I:%M %p"))
-                names.append({"name": doctor.name, "appointments": appointments})
+                names.append({"id": doctor.id,"name": doctor.name, "appointments": appointments})
+                appointments = []
             result.append({"date": day.strftime("%m/%d/%Y"), "doctors" : names})
             names = []
 
-            # print(result)
+        print(result)
         return json.dumps(result)
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
