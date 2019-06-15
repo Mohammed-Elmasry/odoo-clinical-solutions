@@ -7,7 +7,6 @@ class DoctorInfo(models.Model):
 
     emp_id = fields.Many2one('hr.employee')
     doctor_id = fields.Integer(string="Doctor ID", help="Auto Increment Field")
-    employee_id = fields.Integer(help="ID Used In Buttons ")
     visit = fields.One2many('visit.model', 'doctor')
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True
                             , help="Employee's Role in Our Clinic")
