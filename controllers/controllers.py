@@ -111,8 +111,10 @@ class ClinicalManagementSystem(http.Controller):
         for day in week:
             session_times.extend(get_dates(day))
 
+        # display format for session
         for session in session_times:
-            print(session.strftime("%m/%d/%Y %I:%M %p"))
+            print(session.strftime("%m/%d/%Y %I:%M:%S"))
+
         for day in week:
             for doctor in doctors:
                 for session in session_times:
@@ -154,9 +156,7 @@ class ClinicalManagementSystem(http.Controller):
         return json.dumps("wallahy gada3")
 
 
-
-
-def get_dates(date):
+def get_dates(date: datetime):
     """
     :return: a list of the available time slots for the upcoming week
     """
@@ -165,7 +165,11 @@ def get_dates(date):
 
     #concat the slots to given date
     for slot in session_times:
+        print(type(date))
         empty_time_slots.append(datetime.datetime.strptime(date.strftime("%m/%d/%Y") + " " + slot, "%m/%d/%Y %I:%M %p"))
+
+    for slot in empty_time_slots:
+        print("Type of each slot in the get_dates() is: ", type(slot))
     return empty_time_slots
 
 
@@ -180,7 +184,7 @@ def get_current_week_days():
         dates.append(today.date())  # first day of week
     # loop to calculate a whole week from today
     next_day = today
-    for i in range(6):
+    for i in range(5):
         next_day = next_day + day
         if next_day.strftime("%a") not in ("Sat", "Fri"):
             dates.append(next_day.date())
@@ -198,5 +202,6 @@ def is_free(doctor, time):
     #get time stamps for each visit
     stamps = []
     for visit in visits:
-        stamps.append(visit.start_time.strftime("%m/%d/%Y %I:%M %p"))
-    return time.strftime("%m/%d/%Y %I:%M %p") not in stamps
+        stamps.append(visit.start_time.strftime("%Y-%m-%d %H:%M:%S"))
+    return time not in stamps
+
