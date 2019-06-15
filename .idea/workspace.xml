@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="169" selection-start-line="169" selection-end-line="169" />
+            <state relative-caret-position="219">
+              <caret line="204" column="71" selection-start-line="204" selection-start-column="71" selection-end-line="204" selection-end-column="71" />
               <folding>
                 <element signature="e#24#53#0" expanded="true" />
               </folding>
@@ -36,8 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Visit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="25" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="25" />
+            <state relative-caret-position="173">
+              <caret line="128" column="17" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -71,9 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>odoo.clinic.visi</find>
-      <find>_create_se</find>
-      <find>xpath</find>
       <find>search</find>
       <find>is_med</find>
       <find>group</find>
@@ -101,6 +98,9 @@
       <find>name': 'mohammed'</find>
       <find>120</find>
       <find>1</find>
+      <find>format of day</find>
+      <find>format of session in main</find>
+      <find>format of session date</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -553,13 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Visit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2565">
@@ -574,10 +567,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/Visit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="128" column="17" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="169" selection-start-line="169" selection-end-line="169" />
+        <state relative-caret-position="219">
+          <caret line="204" column="71" selection-start-line="204" selection-start-column="71" selection-end-line="204" selection-end-column="71" />
           <folding>
             <element signature="e#24#53#0" expanded="true" />
           </folding>

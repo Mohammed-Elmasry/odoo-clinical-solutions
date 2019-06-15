@@ -109,16 +109,17 @@ class ClinicalManagementSystem(http.Controller):
         appointments = []
         potential_session_times = []
         for day in week:
+            print("format of day in main method is: ", day)
             potential_session_times.extend(get_dates(day))
 
-        # display format for session
         for session in potential_session_times:
-            print(session.strftime("%m/%d/%Y %I:%M:%S"))
+            print("type of session in main method is: ",type(session))
+            print("format of session in main method id: ", session)
 
         for day in week:
             for doctor in doctors:
                 for session in potential_session_times:
-                    if is_free(doctor, session) and session.strftime("%m/%d/%Y") == day.strftime("%m/%d/%Y"):
+                    if is_free(doctor, session) and session.date() == day:
                         appointments.append(session.strftime("%I:%M %p"))
                 names.append({"id": doctor.id,"name": doctor.name, "appointments": appointments})
                 appointments = []
@@ -198,7 +199,8 @@ def is_free(doctor, time):
     visits = http.request.env['visit.model'].sudo().search([('doctor','=',doctor.id)])
     #get time stamps for each visit
     stamps = []
+    print("format of time given to is_free is: ",time)
     for visit in visits:
-        stamps.append(visit.start_time.strftime("%Y-%m-%d %H:%M:%S"))
+        print("visit format from is_free() is: ",visit.start_time)
+        stamps.append(visit.start_time + datetime.timedelta(minutes=120))
     return time not in stamps
-
