@@ -73,9 +73,6 @@ class ClinicalManagementSystem(http.Controller):
                 csrf=False)
     def schedule_visit(self, **kw):
 
-        # {'doc_name': 'Mohamed', 'doc_id': '1', 'doc_date': '10/6/2019', 'doc_time': '8-2', 'pat_id': 0}
-        # time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
-        #               '02:00 PM']
         params = http.request.httprequest.data
         print(params)
         params = json.loads(params)
