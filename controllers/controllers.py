@@ -107,17 +107,17 @@ class ClinicalManagementSystem(http.Controller):
         result = []
         names = []
         appointments = []
-        session_times = []
+        potential_session_times = []
         for day in week:
-            session_times.extend(get_dates(day))
+            potential_session_times.extend(get_dates(day))
 
         # display format for session
-        for session in session_times:
+        for session in potential_session_times:
             print(session.strftime("%m/%d/%Y %I:%M:%S"))
 
         for day in week:
             for doctor in doctors:
-                for session in session_times:
+                for session in potential_session_times:
                     if is_free(doctor, session) and session.strftime("%m/%d/%Y") == day.strftime("%m/%d/%Y"):
                         appointments.append(session.strftime("%I:%M %p"))
                 names.append({"id": doctor.id,"name": doctor.name, "appointments": appointments})
@@ -165,11 +165,8 @@ def get_dates(date: datetime):
 
     #concat the slots to given date
     for slot in session_times:
-        print(type(date))
         empty_time_slots.append(datetime.datetime.strptime(date.strftime("%m/%d/%Y") + " " + slot, "%m/%d/%Y %I:%M %p"))
 
-    for slot in empty_time_slots:
-        print("Type of each slot in the get_dates() is: ", type(slot))
     return empty_time_slots
 
 
