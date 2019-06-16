@@ -177,3 +177,9 @@ class Visit(models.Model):
 
         for visit in self.filtered('patient_name'):
             visit.patient_name_computed = visit.patient_name
+
+    @api.depends('total_charges')
+    def get_total_adjustments(self):
+
+        for visit in self.filtered('total_charges'):
+            visit.total_adjustments = visit.total_charges * (-10%)
