@@ -8,6 +8,9 @@
       <field name="model">odoo.clinic.patient</field>
       <field name="arch" type="xml">
         <form>
+            <header>
+                <button name="_compute_visit_count" string="visit count" class="oe_highlight" type="action"/>
+            </header>
           <sheet>
 
             <group>
@@ -252,23 +255,9 @@
       <field name="view_mode">tree,form,graph,pivot</field>
     </record>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="lab1.action_server">
-      <field name="name">lab1 server</field>
-      <field name="model_id" ref="model_lab1_lab1"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
 
-    <!-- Top menu item -->
+
+<!--    &lt;!&ndash; Top menu item &ndash;&gt;-->
 
 <!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
 

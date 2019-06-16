@@ -9,6 +9,9 @@
                     <group string="Personal Information" col="6">
                         <field name="name" required="1"/>
                         <field name="gender"/>
+                        <field name="user_id"/>
+                        <field name="emp_id"/>
+
                         <field name="birthday"/>
                     </group>
                     <group string="Job Information" col="6">
@@ -35,6 +38,11 @@
         <field name="model">doctor.info.model</field>
         <field name="arch" type="xml">
             <tree string="Info List">
+                        <field name="user_id"/>
+
+
+                                <field name="id"></field>
+
                 <field name="name"></field>
                 <field name="role"></field>
                 <field name="job_title"></field>

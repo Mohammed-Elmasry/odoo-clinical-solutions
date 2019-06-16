@@ -17,7 +17,7 @@
             <field name="arch" type="xml">
                 <graph>
                     <field name="description" />
-                    <field name="is_medicine"/>
+<!--                    <field name="is_medicine"/>-->
                 </graph>
             </field>
         </record>

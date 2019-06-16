@@ -11,12 +11,13 @@
         <form>
           <sheet>
               <group>
+
                   <field name="obstetric_gynecological_history"/>
             </group>
               <group col="4">
                   <field name="time"/>
                   <field name="patient"/>
-                  <field name="doctor"/>
+                  <field name="doctor" />
                   <field name="visit"/>
 
               </group>
@@ -85,7 +86,6 @@
               <field name="heptic"/>
               <field name="renal"/>
               <field name="others"/>
-
               <field name="surgical_history"/>
               <field name="bp"/>
               <field name="rr"/>
@@ -185,7 +185,7 @@
 
     <!-- menu categories -->
 
-    <menuitem name="medical sheet" id="menu_sheet" parent="menu_root" groups="clinic_doctor"/>
+    <menuitem name="medical sheet" id="menu_sheet" parent="menu_root" />
 
     <!-- actions -->
 

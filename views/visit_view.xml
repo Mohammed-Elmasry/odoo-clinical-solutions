@@ -17,6 +17,8 @@
                         <field name="visit_number"/>
                         <field name="start_time"/>
                         <field name="end_time"/>
+                        <field name="visit_status"/>
+
                     </group>
                     <group string="Doctor Information" col="6">
                         <!--                            <field name="doctor"/>-->
@@ -137,6 +139,7 @@
             </search>
         </field>
     </record>
+
     <!--    create view of visit List "tree"-->
     <record model="ir.ui.view" id="view_visit_list">
         <field name="name">Visit List</field>
@@ -205,6 +208,7 @@
             <field name="res_model">visit.model</field>
             <field name="view_mode">tree,form,pivot,calendar</field>
         </record>
+
 
         <!-- Top menu item -->
 

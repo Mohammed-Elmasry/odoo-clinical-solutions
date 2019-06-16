@@ -33,3 +33,14 @@ class Patient(models.Model):
     visit = fields.One2many('visit.model', 'patient')
     medical = fields.One2many('odoo.clinic.medical', 'patient')
     # doctor=fields.One2many('odoo.clinic.medical','patient')
+    visit_count=fields.Integer(compute='_compute_visit_count', string='Visit Count')
+
+    @api.multi
+    def _compute_visit_count(self):
+        print ()
+        visit_data = self.env['visit.model'].sudo().search(args=[('patient', '=',self)])
+        count=0
+        for visit in len(visit_data):
+            count+=1
+            print(count)
+            return count

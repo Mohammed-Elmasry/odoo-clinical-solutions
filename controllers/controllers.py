@@ -147,11 +147,11 @@ class ClinicalManagementSystem(http.Controller):
                             "fhc" + str(t): record.medical[t].fhc,
                             "weight" + str(t): record.medical[t].weight,
                             "obese" + str(t): record.medical[t].obese,
-                            "average_weight" + str(t): record.medical[t].average_weight,
-                            "under_weight" + str(t): record.medical[t].under_weight,
+                            "averageweight" + str(t): record.medical[t].average_weight,
+                            "underweight" + str(t): record.medical[t].under_weight,
 
                             "examination" + str(t): record.medical[t].examination,
-                            "drug_allergy" + str(t): record.medical[t].drug_allergy,
+                            "drugallergy" + str(t): record.medical[t].drug_allergy,
                             })
         return json.dumps(medical)
 
@@ -249,3 +249,11 @@ class ClinicalManagementSystem(http.Controller):
         # print(record.name)
         record.write({"visit_status": "Canceled"})
         return json.dumps("visit is Canceled")
+    # @http.route('/clinical_management_system/mit', type="http", auth="none", methods=['get'], cors="*")
+    # def get_visit(self ):
+    #     records = http.request.env['doctor.info.model']
+    #     re=[]
+    #     for record in records:
+    #         print(record.role)
+    #         re.append({"ss":record.role})
+    #     return json.dumps(re)

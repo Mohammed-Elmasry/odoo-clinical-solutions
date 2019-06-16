@@ -16,7 +16,7 @@ class Visit(models.Model):
     doctor_name = fields.Char(related="doctor.name", string="Doctor Name", help="Doctor Name")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
-    visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
+    visit_type = fields.Selection([('Medicalconsultation', 'Medical consultation'), ('CheckUp', 'Check Up')], string="Visit Type"
                                   , help="To Detect The Type Of Visit")
     end_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
@@ -175,6 +175,7 @@ class Visit(models.Model):
     @api.onchange('visit_status')
     def on_change_state(self):
         print (self.visit_status)
+        print (self.env['doctor.info.model'].search(args=[('user_id', '=', self.env.user)]).emp_id)
         if self.visit_status=="Comfirmed":
             url = 'https://fcm.googleapis.com/fcm/send'
             payload = {
