@@ -98,14 +98,6 @@
         </field>
     </record>
 
-    <!--    to create action for display views from another model   -->
-<!--    <record model="ir.actions.act_window" id="action_visit_view">-->
-<!--        <field name="name">Visits</field>-->
-<!--        <field name="res_model">visit.model</field>-->
-<!--        <field name="view_type">tree</field>-->
-<!--        <field name="view_mode">tree</field>-->
-<!--        <field name="view_id" res="view_visit_list"/>-->
-<!--    </record>-->
 
      <!--    action for the buttons to display the list of visits-->
     <record model="ir.actions.act_window" id="action_visit_view_list">
