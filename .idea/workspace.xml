@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e14d9f9d-5552-47f2-a06f-be3db97076d9" name="Default Changelist" comment="Merge branch 'eman' of https://github.com/Mohammed-Elmasry/odoo-clinical-solutions into develop_doctor_info_feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;models/Visit.py&#10;#&#9;models/__pycache__/Visit.cpython-36.pyc&#10;#&#9;models/__pycache__/doctor.cpython-36.pyc&#10;#&#9;views/doctor.xml&#10;#&#9;views/visit_view.xml" />
+    <list default="true" id="e14d9f9d-5552-47f2-a06f-be3db97076d9" name="Default Changelist" comment="Merge branch 'eman' of https://github.com/Mohammed-Elmasry/odoo-clinical-solutions into develop_doctor_info_feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;models/Visit.py&#10;#&#9;models/__pycache__/Visit.cpython-36.pyc&#10;#&#9;models/__pycache__/doctor.cpython-36.pyc&#10;#&#9;views/doctor.xml&#10;#&#9;views/visit_view.xml">
+      <change beforePath="$PROJECT_DIR$/models/Medical.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Medical.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +15,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Visit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2115">
-              <caret line="153" column="18" selection-start-line="153" selection-start-column="14" selection-end-line="153" selection-end-column="18" />
+            <state relative-caret-position="105">
+              <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="84" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -25,7 +27,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
+            <state relative-caret-position="2718">
               <caret line="152" column="7" lean-forward="true" selection-start-line="152" selection-start-column="7" selection-end-line="152" selection-end-column="7" />
             </state>
           </provider>
@@ -41,6 +43,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/Medical.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="31" column="61" lean-forward="true" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/visit_view.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-73">
@@ -120,12 +131,12 @@
       <find>attending_doctor</find>
       <find>patient_name</find>
       <find>refer</find>
-      <find>search</find>
       <find>list</find>
       <find>Admitting Doctor</find>
-      <find>visit</find>
       <find>cal</find>
       <find>name</find>
+      <find>search</find>
+      <find>visit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -147,6 +158,7 @@
         <option value="$PROJECT_DIR$/models/Visit.py" />
         <option value="$PROJECT_DIR$/controllers/controllers.py" />
         <option value="$PROJECT_DIR$/views/visit_view.xml" />
+        <option value="$PROJECT_DIR$/models/Medical.py" />
       </list>
     </option>
   </component>
@@ -270,19 +282,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="27" width="1321" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25577813" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32931036" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8906009" visible="true" weight="0.41551724" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8906009" weight="0.24310344" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32931036" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.5741379" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3275862" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.33965516" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.10939907" side_tool="true" weight="0.6275862" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32931036" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -359,9 +372,6 @@
         <state relative-caret-position="-5826" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Medical.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -427,31 +437,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/product.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-221">
-          <caret line="86" column="19" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/patient_view.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="241" lean-forward="true" selection-start-line="241" selection-end-line="241" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Product.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/doctor.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
-          <caret line="79" column="18" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -462,20 +451,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/product.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="86" column="19" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
+        <state relative-caret-position="2718">
           <caret line="152" column="7" lean-forward="true" selection-start-line="152" selection-start-column="7" selection-end-line="152" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Visit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2115">
-          <caret line="153" column="18" selection-start-line="153" selection-start-column="14" selection-end-line="153" selection-end-column="18" />
+        <state relative-caret-position="105">
+          <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="84" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/doctor.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-62">
+          <caret line="79" column="18" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -483,6 +486,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-73">
           <caret line="120" column="29" selection-start-line="120" selection-start-column="23" selection-end-line="120" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Product.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Medical.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="31" column="61" lean-forward="true" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
         </state>
       </provider>
     </entry>
