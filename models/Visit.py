@@ -28,7 +28,8 @@ class Visit(models.Model):
     prior_patient_location = fields.Text(string="Prior Location")
     attending_doctor = fields.Char(string="Attending doctor", help="Attending Doctor for This Visit"
                                    , compute="assign_doctor_name_to_attending_doctor")
-    referring_doctor = fields.Selection([('value', 'No suggested values defined')], string="Referring Doctor")
+    referring_doctor = fields.Char(string="Referring Doctor", help="Referring Doctor it is related"
+                                                                   " to Doctors Out Side Our Clinic")
     hospital_service = fields.Selection([('MED', 'Medical Service'),
                                          ('SUR', 'Surgical Service'),
                                          ('URO', 'Urology Service'),
