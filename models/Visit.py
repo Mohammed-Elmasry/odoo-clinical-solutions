@@ -117,7 +117,7 @@ class Visit(models.Model):
     total_charges = fields.Integer(string="Total Visit Charges", compute="get_current_charges"
                                    , help="This field contains the total visit charges.")
     total_adjustments = fields.Integer(string="Total Adjustments", help="This field contains the total adjustments "
-                                                                        "for visit.")
+                                                                        "for visit.", computed="get_total_adjustments")
     total_payments = fields.Integer(string="Total Payment", help="This field contains the total payments for visit.")
     alternate_visit_id = fields.Selection([('BCV', 'Bank Card Validation Number'),
                                            ('NPI', 'Check digit algorithm in the US National Provider Identifier'),
