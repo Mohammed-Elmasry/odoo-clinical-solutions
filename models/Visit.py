@@ -182,4 +182,4 @@ class Visit(models.Model):
     def get_total_adjustments(self):
 
         for visit in self.filtered('total_charges'):
-            visit.total_adjustments = visit.total_charges * (-10%)
+            visit.total_adjustments = visit.total_charges * (-0.1)
