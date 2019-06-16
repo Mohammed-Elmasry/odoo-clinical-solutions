@@ -36,7 +36,22 @@ class Medical(models.Model):
     # def on_change_state(self):
     #     # record=self.env['doctor.info.model'].search(args=[('user_id', '=', self.env.user)])
     #     print (self.visit.doctor.name)
- 
+    @api.model
+    def create(self, vals):
+    #     # record=self.env['doctor.info.model'].search(args=[('user_id', '=','ee')])
+    #     user = self.env['hr.employee'].search(args=[('user_id', '=', self._uid )])
+    #     print(type(user.id))
+        # record=self.env['doctor.info.model'].search(args=[('u', '=', self.env.user)])
+    #     # do=self.env['doctor.info.model'].search(args=[('emp_id', '=',record )])
+        record = self.env['doctor.info.model'].search(args=[('user_id', '=', self._uid)])
+
+    #     print(type(record.user_id))
+    #     print(self.env.user)
+        vals['doctor'] = record.id
+        print(vals['doctor'])
+        print("aa",vals)
+        res =super(Medical, self).create(vals)
+        return res
     # add cal
     # @api.depends('time')
     # def calculate_doctor(self):
