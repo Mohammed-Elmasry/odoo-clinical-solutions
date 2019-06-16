@@ -142,11 +142,16 @@ class Visit(models.Model):
                                         ('V', 'Visit level')], string="Visit Indicator", default='A')
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
+    patient = fields.Many2one('odoo.clinic.patient')
+    visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'Inplace'),
+                                   ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')])
+    sheet=fields.One2many('odoo.clinic.medical','visit')
 
     @api.model
     def create(self, vals):
 
         vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
+        vals['name'] = self.env['ir.sequence'].next_by_code('set_id')
         res = super(Visit, self).create(vals)
         return res
 

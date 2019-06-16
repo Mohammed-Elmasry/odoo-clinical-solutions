@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import http, fields
 import json, datetime
-from ast import literal_eval
-
 
 class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/clinical_management_system/', auth='public')
@@ -50,7 +48,7 @@ class ClinicalManagementSystem(http.Controller):
         for i in range(len(records)):
             result.append(
                 {"id": records[i]["id"], "name": records[i]["name"], "license number": records[i]["license_id"],
-                 "gender": records[i]["gender"], "title": records[i]["job_title"], "rank": records[i]["certificate"]})
+                 "gender": records[i]["gender"], "title": records[i]["job_title"], "rank": records[i]["certificate"],"rate":3})
         return json.dumps(result)
 
     @http.route('/clinical_management_system/officers/', type="http", auth="public", methods=['get'], cors="*")
@@ -75,35 +73,57 @@ class ClinicalManagementSystem(http.Controller):
                 csrf=False)
     def schedule_visit(self, **kw):
 
-        # {'doc_name': 'Mohamed', 'doc_id': '1', 'doc_date': '10/6/2019', 'doc_time': '8-2', 'pat_id': 0}
-        time_slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
-                      '02:00 PM']
         params = http.request.httprequest.data
+        print(params)
         params = json.loads(params)
         time_slot = datetime.datetime.strptime((params["doc_date"] + " " + params["doc_time"]), "%m/%d/%Y %I:%M %p")
-        CONST_EG_TIME_ADDITION = datetime.timedelta(hours=2)
-        end_time = time_slot + CONST_EG_TIME_ADDITION
-        print(end_time)
-        http.request.env['visit.model'].sudo().create(
-            {'doctor_id': params["doc_id"],
-             'attending_doctor': params["doc_id"],
-             "start_time": time_slot,
-             'patient_class': '{}'.format('OBGYN'),
+        CONST_EG_TIME_REMOVAL = datetime.timedelta(minutes = 120)
+        start_time = time_slot - CONST_EG_TIME_REMOVAL
+        end_time = time_slot + datetime.timedelta(minutes=30) - CONST_EG_TIME_REMOVAL
+
+        http.request.env['visit.model'].sudo().create({
+             'doctor': params["doc_id"],
+             "start_time": start_time,
+             'patient_class': 'OBGYN',
              "end_time": end_time,
+             "patient":params["pat_id"],
+             "visit_status":"Draft"
              })
-        # print(CONST_EG_TIME_ADDITION)
-        print(time_slot)
-        # print(end_time)
+        # new_record.sudo().write()
         return json.dumps("visit scheduled successfully")
+
+
 
     @http.route('/clinical_management_system/get_empty_slots/', auth="none", type="http", methods=['get'], cors="*")
     def get_empty_time_slots(self):
-        print("empty slots")
-        return json.dumps("empty slots")
+        """
+        :return: a list of available time slots
+        """
+        doctors = http.request.env["doctor.info.model"].sudo().search([('role','=','doctor')])
+        week = get_current_week_days()
+        result = []
+        names = []
+        appointments = []
+        potential_session_times = []
+        for day in week:
+            potential_session_times.extend(get_dates(day))
+
+        for day in week:
+            for doctor in doctors:
+                for session in potential_session_times:
+                    if is_free(doctor, session) and session.date() == day:
+                        appointments.append(session.strftime("%I:%M %p"))
+                names.append({"id": doctor.id,"name": doctor.name, "appointments": appointments})
+                appointments = []
+            result.append({"date": day.strftime("%m/%d/%Y"), "doctors" : names})
+            names = []
+
+        print(result)
+        return json.dumps(result)
 
     @http.route('/clinical_management_system/get_visits', auth="none", type="http", methods=["get"], cors="*")
     def get_visits(self):
-        # {'doc_name': 'Mohamed', 'doc_id': '1', 'doc_date': '10/6/2019', 'doc_time': '8-2', 'pat_id': 0}
+        # {'doc_name': 'Mohamed', 'doc_id': `'1', 'doc_date': '10/6/2019', 'doc_time': '8-2', 'pat_id': 0}
         visits = http.request.env["visit.model"].sudo().search([])
         for visit in visits:
             print(type(visit["start_time"]))
@@ -127,3 +147,50 @@ class ClinicalManagementSystem(http.Controller):
         #     print(type(my_time))
         #     time_slots.append([my_time.strftime("%I:%M %p"), my_date.strftime("%m/%d/%Y"),my_time.strftime("%p"), doctor.name])
         return json.dumps("wallahy gada3")
+
+
+def get_dates(date: datetime):
+    """
+    :return: a list of the available time slots for the upcoming week
+    """
+    session_times = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM']
+    empty_time_slots = []
+
+    #concat the slots to given date
+    for slot in session_times:
+        empty_time_slots.append(datetime.datetime.strptime(date.strftime("%m/%d/%Y") + " " + slot, "%m/%d/%Y %I:%M %p"))
+
+    return empty_time_slots
+
+
+def get_current_week_days():
+    """
+    :return: a list of 5 datetime objects representing days of the current week (starting today)
+    """
+    dates = []
+    day = datetime.timedelta(days=1)
+    today = datetime.datetime.today()
+    if today.strftime("%a") not in ("Fri", "Sat"):
+        dates.append(today.date())  # first day of week
+    # loop to calculate a whole week from today
+    next_day = today
+    for i in range(5):
+        next_day = next_day + day
+        if next_day.strftime("%a") not in ("Sat", "Fri"):
+            dates.append(next_day.date())
+    return dates
+
+
+
+def is_free(doctor, time):
+    """
+    :param doctor: given doctor object
+    :param time: given datetime object
+    :return: boolean denoting whether given doctor is available at the given time
+    """
+    visits = http.request.env['visit.model'].sudo().search([('doctor','=',doctor.id)])
+    #get time stamps for each visit
+    stamps = []
+    for visit in visits:
+        stamps.append(visit.start_time + datetime.timedelta(minutes=120))
+    return time not in stamps
