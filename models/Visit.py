@@ -27,7 +27,7 @@ class Visit(models.Model):
     preadmit_number = fields.Integer(string="Preadmit Number")
     prior_patient_location = fields.Text(string="Prior Location")
     attending_doctor = fields.Char(string="Attending doctor", help="Attending Doctor for This Visit"
-                                   , compute="assign_doctor_name_to_attending_doctor")
+                                   , compute="assign_doctor_name_to_attending_doctor", store=True)
     referring_doctor = fields.Char(string="Referring Doctor", help="Referring Doctor it is related"
                                                                    " to Doctors Out Side Our Clinic")
     hospital_service = fields.Selection([('MED', 'Medical Service'),
