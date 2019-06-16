@@ -106,7 +106,7 @@
             </form>
         </field>
     </record>
-    <!--        calender view-->
+    <!--   create calender view-->
     <record id="view_calendar_visit" model="ir.ui.view">
         <field name="name">Visits</field>
         <field name="model">visit.model</field>
@@ -165,18 +165,7 @@
             </pivot>
         </field>
     </record>
-    <!--    create the graph view for visit-->
-<!--    <record model="ir.ui.view" id="view_visit_graph">-->
-<!--        <field name="name">Visits</field>-->
-<!--        <field name="model">visit.model</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <graph string="Visits Data">-->
-<!--                <field name="name"/>-->
-<!--                <field name="visit_id" readonly="1"/>-->
-<!--                <field name="patient_name" type=""/>-->
-<!--            </graph>-->
-<!--        </field>-->
-<!--    </record>-->
+    <!--    create graph view for visit-->
     <record model="ir.ui.view" id="view_visit_graph">
         <field name="name">Visits</field>
         <field name="model">visit.model</field>
@@ -190,9 +179,7 @@
         </field>
     </record>
 
-    <!--
-        Visit Statement Sequences
-        -->
+    <!--Visit Statement Sequences-->
     <record id="visit_seq" model="ir.sequence">
         <field name="name">visit</field>
         <field name="code">clinic.visit</field>
@@ -211,11 +198,6 @@
     </record>
 
 
-    <!-- Top menu item -->
-
-    <!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
-
-    <!-- menu categories -->
     <menuitem name="visits" id="menu_visit" parent="menu_root"/>
 
 
