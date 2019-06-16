@@ -147,6 +147,7 @@
                 <field name="patient_name_computed"/>
                 <field name="patient_class"/>
                 <field name="attending_doctor"/>
+                <field name="admitting_doctor"/>
                 <field name="start_time"/>
                 <field name="end_time"/>
             </tree>
