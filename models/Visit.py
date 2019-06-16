@@ -11,7 +11,7 @@ class Visit(models.Model):
     sales_price = fields.Float(related="services_and_products.list_price", string="Service Price"
                                , help="Service and Product Price Related to Doctor's Services")
     patient_name = fields.Char(related="patient.name", string="Patient Name", help="Name of Patient")
-    patient_name_computed = fields.Char(string="Patient Name", compute="get_patient_name")
+    patient_name_computed = fields.Char(string="Patient Name", compute="get_patient_name", store=True)
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     doctor_name = fields.Char(related="doctor.name", string="Doctor Name", help="Doctor Name")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
