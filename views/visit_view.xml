@@ -112,9 +112,9 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <calendar date_start="start_time" date_stop="end_time">
-                <field name="patient_class"/>
-                <field name="patient_type"/>
                 <field name="name"/>
+                <field name="patient_name_computed"/>
+                <field name="attending_doctor"/>
             </calendar>
         </field>
     </record>
