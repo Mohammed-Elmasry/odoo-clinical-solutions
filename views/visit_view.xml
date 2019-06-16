@@ -124,16 +124,15 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <search>
-                <field name="patient_name"/>
+                <field name="patient_name_computed"/>
                 <field name="patient_class"/>
-                <field name="patient_type"/>
                 <field name="attending_doctor"/>
                    <group expand="0" string="Group By">
                     <filter name="name" string="Set ID" domain="[]" context="{'group_by':'name'}"
                         help="Group  by Set ID "/>
-<!--                    <filter name="attending_doctor" string="Attending Doctor" domain="[]"-->
-<!--                            context="{'group_by':'attending_doctor'}"-->
-<!--                        help="Group by Patient Name"/>-->
+                    <filter name="attending_doctor" string="Attending Doctor" domain="[]"
+                            context="{'group_by':'attending_doctor'}"
+                        help="Group by Patient Name"/>
                 </group>
             </search>
         </field>
@@ -145,9 +144,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="patient_name"/>
+                <field name="patient_name_computed"/>
                 <field name="patient_class"/>
-                <field name="patient_type"/>
                 <field name="attending_doctor"/>
                 <field name="start_time"/>
                 <field name="end_time"/>
