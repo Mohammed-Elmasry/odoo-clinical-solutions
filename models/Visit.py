@@ -164,7 +164,7 @@ class Visit(models.Model):
     def calculate_current_patient_balance(self):
 
         for visit in self.filtered('total_charges'):
-            visit.current_patient_balance = visit.total_payments - visit.total_charges
+            visit.current_patient_balance = visit.total_payments - visit.total_charges - visit.total_adjustments
 
     @api.depends('doctor')
     def assign_doctor_name_to_attending_doctor(self):
