@@ -11,7 +11,6 @@
                         <field name="patient_class"/>
                         <field name="patient"/>
                         <field name="doctor" />
-<!--                        domain="[('role', '=',doctor)]"-->
                         <field name="name"/>
                         <field name="visit_id" readonly="1"/>
                         <field name="visit_type"/>
@@ -182,11 +181,13 @@
         <field name="arch" type="xml">
             <graph string="Visits Data">
                 <field name="name"/>
-                <field name="doctor"/>
+                <field name="patient_name"/>
+                <field name="attending_doctor"/>
                 <field name="visit_type"/>
             </graph>
         </field>
     </record>
+
     <!--
         Visit Statement Sequences
         -->
