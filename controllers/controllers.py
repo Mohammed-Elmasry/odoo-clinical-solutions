@@ -149,7 +149,7 @@ class ClinicalManagementSystem(http.Controller):
         return json.dumps("wallahy gada3")
 
 
-def get_dates(date: datetime):
+def get_dates(date):
     """
     :return: a list of the available time slots for the upcoming week
     """
