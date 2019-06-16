@@ -55,7 +55,8 @@ class Visit(models.Model):
                                           ('B2', 'Special equipment (tubes, IVs, catheters)'),
                                           ('B3', 'Amputee')], string="Ambulatory Status")
     vip_indicator = fields.Char(string="VIP-Type")
-    admitting_doctor = fields.Selection([('value', 'No suggested values defined')], string="Admitting Doctor")
+    admitting_doctor = fields.Many2one('doctor.info.model', string="Admitting Doctor"
+                                       , help="This field contains the admitting physician information.")
     patient_type = fields.Selection([('value', 'No suggested values defined')])
     visit_number = fields.Integer(string="Visit Number",
                                   help="This field contains the unique number assigned to each patient visit.")
