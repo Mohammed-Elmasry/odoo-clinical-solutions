@@ -48,6 +48,7 @@
                         <page string="Patient Data">
                             <group string="Primary Data" col="6" >
                                 <field name="patient_type"/>
+                                <field name="patient_name_computed"/>
                                 <field name="admit_date"/>
                                 <field name="discharge_date"/>
                                 <field name="diet_type"/>
