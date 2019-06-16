@@ -172,3 +172,8 @@ class Visit(models.Model):
         for visit in self.filtered('doctor'):
             visit.attending_doctor = visit.doctor_name
 
+    @api.depends('patient_name')
+    def get_patient_name(self):
+
+        for visit in self.filtered('patient_name'):
+            visit.patient_name_computed = visit.patient_name
