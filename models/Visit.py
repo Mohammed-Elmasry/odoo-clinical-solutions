@@ -191,3 +191,9 @@ class Visit(models.Model):
 
         for visit in self.filtered('total_charges'):
             visit.total_adjustments = visit.total_charges * (-0.1)
+
+    # @api.model
+    # def count_visits(self):
+    #     count = self.env['visit.model'].read_group(fields=['visit_id'])
+    #     print(count)
+    #     return count

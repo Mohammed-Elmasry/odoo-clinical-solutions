@@ -207,7 +207,7 @@
     </record>
 
 
-    <menuitem name="visits" id="menu_visit" parent="menu_root"/>
+    <menuitem name="Visits" id="menu_visit" parent="menu_root"/>
 
 
     <!-- actions -->
