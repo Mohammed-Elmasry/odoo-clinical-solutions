@@ -9,11 +9,11 @@
       <field name="arch" type="xml">
         <form>
           <sheet>
-                <button name="toggle_active" position="before">
-                  <button class="oe_state_button" type="action" string="Visit List"
+                <div class="button_box">
+                    <button class="oe_state_button" type="action" string="Visit List"
                           name="%(action_visit_view_list_in_patient)d" icon="fa-list">
                   </button>
-              </button>
+                </div>
             <group>
                 <field name="active"/>
 
