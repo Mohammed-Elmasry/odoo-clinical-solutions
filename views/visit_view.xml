@@ -6,33 +6,17 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <form>
-                <header>
-
-                    <button name="button_reset" string="Reset to Draft" class="oe_highlight"
-                           type="object"/>
-
-                    <button name="button_confirmed" string="Comfirmed" class="oe_highlight" type="object"/>
-                    <button name="button_inplace" string="Inplace" class="oe_highlight" type="object"/>
-                    <button name="button_inprogress" string="Inprogress" class="oe_highlight" type="object"/>
-                    <button name="button_done" string="Done" class="oe_highlight" type="object"/>
-                    <button name="cancel_visit"  string="cancel visit" type="object" />
-                                            <field name="visit_status" widget="statusbar"
-    statusbar_visible="Draft,Comfirmed,Inplace,Inprogress,Done,Canceled"/>
-
-                </header>
-
                 <sheet>
                     <group string="Basic Data" col="6">
                         <field name="patient_class"/>
                         <field name="patient"/>
                         <field name="doctor" />
-                        <field name="name"/>
+                        <field name="name" readonly="1"/>
                         <field name="visit_id" readonly="1"/>
                         <field name="visit_type"/>
                         <field name="visit_number"/>
                         <field name="start_time"/>
                         <field name="end_time"/>
-
                     </group>
                     <group string="Doctor Information" col="6">
                         <!--                            <field name="doctor"/>-->
@@ -64,6 +48,7 @@
                         <page string="Patient Data">
                             <group string="Primary Data" col="6" >
                                 <field name="patient_type"/>
+                                <field name="patient_name_computed"/>
                                 <field name="admit_date"/>
                                 <field name="discharge_date"/>
                                 <field name="diet_type"/>
@@ -83,6 +68,9 @@
                                 <field name="discharge_disposition"/>
                                 <field name="discharged_location"/>
                             </group>
+                        </page>
+                        <page string="Clinical Sheet">
+                            <field name="sheet"/>
                         </page>
                         <page string="Financial information">
                             <group string="Financial Data" col="6">
@@ -121,15 +109,15 @@
             </form>
         </field>
     </record>
-    <!--        calender view-->
+    <!--   create calender view-->
     <record id="view_calendar_visit" model="ir.ui.view">
         <field name="name">Visits</field>
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <calendar date_start="start_time" date_stop="end_time">
-                <field name="patient_class"/>
-                <field name="patient_type"/>
                 <field name="name"/>
+                <field name="patient_name_computed"/>
+                <field name="attending_doctor"/>
             </calendar>
         </field>
     </record>
@@ -139,21 +127,19 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <search>
-                <field name="patient_name"/>
+                <field name="patient_name_computed"/>
                 <field name="patient_class"/>
-                <field name="patient_type"/>
                 <field name="attending_doctor"/>
                    <group expand="0" string="Group By">
                     <filter name="name" string="Set ID" domain="[]" context="{'group_by':'name'}"
                         help="Group  by Set ID "/>
-<!--                    <filter name="attending_doctor" string="Attending Doctor" domain="[]"-->
-<!--                            context="{'group_by':'attending_doctor'}"-->
-<!--                        help="Group by Patient Name"/>-->
+                    <filter name="attending_doctor" string="Attending Doctor" domain="[]"
+                            context="{'group_by':'attending_doctor'}"
+                        help="Group by Patient Name"/>
                 </group>
             </search>
         </field>
     </record>
-
     <!--    create view of visit List "tree"-->
     <record model="ir.ui.view" id="view_visit_list">
         <field name="name">Visit List</field>
@@ -161,10 +147,11 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="patient_name"/>
+                <field name="visit_id"/>
+                <field name="patient_name_computed"/>
                 <field name="patient_class"/>
-                <field name="patient_type"/>
                 <field name="attending_doctor"/>
+                <field name="admitting_doctor"/>
                 <field name="start_time"/>
                 <field name="end_time"/>
             </tree>
@@ -176,45 +163,36 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <pivot string="Visit Data and Information">
-                <field name="start_time" type="row"/>
+                <field name="name" type="row"/>
+                <field name="patient_name_computed" type="measure"/>
+                <field name="attending_doctor" type="measure"/>
+                <field name="start_time" type="measure"/>
             </pivot>
         </field>
     </record>
-    <!--    create the graph view for visit-->
-<!--    <record model="ir.ui.view" id="view_visit_graph">-->
-<!--        <field name="name">Visits</field>-->
-<!--        <field name="model">visit.model</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <graph string="Visits Data">-->
-<!--                <field name="name"/>-->
-<!--                <field name="visit_id" readonly="1"/>-->
-<!--                <field name="patient_name" type=""/>-->
-<!--            </graph>-->
-<!--        </field>-->
-<!--    </record>-->
+    <!--    create graph view for visit-->
     <record model="ir.ui.view" id="view_visit_graph">
         <field name="name">Visits</field>
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <graph string="Visits Data">
-                <field name="name"/>
-                <field name="doctor"/>
-                <field name="visit_type"/>
+                <field name="name" type="row"/>
+                <field name="visit_id" type="row" />
+                <field name="patient_name_computed" type="measure"/>
+                <field name="attending_doctor" type="measure"/>
             </graph>
         </field>
     </record>
-    <!--
-        Visit Statement Sequences
-        -->
+
+    <!--Visit Statement Sequences-->
     <record id="visit_seq" model="ir.sequence">
         <field name="name">visit</field>
         <field name="code">clinic.visit</field>
         <field name="prefix">visit</field>
-        <field name="number_increment">1</field>
-        <field name="number_next">1</field>
-        <field name="padding">3</field>
+        <field name="padding">4</field>
     </record>
 
+    <!-- actions opening views on models -->
     <record id="seq_set_id" model="ir.sequence">
         <field name="name">Set Id</field>
         <field name="code">set_id</field>
@@ -222,27 +200,21 @@
         <field name="padding">4</field>
         <field name="company_id" eval="False"/>
     </record>
+        <!-- actions opening views on models -->
 
-    <!-- actions opening views on models -->
-
-        <record model="ir.actions.act_window" id="visit_action_window">
-            <field name="name">Visits</field>
-            <field name="res_model">visit.model</field>
-            <field name="view_mode">tree,form,pivot,calendar</field>
-        </record>
-
-
-        <!-- Top menu item -->
-
-        <!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
-
-        <!-- menu categories -->
-        <menuitem name="visits" id="menu_visit" parent="menu_root"/>
+    <record model="ir.actions.act_window" id="visit_action_window">
+        <field name="name">Visits</field>
+        <field name="res_model">visit.model</field>
+        <field name="view_mode">tree,form,pivot,calendar,graph</field>
+    </record>
 
 
-        <!-- actions -->
-        <menuitem name="All visit" id="list_visit" parent="menu_visit"
-                  action="visit_action_window"/>
+    <menuitem name="Visits" id="menu_visit" parent="menu_root"/>
+
+
+    <!-- actions -->
+    <menuitem name="All visit" id="list_visit" parent="menu_visit"
+              action="visit_action_window"/>
 
 
 
