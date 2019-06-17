@@ -6,13 +6,15 @@ class Product (models.Model):
     _inherit = "product.template"
     _description = "resources, products, and services offered by the clinic"
     _order = "date_added desc, name"
+    visit = fields.Many2one('visit.model')
+    doctor = fields.Many2one('doctor.info.model')
     name = fields.Char('Name',required=True)
     # fees = fields.Monetary('fees', currency_field='currency_id')
     date_added = fields.Date('creation date')
 
     # categorization (service vs medicine)
 
-    is_medicine = fields.Boolean(string="is medicine")
+    is_medicine = fields.Boolean(string="Is medicine")
     # item_identifier = fields.Char(string="item identifier", required=True)
     item_description = fields.Text(string="item description")
     item_status = fields.Selection([("A", "Active"),("P","Pending inactive"),("I","Inactive")])
@@ -41,4 +43,3 @@ class Product (models.Model):
     supply_risk_codes = fields.Selection([("COR","Corrosive"),("FLA","Flammable"),("EXP","Explosive"),("INJ","Injury hazard")])
     approving_regulator_agency = fields.Selection([("FDA","Food and drug Administration"),("AMA","American Medical Association")])
     latex_indicator = fields.Selection([("Y","Yes"),("N","No"),("NI","No Information"),("NA","Not applicable")])
-
