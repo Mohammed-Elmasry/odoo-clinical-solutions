@@ -230,10 +230,9 @@ class Visit(models.Model):
     @api.multi
     def cancel_visit(self):
         # visit=self.env['visit.model'].write({"visit_status": "Canceled"})
-        self.visit_status="Canceled"
-
-        print(visit_status)
-        print(self.visit_status)
+        # self.visit_status="Canceled"
+        for rec in self:
+            rec.write({'visit_status': 'Canceled'})
         try:
             url = 'https://fcm.googleapis.com/fcm/send'
             payload = {
@@ -298,8 +297,27 @@ class Visit(models.Model):
                rec.write({'visit_status': 'Draft'})
     @api.multi
     def button_confirmed(self):
-           for rec in self:
-               rec.write({'visit_status': 'Comfirmed'})
+        for rec in self:
+                rec.write({'visit_status': 'Comfirmed'})
+
+        try:
+            url = 'https://fcm.googleapis.com/fcm/send'
+            payload = {
+                "notification": {
+                    "title": "Hello " + self.patient.name,
+                    "body": "welcome to our clinic your visit is confirmed in " + str(self.start_time)
+                },
+                "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+            }
+            headers = {'content-type': 'application/json',
+                       'Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
+
+            r = requests.post(url, data=json.dumps(payload), headers=headers)
+            print(r.json)
+        except:
+            pass
+
+
     @api.multi
     def button_inplace(self):
            for rec in self:
