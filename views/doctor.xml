@@ -6,7 +6,10 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-
+                     <div class="button_box">
+                        <button class="oe_state_button" type="action" string="Visit List" name="%(action_visit_view_list)d" icon="fa-list">
+                        </button>
+                     </div>
                     <group string="Personal Information" col="6">
                         <field name="name" required="1"/>
                         <field name="gender"/>
@@ -96,7 +99,16 @@
         </field>
     </record>
 
+<!--           action for the buttons to display the list of visits-->
+    <record model="ir.actions.act_window" id="action_visit_view_list">
+        <field name="name">Visit List</field>
+        <field name="res_model">visit.model</field>
+        <field name="view_type">form</field>
 
+        <field name="context">{'search_default_attending_doctor':active_id}</field>
+        <field name="view_id" ref="view_visit_list"/>
+
+    </record>
     <!--Action of our model-->
     <record model="ir.actions.act_window" id="employee_list_action">
         <field name="name">Employees</field>
