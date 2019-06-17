@@ -6,6 +6,9 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="cancel_visit"  string="cancel visit" type="object" />
+                </header>
 
                 <sheet>
                     <group string="Basic Data" col="6">
