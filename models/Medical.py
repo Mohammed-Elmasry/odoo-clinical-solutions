@@ -43,7 +43,8 @@ class Medical(models.Model):
     #     print(type(user.id))
         # record=self.env['doctor.info.model'].search(args=[('u', '=', self.env.user)])
     #     # do=self.env['doctor.info.model'].search(args=[('emp_id', '=',record )])
-        record = self.env['doctor.info.model'].search(args=[('user_id', '=', self._uid)])
+        print('data: {}, {}'.format(vals['doctor'], self.env.user))
+        record = self.env['doctor.info.model'].search(args=[('user_id', '=', self.env.user.id)])
 
     #     print(type(record.user_id))
     #     print(self.env.user)

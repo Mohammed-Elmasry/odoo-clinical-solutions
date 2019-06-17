@@ -6,7 +6,8 @@ class DoctorInfo(models.Model):
     _inherits = {'hr.employee': 'emp_id'}
 
     emp_id = fields.Many2one('hr.employee')
-    user_id = fields.Many2one('res.users',compute='calculate_user',store=True)
+    user_id = fields.Many2one('res.users', related='emp_id.user_id')
+    # user_id = fields.Many2one('res.users',compute='calculate_user',store=True)
     user=fields.Integer()
     # , related = 'emp_id.user_id'
     doctor_id = fields.Integer(string="Doctor ID", help="Auto Increment Field")
@@ -34,7 +35,7 @@ class DoctorInfo(models.Model):
     mobile_phone = fields.Char('Work Mobile', required=True)
     sheet = fields.One2many('odoo.clinic.medical', 'doctor')
 
-    @api.depends('emp_id')
+    # @api.depends('emp_id')
     def calculate_user(self):
         # self.env['res.users'].create({"id":self.emp_id.user_id})
         # self.env['user_id']=self.emp_id.user_id
@@ -52,9 +53,9 @@ class DoctorInfo(models.Model):
     @api.model
     def create(self, vals):
         # model_res_users = self.env['res_users'].create({'id':self.user_id})
-        print(self.emp_id.user_id)
-        vals['user_id']= self.env['res.users'].search(args=[('id', '=', self.emp_id.user_id.id)])
+        # print(self.emp_id.user_id)
+        # vals['user_id']= self.env['res.users'].search(args=[('id', '=', self.emp_id.user_id.id)])
         # vals['user_id']="13"
 
-        print(vals['user_id'])
+        # print(vals['user_id'])
         return super(DoctorInfo, self).create(vals)
