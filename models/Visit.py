@@ -175,7 +175,6 @@ class Visit(models.Model):
     @api.onchange('visit_status')
     def on_change_state(self):
         print (self.visit_status)
-        print (self.env['doctor.info.model'].search(args=[('user_id', '=', self.env.user)]).emp_id)
         if self.visit_status=="Comfirmed":
             url = 'https://fcm.googleapis.com/fcm/send'
             payload = {
@@ -206,6 +205,10 @@ class Visit(models.Model):
             r = requests.post(url, data=json.dumps(payload), headers=headers)
             print(r.json)
 
+        if self.visit_status == "Inplace":
+            medical=self.env['odoo.clinic.medical'].create({"visit":self.name})
+            print (medical.visit)
+            print("kk",self.name)
 
     @api.depends('total_charges', 'total_payments')
     def calculate_current_patient_balance(self):

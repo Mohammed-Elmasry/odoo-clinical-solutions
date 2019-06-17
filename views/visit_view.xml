@@ -6,6 +6,7 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <form>
+
                 <sheet>
                     <group string="Basic Data" col="6">
                         <field name="patient_class"/>
