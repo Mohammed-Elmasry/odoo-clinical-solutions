@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import http
-import json
+import json,datetime
 
 class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/clinical_management_system/', auth='public')
@@ -8,9 +8,10 @@ class ClinicalManagementSystem(http.Controller):
         request = http.request
         vals = kw.keys()
         # print("Your values are: ",vals)
-        # print("Your Email is: ", kw["Email"])
+        # print ("Your Email is: ", kw["Email"])
         # for i in http.request.env["product.template"]:
         #     print(i)
+
         return  json.dumps({'id': 'yy'})
 
     @http.route('/clinical_management_system/clinical_management_system/objects/', auth='public')
@@ -168,7 +169,7 @@ class ClinicalManagementSystem(http.Controller):
         patient_data = json.loads(http.request.httprequest.data)
         record = http.request.env['odoo.clinic.patient'].sudo().search(args=[('email', '=',str(patient_data["email"]))])
         if record.exists():
-            return json.dumps("this email already exist")
+            return json.dumps("This email already exist")
         else:
 
             print (patient_data)
@@ -180,7 +181,7 @@ class ClinicalManagementSystem(http.Controller):
     #
     @http.route('/clinical_management_system/patient/token/', type="http", auth="none", methods=['POST'], cors="*",
                 csrf=False)
-    def uodate_patient(self, **params):
+    def update_patient(self, **params):
         patient = json.loads(http.request.httprequest.data)
 
         print(patient["id"])
@@ -196,7 +197,7 @@ class ClinicalManagementSystem(http.Controller):
 
     @http.route('/clinical_management_system/medical/visit', type="http", auth="none", methods=['get'], cors="*")
     def get_visit(self, visit_id):
-        record = http.request.env['visit.model'].sudo().browse(int(visit_id))
+        record = http.request.env['visit.model'].sudo().search(args=[('visit_id', '=',visit_id)])
         medical = []
         # print(record.sheet[1].dm)
         #
@@ -248,12 +249,5 @@ class ClinicalManagementSystem(http.Controller):
         # record = http.request.env['odoo.clinic.patient'].sudo().search(args=[('id', '=', patient["id"])])
         # print(record.name)
         record.write({"visit_status": "Canceled"})
+        print (record.visit_status)
         return json.dumps("true")
-    # @http.route('/clinical_management_system/mit', type="http", auth="none", methods=['get'], cors="*")
-    # def get_visit(self ):
-    #     records = http.request.env['doctor.info.model']
-    #     re=[]
-    #     for record in records:
-    #         print(record.role)
-    #         re.append({"ss":record.role})
-    #     return json.dumps(re)
