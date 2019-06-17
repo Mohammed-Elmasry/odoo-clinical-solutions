@@ -147,6 +147,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
+                <field name="visit_id"/>
                 <field name="patient_name_computed"/>
                 <field name="patient_class"/>
                 <field name="attending_doctor"/>
@@ -188,9 +189,7 @@
         <field name="name">visit</field>
         <field name="code">clinic.visit</field>
         <field name="prefix">visit</field>
-        <field name="number_increment">1</field>
-        <field name="number_next">1</field>
-        <field name="padding">3</field>
+        <field name="padding">4</field>
     </record>
 
     <!-- actions opening views on models -->
