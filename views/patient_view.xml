@@ -33,6 +33,7 @@
                 <field name="lang"/>
 <!--                <field name="state"/>-->
                 <field name="token"/>
+                <field name="diseases"/>
 
               <field name="gender"/>
             </group>
@@ -263,7 +264,7 @@
 
     <!-- menu categories -->
 
-    <menuitem name="patient" id="menu_4" parent="menu_root" />
+    <menuitem name="Patient" id="menu_4" parent="menu_root" />
 
     <!-- actions -->
 

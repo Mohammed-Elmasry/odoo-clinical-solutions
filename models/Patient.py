@@ -34,13 +34,16 @@ class Patient(models.Model):
     medical = fields.One2many('odoo.clinic.medical', 'patient')
     # doctor=fields.One2many('odoo.clinic.medical','patient')
     visit_count=fields.Integer(compute='_compute_visit_count', string='Visit Count')
+    diseases=fields.Selection([('Intestinal infectious diseases', 'Intestinal infectious diseases'),
 
-    @api.multi
-    def _compute_visit_count(self):
-        print ()
-        visit_data = self.env['visit.model'].sudo().search(args=[('patient', '=',self)])
-        count=0
-        for visit in len(visit_data):
-            count+=1
-            print(count)
-            return count
+                               ('Tuberculosis', 'Tuberculosis'),
+                               ('Certain zoonotic bacterial diseases','Certain zoonotic bacterial diseases'),
+                               ('Viral hepatitis','Viral hepatitis'),
+                               ('Mycoses', 'Mycoses'),
+                               ('Pediculosis, acariasis and other infestations', 'Pediculosis, acariasis and other infestations'),
+                               ('Helminthiases', 'Helminthiases'),
+                               ('Rickettsioses', 'Rickettsioses'),
+                               ('Glaucoma', 'Glaucoma'),
+                               ('Disorders of lens', 'Disorders of lens'),
+                               ('Mental retardation', 'Mental retardation'),
+                               ])
