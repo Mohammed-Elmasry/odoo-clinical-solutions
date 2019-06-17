@@ -35,7 +35,6 @@ class Patient(models.Model):
     # doctor=fields.One2many('odoo.clinic.medical','patient')
     visit_count=fields.Integer(compute='_compute_visit_count', string='Visit Count')
     diseases=fields.Selection([('Intestinal infectious diseases', 'Intestinal infectious diseases'),
-
                                ('Tuberculosis', 'Tuberculosis'),
                                ('Certain zoonotic bacterial diseases','Certain zoonotic bacterial diseases'),
                                ('Viral hepatitis','Viral hepatitis'),

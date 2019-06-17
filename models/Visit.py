@@ -240,3 +240,28 @@ class Visit(models.Model):
         #
         # r = requests.post(url, data=json.dumps(payload), headers=headers)
         # print(r.json)
+    @api.multi
+    def button_done(self):
+       for rec in self:
+           rec.write({'visit_status': 'Done'})
+
+    @api.multi
+    def button_cancel(self):
+        for rec in self:
+            rec.write({'visit_status': 'Canceled'})
+    @api.multi
+    def button_reset(self):
+           for rec in self:
+               rec.write({'visit_status': 'Draft'})
+    @api.multi
+    def button_confirmed(self):
+           for rec in self:
+               rec.write({'visit_status': 'Comfirmed'})
+    @api.multi
+    def button_inplace(self):
+           for rec in self:
+               rec.write({'visit_status': 'Inplace'})
+    @api.multi
+    def button_inprogress(self):
+           for rec in self:
+               rec.write({'visit_status': 'Inprogress'})

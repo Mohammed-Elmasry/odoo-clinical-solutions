@@ -7,7 +7,18 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+
+                    <button name="button_reset" string="Reset to Draft" class="oe_highlight"
+                           type="object"/>
+
+                    <button name="button_confirmed" string="Comfirmed" class="oe_highlight" type="object"/>
+                    <button name="button_inplace" string="Inplace" class="oe_highlight" type="object"/>
+                    <button name="button_inprogress" string="Inprogress" class="oe_highlight" type="object"/>
+                    <button name="button_done" string="Done" class="oe_highlight" type="object"/>
                     <button name="cancel_visit"  string="cancel visit" type="object" />
+                                            <field name="visit_status" widget="statusbar"
+    statusbar_visible="Draft,Comfirmed,Inplace,Inprogress,Done,Canceled"/>
+
                 </header>
 
                 <sheet>
@@ -21,7 +32,6 @@
                         <field name="visit_number"/>
                         <field name="start_time"/>
                         <field name="end_time"/>
-                        <field name="visit_status"/>
 
                     </group>
                     <group string="Doctor Information" col="6">
