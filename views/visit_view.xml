@@ -69,6 +69,9 @@
                                 <field name="discharged_location"/>
                             </group>
                         </page>
+                        <page string="Clinical Sheet">
+                            <field name="sheet"/>
+                        </page>
                         <page string="Financial information">
                             <group string="Financial Data" col="6">
                                 <field name="financial_class"/>
