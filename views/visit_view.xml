@@ -229,11 +229,11 @@
         <!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
 
         <!-- menu categories -->
-        <menuitem name="visits" id="menu_visit" parent="menu_root"/>
+<!--        <menuitem name="coo" id="menu_visit" parent="menu_root"/>-->
 
 
         <!-- actions -->
-        <menuitem name="All visit" id="list_visit" parent="menu_visit"
+        <menuitem name="  Visits" id="menu_5_list" parent="menu_1"
                   action="visit_action_window"/>
 
 

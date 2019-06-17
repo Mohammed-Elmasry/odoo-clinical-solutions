@@ -158,7 +158,7 @@
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="medical_action_window">
-      <field name="name">Medical</field>
+      <field name="name">Medical Sheets</field>
       <field name="res_model">odoo.clinic.medical</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -185,11 +185,11 @@
 
     <!-- menu categories -->
 
-    <menuitem name="medical sheet" id="menu_sheet" parent="menu_root"/>
+<!--    <menuitem name="Medical Sheet" id="menu_sheet" parent="menu_root"/>-->
 
     <!-- actions -->
 
-    <menuitem name="List medical" id="list_sheet" parent="menu_sheet"
+    <menuitem name="Medical Sheets" id="menu_3_list" parent="menu_1"
               action="medical_action_window"/>
 <!--    <menuitem name="Server to list" id="lab1" parent="lab1.menu_2"-->
 <!--              action="special_action_server"/>-->

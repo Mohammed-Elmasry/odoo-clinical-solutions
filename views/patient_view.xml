@@ -203,7 +203,7 @@
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="patient_action_window">
-      <field name="name">Patient</field>
+      <field name="name">Patients</field>
       <field name="res_model">odoo.clinic.patient</field>
       <field name="view_mode">tree,form,graph,pivot</field>
     </record>
@@ -216,11 +216,10 @@
 
     <!-- menu categories -->
 
-    <menuitem name="Patients" id="menu_4" parent="menu_root" />
-
+    <menuitem name="  Operations" id="menu_1" parent="menu_root" />
     <!-- actions -->
 
-    <menuitem name="List patient" id="menu_4_list" parent="menu_4"
+    <menuitem name="Patients" id="menu_31_list" parent="menu_1"
               action="patient_action_window"/>
 <!--    <menuitem name="Server to list" id="lab1" parent="lab1.menu_2"-->
 <!--              action="special_action_server"/>-->
