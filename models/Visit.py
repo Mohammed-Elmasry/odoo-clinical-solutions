@@ -19,7 +19,8 @@ class Visit(models.Model):
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
                                   , help="To Detect The Type Of Visit")
     end_time = fields.Datetime(compute='calculate_end_time')
-    patient_class = fields.Char(string="Patient class", required='true')
+    patient_class = fields.Selection([('class1', 'Walking Patient'), ('class2', 'Insurance Patient')]
+                                     , string="Patient class", required='true')
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
     assigned_patient_location = fields.Text(string="Assigned Location")
