@@ -160,19 +160,22 @@ class Visit(models.Model):
         res = super(Visit, self).create(vals)
         return res
 
+    # Computed method to count the end_time automatic which is 30 minute
     @api.depends('start_time')
     def calculate_end_time(self):
 
         for visit in self.filtered('start_time'):
             delta = datetime.timedelta(minutes = 30)
             visit.end_time = visit.start_time + delta
-
+    # Computed method to get the current charges of this visit
     @api.depends('sales_price')
     def get_current_charges(self):
 
         for visit in self.filtered('sales_price'):
             visit.total_charges = visit.sales_price
 
+    # Computed method to Calculate the current patient balance from remove total charges and total adjustments
+    # from total payments
     @api.depends('total_charges', 'total_payments')
     def calculate_current_patient_balance(self):
 
@@ -202,3 +205,4 @@ class Visit(models.Model):
 
         for visit in self.filtered('product_name'):
             visit.product_name_computed = visit.product_name
+
