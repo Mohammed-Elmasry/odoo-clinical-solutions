@@ -163,10 +163,9 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <pivot string="Visit Data and Information">
-                <field name="name" type="row"/>
-                <field name="patient_name_computed" type="measure"/>
-                <field name="attending_doctor" type="measure"/>
-                <field name="start_time" type="measure"/>
+                <field name="patient_name_computed" type="row"/>
+                <field name="attending_doctor" type="row"/>
+
             </pivot>
         </field>
     </record>
