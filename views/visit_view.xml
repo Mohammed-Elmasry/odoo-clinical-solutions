@@ -149,9 +149,26 @@
                        <filter name="admitting_doctor" string="Admitting Doctor" domain="[]"
                                context="{'group_by':'admitting_doctor'}"
                                help="Group by Admitting Doctor"/>
-                       <filter name="visit_status" string="Visit Status" domain="[]"
+                       <filter name="visit_status" string="Draft Status For Visit" domain="[('visit_status', '=', 'Draft')]"
                                context="{'group_by':'visit_status'}"
-                               help="Group by Visit Status" />
+                               help="Group by Draft Visit Status" />
+                       <filter name="visit_status" string="Confirmed  Status For Visit" domain="[('visit_status', '=', 'Comfirmed')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by Confirmed Visit Status" />
+                       <filter name="visit_status" string="In place  Status For Visit" domain="[('visit_status', '=', 'Inplace')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by In place Visit Status" />
+                       <filter name="visit_status" string="In progress Status For Visit" domain="[('visit_status', '=', 'Inprogress')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by In progress Visit Status" />
+                       <filter name="visit_status" string="Done Status For Visit" domain="[('visit_status', '=', 'Done')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by Done Visit Status" />
+                       <filter name="visit_status" string="Canceled Status For Visit" domain="[('visit_status', '=', 'Canceled')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by Canceled Visit Status" />
+
+
                    </group>
             </search>
         </field>

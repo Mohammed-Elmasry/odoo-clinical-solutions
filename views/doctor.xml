@@ -8,7 +8,7 @@
                 <sheet>
                      <div class="button_box">
                         <button class="oe_state_button" type="action" string="Visit List" name="%(action_visit_view_list)d" icon="fa-list">
-<!--                            <field name="visit_count"/>-->
+                            <field name="visit_count" readonly="1"/>
                         </button>
                      </div>
                     <group string="Personal Information" col="6">
