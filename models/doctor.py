@@ -13,6 +13,7 @@ class DoctorInfo(models.Model):
     # , related = 'emp_id.user_id'
     # employee_id = fields.Integer(help="ID Used In Buttons ")
     visit = fields.One2many('visit.model', 'doctor')
+    visit_count = fields.Integer(related="visit.visit_count", string="Visit Count")
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True
                             , help="Employee's Role in Our Clinic")
     services_and_products = fields.Many2one('product.template')
