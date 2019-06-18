@@ -61,7 +61,7 @@ class Visit(models.Model):
     vip_indicator = fields.Char(string="VIP-Type")
     admitting_doctor = fields.Many2one('doctor.info.model', string="Admitting Doctor"
                                        , help="This field contains the admitting physician information."
-                                       , domain="[('role', '=', 'doctor')]")
+                                       , domain="[('role', '=', 'doctor')]", store=True)
     patient_type = fields.Selection([('value', 'No suggested values defined')])
     visit_number = fields.Integer(string="Visit Number",
                                   help="This field contains the unique number assigned to each patient visit.")
