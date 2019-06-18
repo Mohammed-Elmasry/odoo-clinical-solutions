@@ -170,6 +170,7 @@
                 <field name="product_name_computed"/>
                 <field name="start_time"/>
                 <field name="end_time"/>
+                <field name="visit_status"/>
             </tree>
         </field>
     </record>
