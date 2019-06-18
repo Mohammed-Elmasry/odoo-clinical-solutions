@@ -133,18 +133,22 @@
                 <field name="referring_doctor"/>
                 <field name="hospital_service"/>
                    <group expand="0" string="Group By">
-                    <filter name="name" string="Set ID" domain="[]" context="{'group_by':'name'}"
-                        help="Group  by Set ID "/>
-                    <filter name="attending_doctor" string="Attending Doctor" domain="[]"
-                            context="{'group_by':'attending_doctor'}"
-                        help="Group by Patient Name"/>
+                       <filter name="name" string="Set ID" domain="[]" context="{'group_by':'name'}"
+                               help="Group  by Set ID "/>
+                       <filter name="attending_doctor" string="Attending Doctor" domain="[]"
+                               context="{'group_by':'attending_doctor'}"
+                               help="Group by Patient Name"/>
                        <filter name="product_name_computed" string="Product or Service Name" domain="[]"
                                context="{'group_by':'product_name_computed'}"
                                help="Group by Patient and Services Name"/>
                        <filter name="referring_doctor " string="Referring Doctor" domain="[]"
-                            context="{'group_by':'referring_doctor'}"
-                        help="Group by Referring Doctor Name"/>
-                </group>
+                               context="{'group_by':'referring_doctor'}"
+                               help="Group by Referring Doctor Name"/>
+                       <filter name="hospital_service" string="Hospital Service" domain="[]"
+                               context="{'group_by':'hospital_service'}"
+                               help="Group by Hospital Service"/>
+
+                   </group>
             </search>
         </field>
     </record>
