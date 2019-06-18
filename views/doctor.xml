@@ -95,8 +95,11 @@
                     <filter name="job_title" string="Job Title" domain="[]" context="{'group_by':'job_title'}"
                         help="Group by Job Title"/>
                     <filter name="role" string="Doctors" domain="[('role', '=', 'doctor')]"
-                            context="{'group_by':'job_title'}"
+                            context="{'group_by':'role'}"
                             help="Group by Doctors"/>
+                     <filter name="role" string="Nurses" domain="[('role', '=', 'nurse')]"
+                            context="{'group_by':'role'}"
+                            help="Group by Nurses"/>
                 </group>
             </search>
         </field>
