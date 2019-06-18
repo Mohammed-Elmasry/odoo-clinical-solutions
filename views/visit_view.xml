@@ -128,7 +128,6 @@
         <field name="arch" type="xml">
             <search>
                 <field name="patient_name_computed"/>
-                <field name="patient_class"/>
                 <field name="product_name_computed"/>
                 <field name="attending_doctor"/>
                    <group expand="0" string="Group By">
@@ -137,6 +136,9 @@
                     <filter name="attending_doctor" string="Attending Doctor" domain="[]"
                             context="{'group_by':'attending_doctor'}"
                         help="Group by Patient Name"/>
+                     <filter name="product_name_computed" string="Product or Service Name" domain="[]"
+                            context="{'group_by':'product_name_computed'}"
+                        help="Group by Patient and Services Name"/>
                 </group>
             </search>
         </field>
