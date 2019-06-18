@@ -148,9 +148,12 @@
                        <filter name="hospital_service" string="Hospital Service" domain="[]"
                                context="{'group_by':'hospital_service'}"
                                help="Group by Hospital Service"/>
-                        <filter name="admitting_doctor" string="Admitting Doctor" domain="[]"
+                       <filter name="admitting_doctor" string="Admitting Doctor" domain="[]"
                                context="{'group_by':'admitting_doctor'}"
                                help="Group by Admitting Doctor"/>
+                       <filter name="visit_status" string="Visit Status" domain="[]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by Visit Status" />
                    </group>
             </search>
         </field>
