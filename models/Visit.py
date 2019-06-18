@@ -3,6 +3,7 @@ import datetime
 import requests
 import json
 
+
 class Visit(models.Model):
     _name = 'visit.model'
     _description = "visits that will be related to patients in the Clinic"
@@ -16,9 +17,11 @@ class Visit(models.Model):
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     product_name = fields.Char(related="services_and_products.name")
     product_name_computed = fields.Char(compute="get_product_and_services_name"
-                                        , store=True, string="Service and Product Name", help="Product or Service  Name")
+                                        , store=True, string="Service and Product Name",
+                                        help="Product or Service  Name")
     doctor_name = fields.Char(related="doctor.name", string="Doctor Name", help="Doctor Name")
-    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
+    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic "
+                                 , compute="count_visits")
     start_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
                                   , help="To Detect The Type Of Visit")
@@ -103,8 +106,8 @@ class Visit(models.Model):
     bad_debt_recovery_amount = fields.Integer(string="Amount of Bad Debt Recovery")
     delete_account_indicator = fields.Selection([('value', 'No suggested values defined')],
                                                 string="Delete Account Indicator"
-                                                ,help="This field indicates that the account was deleted from "
-                                                      "the file")
+                                                , help="This field indicates that the account was deleted from "
+                                                       "the file")
     delete_account_indicator_reasons = fields.Text(string="Reasons Of Delete Account"
                                                    , help="gives the reason for delete the account ")
     delete_account_date = fields.Date(string="Delete Account Date")
@@ -147,11 +150,12 @@ class Visit(models.Model):
                                         ('V', 'Visit level')], string="Visit Indicator", default='A')
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
+    count = fields.Integer(help="Count use for computed field visit count")
     patient = fields.Many2one('odoo.clinic.patient')
-    visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'Inplace'),
-                                   ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')]
-                                  , default='Draft')
-    sheet=fields.One2many('odoo.clinic.medical','visit')
+    visit_status = fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'), ('Inplace', 'Inplace'),
+                                     ('Inprogress', 'Inprogress'), ('Done', 'Done'), ('Canceled', 'Canceled')]
+                                    , default='Draft')
+    sheet = fields.One2many('odoo.clinic.medical', 'visit')
 
     @api.model
     def create(self, vals):
@@ -165,8 +169,9 @@ class Visit(models.Model):
     def calculate_end_time(self):
 
         for visit in self.filtered('start_time'):
-            delta = datetime.timedelta(minutes = 30)
+            delta = datetime.timedelta(minutes=30)
             visit.end_time = visit.start_time + delta
+
     # Computed method to get the current charges of this visit
     @api.depends('sales_price')
     def get_current_charges(self):
@@ -206,49 +211,55 @@ class Visit(models.Model):
         for visit in self.filtered('product_name'):
             visit.product_name_computed = visit.product_name
 
+    def count_visits(self):
+
+        for visit in self:
+            visits = self.env['visit.model'].search(args=[])
+            count = len(visits)
+            visit.count = count
+            visit.visit_count = visit.count
 
     @api.onchange('visit_status')
     def on_change_state(self):
         print (self.visit_status)
-        if self.visit_status=="Comfirmed":
+        if self.visit_status == "Comfirmed":
             url = 'https://fcm.googleapis.com/fcm/send'
             payload = {
                 "notification": {
-                    "title": "Hello "+self.patient.name,
-                    "body": "welcome to our clinic your visit is confirmed in " +str(self.start_time)
+                    "title": "Hello " + self.patient.name,
+                    "body": "welcome to our clinic your visit is confirmed in " + str(self.start_time)
                 },
-                "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+                "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
             }
-            headers = {'content-type': 'application/json','Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
-
+            headers = {'content-type': 'application/json',
+                       'Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
 
             r = requests.post(url, data=json.dumps(payload), headers=headers)
             print(r.json)
-        if self.visit_status=="Done":
+        if self.visit_status == "Done":
             url = 'https://fcm.googleapis.com/fcm/send'
             payload = {
                 "notification": {
-                    "title": "Hello "+self.patient.name,
+                    "title": "Hello " + self.patient.name,
                     "body": "Thank you for attend in time and now you can see all details about visit "
                 },
-                "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+                "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
             }
-            headers = {'content-type': 'application/json','Aut'
-                                                          'horization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
-
+            headers = {'content-type': 'application/json', 'Aut'
+                                                           'horization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
 
             r = requests.post(url, data=json.dumps(payload), headers=headers)
             print(r.json)
 
         if self.visit_status == "Inplace":
-            medical=self.env['odoo.clinic.medical'].create({"visit":self.name})
+            medical = self.env['odoo.clinic.medical'].create({"visit": self.name})
             print (medical.visit_status)
-            print("kk",self.name)
+            print("kk", self.name)
 
     @api.multi
     def cancel_visit(self):
         # visit=self.env['visit.model'].write({"visit_status": "Canceled"})
-        self.visit_status="Canceled"
+        self.visit_status = "Canceled"
 
         print(visit_status)
         print(self.visit_status)
