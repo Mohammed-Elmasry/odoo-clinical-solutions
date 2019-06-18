@@ -184,6 +184,9 @@
                 <field name="patient_name_computed" type="row"/>
                 <field name="attending_doctor" type="row"/>
                 <field name="product_name_computed" type="row"/>
+                <field name="product_name_computed" type="measure"/>
+                <field name="attending_doctor" type="measure"/>
+                <field name="patient_class" type="measure"/>
             </pivot>
         </field>
     </record>
