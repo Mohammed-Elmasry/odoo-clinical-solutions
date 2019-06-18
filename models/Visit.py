@@ -205,4 +205,3 @@ class Visit(models.Model):
 
         for visit in self.filtered('product_name'):
             visit.product_name_computed = visit.product_name
-
