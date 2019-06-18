@@ -10,8 +10,6 @@ class DoctorInfo(models.Model):
     user_id = fields.Many2one('res.users', related='emp_id.user_id')
     # user_id = fields.Many2one('res.users',compute='calculate_user',store=True)
     user=fields.Integer()
-    # , related = 'emp_id.user_id'
-    # employee_id = fields.Integer(help="ID Used In Buttons ")
     visit = fields.One2many('visit.model', 'doctor')
     visit_count = fields.Integer(related="visit.visit_count", string="Visit Count")
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True

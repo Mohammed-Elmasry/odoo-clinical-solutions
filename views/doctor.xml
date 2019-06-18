@@ -8,7 +8,7 @@
                 <sheet>
                      <div class="button_box">
                         <button class="oe_state_button" type="action" string="Visit List" name="%(action_visit_view_list)d" icon="fa-list">
-                            <field name="visit_count"/>
+<!--                            <field name="visit_count"/>-->
                         </button>
                      </div>
                     <group string="Personal Information" col="6">
@@ -90,11 +90,13 @@
                 <group expand="0" string="Group By">
                     <filter name="name" string="Employee or Doctor" domain="[]" context="{'group_by':'name'}"
                         help="Group  by Employee or Doctor name "/>
-                    <filter name="name" string="Speciality" domain="[]" context="{'group_by':'speciality'}"
+                    <filter name="speciality" string="Speciality" domain="[]" context="{'group_by':'speciality'}"
                         help="Group by Speciality"/>
-                    <filter name="name" string="Job Title" domain="[]" context="{'group_by':'job_title'}"
+                    <filter name="job_title" string="Job Title" domain="[]" context="{'group_by':'job_title'}"
                         help="Group by Job Title"/>
-
+                    <filter name="role" string="Doctors" domain="[('role', '=', 'doctor')]"
+                            context="{'group_by':'job_title'}"
+                            help="Group by Doctors"/>
                 </group>
             </search>
         </field>
