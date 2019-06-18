@@ -43,4 +43,3 @@ class Product (models.Model):
     supply_risk_codes = fields.Selection([("COR","Corrosive"),("FLA","Flammable"),("EXP","Explosive"),("INJ","Injury hazard")])
     approving_regulator_agency = fields.Selection([("FDA","Food and drug Administration"),("AMA","American Medical Association")])
     latex_indicator = fields.Selection([("Y","Yes"),("N","No"),("NI","No Information"),("NA","Not applicable")])
-

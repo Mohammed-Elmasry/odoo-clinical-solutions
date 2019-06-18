@@ -24,7 +24,8 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/clinic_security.xml',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
         'views/product.xml', #it contains the _name of the model
@@ -32,6 +33,7 @@
         'views/patient_view.xml',
         'views/medical_view.xml',
         'views/visit_view.xml',
+
 
     ],
     # only loaded in demonstration mode

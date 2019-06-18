@@ -1,299 +1,241 @@
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
+    <data>
+        <!-- explicit list view definition -->
 
-<!-- explicit form view definition -->
-    <record model="ir.ui.view" id="odoo_clinic_management_form_view_patient">
-      <field name="name">odoo_clinic_management_form</field>
-      <field name="model">odoo.clinic.patient</field>
-      <field name="arch" type="xml">
-        <form>
-          <sheet>
-              <div class="button_box">
-                  <button class="oe_state_button" type="action" string="Visit List"
-                          name="%(action_visit_view_list_in_patient)d" icon="fa-list">
-                  </button>
-              </div>
+        <!-- explicit form view definition -->
+        <record model="ir.ui.view" id="odoo_clinic_management_form_view_patient">
+            <field name="name">odoo_clinic_management_form</field>
+            <field name="model">odoo.clinic.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="_compute_visit_count" string="visit count" class="oe_highlight" type="action"/>
+                    </header>
+                    <sheet>
+                        <div class="button_box">
+                            <button class="oe_state_button" type="action" string="Visit List"
+                                    name="%(action_visit_view_list_in_patient)d" icon="fa-list">
+                            </button>
+                        </div>
 
-              <group>
-                <field name="active"/>
-
-            </group>
-
-
-            <group  string="Personal info" col="4">
-                <field name="image"/>
-
-                <!--              <field name="id"/>-->
-              <field name="name"/>
-<!--              <field name="set_id"/>-->
-              <field name="phone"/>
-              <field name="mobile"/>
-                <field name="email"/>
-              <field name="date"/>
-                <field name="religion"/>
-                <field name="lang"/>
-<!--                <field name="state"/>-->
-                <field name="token"/>
-
-              <field name="gender"/>
-            </group>
-                <notebook string="Visit Data and Information">
-            <page string="Medical Info">
-              <group>
-
-              <field name="mrn"/>
-              <field name="height"/>
-              <field name="weight"/>
-              <field name="blood_group"/>
-                  <field name="comment"/>
-
-            </group>
-            </page>
-                    <page  string="Address">
-          <group string="address">
-              <field name="street"/>
-              <field name="street2"/>
-              <field name="country_id"/>
-          </group>
-                        <group col="9">
-
-                  <field name="city"/>
-              <field name="state_id"/>
-              <field name="zip"/>
-
-              </group>
-              </page>
-                      <page string="Bith Info">
                         <group>
-              <field name="birth_place"/>
-
-              <field name="birth_order"/>
-
-              <field name="multiple_birth_indicator"/>
-                        </group>
-                    </page>
-
-                    <page string="Visit Info">
-                        <group>
-                                <field name="visit"/>
+                            <field name="active"/>
 
                         </group>
-                    </page>
-                                        <page string="Medical Sheet">
-                        <group>
-                                <field name="medical"/>
 
+
+                        <group  string="Personal info" col="4">
+                            <field name="image"/>
+
+                            <!--              <field name="id"/>-->
+                            <field name="name"/>
+                            <!--              <field name="set_id"/>-->
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                            <field name="email"/>
+                            <field name="date"/>
+                            <field name="religion"/>
+                            <field name="lang"/>
+                            <!--                <field name="state"/>-->
+                            <field name="token"/>
+                            <field name="diseases"/>
+
+                            <field name="gender"/>
                         </group>
-                    </page>
+                        <notebook string="Visit Data and Information">
+                            <page string="Medical Info">
+                                <group>
 
-                <page string="Death Info">
-                   <group string="death info">
-                  <field name="patient_death"/>
+                                    <field name="mrn"/>
+                                    <field name="height"/>
+                                    <field name="weight"/>
+                                    <field name="blood_group"/>
+                                    <field name="comment"/>
 
-              <field name="patient_death_indicator"/>
-              </group>
-                </page>
-                    <page string="Others">
-                        <group>
-                            <field name="MaritalStatus"/>
-                            <field name="race"/>
-                            <field name="function"/>
-                            <field name="mother_name"/>
-                            <field name="patient_account_number"/>
-                            <field name="company_name"/>
-                            <field name="company_type"/>
-                            <field name="child_ids"/>
-                            <field name="bank_account_count"/>
-                            <field name="bank_ids"/>
+                                </group>
+                            </page>
+                            <page  string="Address">
+                                <group string="address">
+                                    <field name="street"/>
+                                    <field name="street2"/>
+                                    <field name="country_id"/>
+                                </group>
+                                <group col="9">
 
-                        </group>
-                    </page>
-                </notebook>
+                                    <field name="city"/>
+                                    <field name="state_id"/>
+                                    <field name="zip"/>
 
-          </sheet>
-        </form>
-      </field>
-    </record>
+                                </group>
+                            </page>
+                            <page string="Bith Info">
+                                <group>
+                                    <field name="birth_place"/>
 
+                                    <field name="birth_order"/>
 
-    <!-- explicit list view definition -->
+                                    <field name="multiple_birth_indicator"/>
+                                </group>
+                            </page>
 
-    <record model="ir.ui.view" id="odoo_clinic_management_list_view_patient">
-      <field name="name">odoo_clinic_management list</field>
-      <field name="model">odoo.clinic.patient</field>
-      <field name="arch" type="xml">
-        <tree>
+                            <page string="Visit Info">
+                                <group>
+                                    <field name="visit"/>
 
-<!--              <field name="id"/>-->
-<!--              <field name="name"/>-->
-<!--              <field name="set_id"/>-->
+                                </group>
+                            </page>
+                            <page string="Medical Sheet">
+                                <group>
+                                    <field name="medical"/>
 
-<!--              <field name="phone"/>-->
-<!--              <field name="mobile"/>-->
-<!--              <field name="date"/>-->
-<!--              <field name="country_id"/>-->
-<!--              <field name="city"/>-->
-<!--              <field name="contact_address"/>-->
-<!--              <field name="street"/>-->
-<!--              <field name="street2"/>-->
-<!--              <field name="Religion"/>-->
-<!--              <field name="sex"/>-->
+                                </group>
+                            </page>
 
-<!--              <field name="mrn"/>-->
-<!--              <field name="height"/>-->
-<!--              <field name="weight"/>-->
-<!--              <field name="blood_group"/>-->
-<!--              <field name="child_ids"/>-->
-<!--              <field name="company_name"/>-->
-<!--              <field name="company_type"/>-->
-<!--              <field name="create_date"/>-->
-<!--              <field name="create_uid"/>-->
-<!--              <field name="function"/>-->
-<!--            -->
+                            <page string="Death Info">
+                                <group string="death info">
+                                    <field name="patient_death"/>
 
-                         <field name="id"/>
-              <field name="name"/>
-              <field name="set_id"/>
+                                    <field name="patient_death_indicator"/>
+                                </group>
+                            </page>
+                            <page string="Others">
+                                <group>
+                                    <field name="MaritalStatus"/>
+                                    <field name="race"/>
+                                    <field name="function"/>
+                                    <field name="mother_name"/>
+                                    <field name="patient_account_number"/>
+                                    <field name="company_name"/>
+                                    <field name="company_type"/>
+                                    <field name="child_ids"/>
+                                    <field name="bank_account_count"/>
+                                    <field name="bank_ids"/>
 
-              <field name="phone"/>
-              <field name="mobile"/>
-              <field name="date"/>
-            <field name="religion"/>
-<!--              <field name="sex"/>-->
-              <field name="email"/>
+                                </group>
+                            </page>
+                        </notebook>
 
-              <field name="mrn"/>
-              <field name="height"/>
-              <field name="weight"/>
-              <field name="blood_group"/>
-              <field name="country_id"/>
-              <field name="city"/>
-              <field name="contact_address"/>
-              <field name="street"/>
-              <field name="street2"/>
-
-              <field name="child_ids"/>
-              <field name="company_name"/>
-              <field name="company_type"/>
-                  <field name="mother_name"/>
-              <field name="create_date"/>
-
-              <field name="create_uid"/>
-              <field name="function"/>
-              <field name="patient_account_number"/>
-
-              <field name="birth_place"/>
-
-              <field name="birth_order"/>
-
-              <field name="multiple_birth_indicator"/>
-                  <field name="patient_death"/>
-
-              <field name="patient_death_indicator"/>
-              <field name="image" widget="image"/>
-                                <field name="visit"/>
-                                <field name="medical"/>
-
-        </tree>
-      </field>
-    </record>
-
-    <!-- explicit graph view definition -->
-
-    <record model="ir.ui.view" id="patient_graph">
-      <field name="name">odoo_clinic_management graph</field>
-      <field name="model">odoo.clinic.patient</field>
-      <field name="arch" type="xml">
-        <graph string="patient ">
-          <field name="name"/>
-          <field name="set_id" type="col"/>
-        </graph>
-      </field>
-    </record>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
 
-    <!-- explicit pivot view definition -->
+        <!-- explicit list view definition -->
 
-    <record model="ir.ui.view" id="patient_pivot">
-      <field name="name">odoo_clinic_management pivot</field>
-      <field name="model">odoo.clinic.patient</field>
-      <field name="arch" type="xml">
-        <pivot string="Timesheet">
+        <record model="ir.ui.view" id="odoo_clinic_management_list_view_patient">
+            <field name="name">odoo_clinic_management list</field>
+            <field name="model">odoo.clinic.patient</field>
+            <field name="arch" type="xml">
+                <tree>
 
-        <field name="set_id" type="row"/>
-        <field name="date"  type="col"/>
-        </pivot>
-      </field>
-    </record>
+                    <field name="name"/>
+                    <field name="set_id"/>
+                    <field name="phone"/>
+                    <field name="mobile"/>
+                    <field name="date"/>
+                    <field name="religion"/>
+                    <field name="email"/>
+                    <field name="mrn"/>
+                    <field name="height"/>
+                    <field name="weight"/>
+                    <field name="blood_group"/>
+                    <field name="contact_address"/>
+                    <field name="create_date"/>
+                    <field name="function"/>
+                    <field name="patient_account_number"/>
+                    <field name="visit"/>
+                    <field name="medical"/>
 
-      <!-- explicit search view definition -->
+                </tree>
+            </field>
+        </record>
 
-    <record model="ir.ui.view" id="patient_search">
-      <field name="name">odoo_clinic_management search</field>
-      <field name="model">odoo.clinic.patient</field>
-      <field name="arch" type="xml">
-          <search string="Student Information">
-                <field name="name"/>
-                <field name="email"/>
-                <field name="company_name"/>
-                <group expand="0" string="Group By">
-                    <filter name="name" string="patient" domain="[]" context="{'group_by':'id'}"
-                        help="Group patient name Wise"/>
-                    <filter name="company_name" string="company" domain="[]" context="{'group_by':'company_name'}"
-                        help="Group  company " />
-                    <filter name="create_date" context="{'group_by': 'create_date:month'}" string="Month"/>
-                </group>
+        <!-- explicit graph view definition -->
 
-            </search>
-      </field>
-    </record>
-      <record model="ir.actions.act_window" id="action_visit_view_list_in_patient">
-          <field name="name">Visit List</field>
-          <field name="res_model">visit.model</field>
-          <field name="view_type">form</field>
-          <field name="view_mode">tree</field>
-          <field name="context">{'search_default_patient_name_computed':active_id}</field>
-          <field name="view_id" ref="view_visit_list"/>
-      </record>
+        <record model="ir.ui.view" id="patient_graph">
+            <field name="name">odoo_clinic_management graph</field>
+            <field name="model">odoo.clinic.patient</field>
+            <field name="arch" type="xml">
+                <graph string="patient ">
+                    <field name="name"/>
+                    <field name="set_id" type="col"/>
+                </graph>
+            </field>
+        </record>
 
-    <!-- actions opening views on models -->
 
-    <record model="ir.actions.act_window" id="patient_action_window">
-      <field name="name">Patient</field>
-      <field name="res_model">odoo.clinic.patient</field>
-      <field name="view_mode">tree,form,graph,pivot</field>
-    </record>
+        <!-- explicit pivot view definition -->
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="lab1.action_server">
-      <field name="name">lab1 server</field>
-      <field name="model_id" ref="model_lab1_lab1"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+        <record model="ir.ui.view" id="patient_pivot">
+            <field name="name">odoo_clinic_management pivot</field>
+            <field name="model">odoo.clinic.patient</field>
+            <field name="arch" type="xml">
+                <pivot string="Timesheet">
 
-    <!-- Top menu item -->
+                    <field name="set_id" type="row"/>
+                    <field name="date"  type="col"/>
+                </pivot>
+            </field>
+        </record>
 
-<!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
+        <!-- explicit search view definition -->
 
-    <!-- menu categories -->
+        <record model="ir.ui.view" id="patient_search">
+            <field name="name">odoo_clinic_management search</field>
+            <field name="model">odoo.clinic.patient</field>
+            <field name="arch" type="xml">
+                <search string="Student Information">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="company_name"/>
+                    <field name="diseases"/>
+                    <field name="gender"/>
 
-    <menuitem name="patient" id="menu_4" parent="menu_root"/>
+                    <group expand="0" string="Group By">
+                        <filter name="name" string="patient" domain="[]" context="{'group_by':'id'}"
+                                help="Group patient name Wise"/>
+                        <filter name="company_name" string="company" domain="[]" context="{'group_by':'company_name'}"
+                                help="Group  company " />
+                        <filter name="create_date" context="{'group_by': 'create_date:month'}" string="Month"/>
+                    </group>
 
-    <!-- actions -->
+                </search>
+            </field>
+        </record>
 
-    <menuitem name="List patient" id="menu_4_list" parent="menu_4"
-              action="patient_action_window"/>
-<!--    <menuitem name="Server to list" id="lab1" parent="lab1.menu_2"-->
-<!--              action="special_action_server"/>-->
-  </data>
+        <record model="ir.actions.act_window" id="action_visit_view_list_in_patient">
+            <field name="name">Visit List</field>
+            <field name="res_model">visit.model</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'search_default_patient_name_computed':active_id}</field>
+            <field name="view_id" ref="view_visit_list"/>
+        </record>
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="patient_action_window">
+            <field name="name">Patient</field>
+            <field name="res_model">odoo.clinic.patient</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+        </record>
+
+
+
+        <!--    &lt;!&ndash; Top menu item &ndash;&gt;-->
+
+        <!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
+
+        <!-- menu categories -->
+
+        <menuitem name="Patients" id="menu_4" parent="menu_root" />
+
+        <!-- actions -->
+
+        <menuitem name="List patient" id="menu_4_list" parent="menu_4"
+                  action="patient_action_window"/>
+        <!--    <menuitem name="Server to list" id="lab1" parent="lab1.menu_2"-->
+        <!--              action="special_action_server"/>-->
+    </data>
 </odoo>
