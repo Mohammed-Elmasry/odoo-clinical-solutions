@@ -152,6 +152,7 @@
                 <field name="patient_class"/>
                 <field name="attending_doctor"/>
                 <field name="admitting_doctor"/>
+                <field name="product_name_computed"/>
                 <field name="start_time"/>
                 <field name="end_time"/>
             </tree>
