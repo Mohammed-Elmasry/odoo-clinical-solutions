@@ -134,8 +134,6 @@
                 <field name="referring_doctor"/>
                 <field name="hospital_service"/>
                    <group expand="0" string="Group By">
-                       <filter name="name" string="Set ID" domain="[]" context="{'group_by':'name'}"
-                               help="Group  by Set ID "/>
                        <filter name="attending_doctor" string="Attending Doctor" domain="[]"
                                context="{'group_by':'attending_doctor'}"
                                help="Group by Patient Name"/>
