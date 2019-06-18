@@ -129,6 +129,7 @@
             <search>
                 <field name="patient_name_computed"/>
                 <field name="patient_class"/>
+                <field name="product_name_computed"/>
                 <field name="attending_doctor"/>
                    <group expand="0" string="Group By">
                     <filter name="name" string="Set ID" domain="[]" context="{'group_by':'name'}"
