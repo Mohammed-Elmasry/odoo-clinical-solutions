@@ -88,8 +88,6 @@
                 <group expand="0" string="Group By">
                     <filter name="name" string="Employee or Doctor Name" domain="[]" context="{'group_by':'name'}"
                         help="Group  by Employee or Doctor name by name "/>
-                    <filter name="speciality" string="Speciality" domain="[]" context="{'group_by':'speciality'}"
-                        help="Group by Speciality"/>
                     <filter name="job_title" string="Job Title" domain="[]" context="{'group_by':'job_title'}"
                         help="Group by Job Title"/>
                     <filter name="role" string="Doctors" domain="[('role', '=', 'doctor')]"
@@ -101,6 +99,21 @@
                     <filter name="role" string="Officers" domain="[('role', '=', 'officer')]"
                             context="{'group_by':'role'}"
                             help="Group by Officers"/>
+                    <filter name="speciality" string="Registrar Speciality" domain="[('speciality', '=', 'registrar')]"
+                            context="{'group_by':'speciality'}"
+                        help="Group by Registrar Speciality"/>
+                    <filter name="speciality" string="Consultant Speciality" domain="[('speciality', '=', 'consultant')]"
+                            context="{'group_by':'speciality'}"
+                        help="Group by Registrar Speciality"/>
+                    <filter name="speciality" string="Intern Speciality" domain="[('speciality', '=', 'intern')]"
+                            context="{'group_by':'speciality'}"
+                            help="Group by Intern Speciality"/>
+                    <filter name="speciality" string="Fellowship Speciality" domain="[('speciality', '=', 'fellowship')]"
+                            context="{'group_by':'speciality'}"
+                            help="Group by Fellowship Speciality"/>
+                    <filter name="speciality" string="Resident Speciality" domain="[('speciality', '=', 'resident')]"
+                            context="{'group_by':'speciality'}"
+                            help="Group by Resident Speciality"/>
                 </group>
             </search>
         </field>
