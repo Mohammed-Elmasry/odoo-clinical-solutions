@@ -176,10 +176,9 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <graph string="Visits Data">
-                <field name="name" type="row"/>
-                <field name="visit_id" type="row" />
-                <field name="patient_name_computed" type="measure"/>
-                <field name="attending_doctor" type="measure"/>
+                <field name="patient_name_computed" type="row"/>
+                <field name="attending_doctor" type="row"/>
+                <field name="patient_class" type="row"/>
             </graph>
         </field>
     </record>
