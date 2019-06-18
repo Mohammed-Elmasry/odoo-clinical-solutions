@@ -14,14 +14,8 @@
 
                   <field name="obstetric_gynecological_history"/>
             </group>
-              <group col="4">
-                  <field name="time"/>
-                  <field name="patient"/>
-                  <field name="doctor" />
-                  <field name="visit"/>
 
-              </group>
-              <group string="medical history" col="10">
+              <group string="Medical history" col="10">
                     <field name="dm"/>
                     <field name="htn"/>
                     <field name="cardiac"/>
@@ -39,7 +33,7 @@
               </group>
 
 
-              <group string="vitual signs" col="9">
+              <group string="Vital Signs" col="9">
                     <field name="bp"/><span>mm Hg</span>
                     <field name="rr"/><span>/m</span>
                     <field name="hr"/><span>p/m</span>
@@ -62,7 +56,13 @@
                   <field name="drug_allergy"/>
 
               </group>
+              <group col="4">
+                  <field name="time" readonly="1"/>
+                  <field name="patient"/>
+                  <field name="doctor" readonly="1"/>
+                  <field name="visit" />
 
+              </group>
 
           </sheet>
         </form>
@@ -100,6 +100,7 @@
               <field name="drug_allergy"/>
               <field name="time"/>
               <field name="patient"/>
+              <field name="doctor"/>
 
         </tree>
       </field>
@@ -163,6 +164,16 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+            <record id="delete_cancelled_only" model="ir.rule">
+            <field name="name">Only cancelled leads may be deleted</field>
+            <field name="model_id" ref="model_odoo_clinic_medical"/>
+            <field name="groups" eval="[(4, ref('clinic_doctor'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1" />
+            <field name="domain_force">[('doctor.user_id','=',user.id)]</field>
+        </record>
     <!-- server action to the one above -->
     <!--
     <record model="ir.actions.server" id="lab1.action_server">
@@ -189,7 +200,7 @@
 
     <!-- actions -->
 
-    <menuitem name="Medical Sheets" id="menu_3_list" parent="menu_1"
+    <menuitem name="Medical Sheets" id="menu_31_list" parent="menu_0"
               action="medical_action_window"/>
 <!--    <menuitem name="Server to list" id="lab1" parent="lab1.menu_2"-->
 <!--              action="special_action_server"/>-->

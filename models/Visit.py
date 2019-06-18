@@ -6,23 +6,22 @@ import json
 class Visit(models.Model):
     _name = 'visit.model'
     _description = "visits that will be related to patients in the Clinic"
-    doctor = fields.Many2one('doctor.info.model')
+    doctor = fields.Many2one('doctor.info.model', domain="[('role', '=', 'doctor')]")
     patient = fields.Many2one('odoo.clinic.patient')
     services_and_products = fields.Many2one('product.template')
     sales_price = fields.Float(related="services_and_products.list_price", string="Service Price"
-                              , help="Service and Product Price Related to Doctor's Services")
-    patient_name = fields.Char(related="patient.name", String="Patient Name", help="Name of Patient")
+                               , help="Service and Product Price Related to Doctor's Services")
+    patient_name = fields.Char(related="patient.name", string="Patient Name", help="Name of Patient")
+    patient_name_computed = fields.Char(string="Patient Name", compute="get_patient_name", store=True)
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     doctor_name = fields.Char(related="doctor.name", string="Doctor Name", help="Doctor Name")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
-    visit_type = fields.Selection([('Medicalconsultation', 'Medical consultation'), ('CheckUp', 'Check Up')], string="Visit Type"
-                                  , help="To Detect The Type Of Visit")
-    end_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
                                   , help="To Detect The Type Of Visit")
     end_time = fields.Datetime(compute='calculate_end_time')
-    patient_class = fields.Char(string="Patient class", required='true')
+    patient_class = fields.Selection([('class1', 'Walking Patient'), ('class2', 'Insurance Patient')]
+                                     , string="Patient class", required='true')
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
     assigned_patient_location = fields.Text(string="Assigned Location")
@@ -30,8 +29,9 @@ class Visit(models.Model):
     preadmit_number = fields.Integer(string="Preadmit Number")
     prior_patient_location = fields.Text(string="Prior Location")
     attending_doctor = fields.Char(string="Attending doctor", help="Attending Doctor for This Visit"
-                                   , compute="assign_doctor_name_to_attending_doctor")
-    referring_doctor = fields.Selection([('value', 'No suggested values defined')], string="Referring Doctor")
+                                   , compute="assign_doctor_name_to_attending_doctor", store=True)
+    referring_doctor = fields.Char(string="Referring Doctor", help="Referring Doctor it is related"
+                                                                   " to Doctors Out Side Our Clinic")
     hospital_service = fields.Selection([('MED', 'Medical Service'),
                                          ('SUR', 'Surgical Service'),
                                          ('URO', 'Urology Service'),
@@ -57,7 +57,9 @@ class Visit(models.Model):
                                           ('B2', 'Special equipment (tubes, IVs, catheters)'),
                                           ('B3', 'Amputee')], string="Ambulatory Status")
     vip_indicator = fields.Char(string="VIP-Type")
-    admitting_doctor = fields.Selection([('value', 'No suggested values defined')], string="Admitting Doctor")
+    admitting_doctor = fields.Many2one('doctor.info.model', string="Admitting Doctor"
+                                       , help="This field contains the admitting physician information."
+                                       , domain="[('role', '=', 'doctor')]")
     patient_type = fields.Selection([('value', 'No suggested values defined')])
     visit_number = fields.Integer(string="Visit Number",
                                   help="This field contains the unique number assigned to each patient visit.")
@@ -120,7 +122,7 @@ class Visit(models.Model):
     total_charges = fields.Integer(string="Total Visit Charges", compute="get_current_charges"
                                    , help="This field contains the total visit charges.")
     total_adjustments = fields.Integer(string="Total Adjustments", help="This field contains the total adjustments "
-                                                                        "for visit.")
+                                                                        "for visit.", compute="get_total_adjustments")
     total_payments = fields.Integer(string="Total Payment", help="This field contains the total payments for visit.")
     alternate_visit_id = fields.Selection([('BCV', 'Bank Card Validation Number'),
                                            ('NPI', 'Check digit algorithm in the US National Provider Identifier'),
@@ -143,21 +145,55 @@ class Visit(models.Model):
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
     patient = fields.Many2one('odoo.clinic.patient')
-    visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'Inplace'),
-                                   ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')])
+    visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'In Place'),
+                                   ('Inprogress', 'In Progress'),('Done', 'Done'),('Canceled', 'Canceled')])
     sheet=fields.One2many('odoo.clinic.medical','visit')
-    # @api.model
-    # def create(self, vals):
-    #
-    #     vals['visit_id'] = self.env['ir.sequence']._create_sequence(1, 1)
-    #         # .next_by_code()
 
     @api.model
     def create(self, vals):
 
         vals['visit_id'] = self.env['ir.sequence'].next_by_code('clinic.visit')
+        vals['name'] = self.env['ir.sequence'].next_by_code('set_id')
         res = super(Visit, self).create(vals)
         return res
+
+    @api.depends('start_time')
+    def calculate_end_time(self):
+
+        for visit in self.filtered('start_time'):
+            delta = datetime.timedelta(minutes = 30)
+            visit.end_time = visit.start_time + delta
+
+    @api.depends('sales_price')
+    def get_current_charges(self):
+
+        for visit in self.filtered('sales_price'):
+            visit.total_charges = visit.sales_price
+
+    @api.depends('total_charges', 'total_payments')
+    def calculate_current_patient_balance(self):
+
+        for visit in self.filtered('total_charges'):
+            visit.current_patient_balance = visit.total_payments - visit.total_charges - visit.total_adjustments
+
+    @api.depends('doctor')
+    def assign_doctor_name_to_attending_doctor(self):
+
+        for visit in self.filtered('doctor'):
+            visit.attending_doctor = visit.doctor_name
+
+    @api.depends('patient_name')
+    def get_patient_name(self):
+
+        for visit in self.filtered('patient_name'):
+            visit.patient_name_computed = visit.patient_name
+
+    @api.depends('total_charges')
+    def get_total_adjustments(self):
+
+        for visit in self.filtered('total_charges'):
+            visit.total_adjustments = visit.total_charges * (-0.1)
+
 
     @api.depends('start_time')
     def calculate_end_time(self):
@@ -299,6 +335,10 @@ class Visit(models.Model):
     def button_confirmed(self):
         for rec in self:
                 rec.write({'visit_status': 'Comfirmed'})
+        # firebase = firebase.FirebaseApplication('https://your_storage.firebaseio.com', None)
+        # result = firebase.get('/user001', {'body': "welcome to our clinic your visit is confirmed in " ,
+        #                                    'title': "Hello " ,})
+        # print (result)
 
         try:
             url = 'https://fcm.googleapis.com/fcm/send'
@@ -320,8 +360,11 @@ class Visit(models.Model):
 
     @api.multi
     def button_inplace(self):
-           for rec in self:
-               rec.write({'visit_status': 'Inplace'})
+        for rec in self:
+            rec.write({'visit_status': 'Inplace'})
+        medical=self.env['odoo.clinic.medical'].create({"visit":self.name,"patient":self.patient.id})
+        print("kk",self.name)
+
     @api.multi
     def button_inprogress(self):
            for rec in self:

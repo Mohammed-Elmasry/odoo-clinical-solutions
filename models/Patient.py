@@ -1,9 +1,9 @@
 from odoo import models, fields, api
 
+
 class Patient(models.Model):
     _name = 'odoo.clinic.patient'
     _inherits = {'res.partner': 'partner_id'}
-
 
     partner_id = fields.Many2one('res.partner')
     mrn = fields.Char()

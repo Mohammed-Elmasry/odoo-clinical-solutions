@@ -1,4 +1,4 @@
-from odoo import fields, models,api
+from odoo import fields, models, api
 
 
 class DoctorInfo(models.Model):
@@ -6,11 +6,11 @@ class DoctorInfo(models.Model):
     _inherits = {'hr.employee': 'emp_id'}
 
     emp_id = fields.Many2one('hr.employee')
+    doctor_id = fields.Integer(string="Doctor ID", help="Auto Increment Field")
     user_id = fields.Many2one('res.users', related='emp_id.user_id')
     # user_id = fields.Many2one('res.users',compute='calculate_user',store=True)
     user=fields.Integer()
     # , related = 'emp_id.user_id'
-    doctor_id = fields.Integer(string="Doctor ID", help="Auto Increment Field")
     # employee_id = fields.Integer(help="ID Used In Buttons ")
     visit = fields.One2many('visit.model', 'doctor')
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True

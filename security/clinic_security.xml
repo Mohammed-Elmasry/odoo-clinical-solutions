@@ -11,11 +11,6 @@
     </record>
 
 
-<!--    <record model="ir.module.category" id="module_management">-->
-<!--      <field name="name">Doctors</field>-->
-<!--      <field name="description">doctors </field>-->
-<!--      <field name="sequence">2</field>-->
-<!--    </record>-->
 
 
 
