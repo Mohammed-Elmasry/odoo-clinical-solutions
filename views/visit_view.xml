@@ -131,6 +131,7 @@
                 <field name="product_name_computed"/>
                 <field name="attending_doctor"/>
                 <field name="referring_doctor"/>
+                <field name="hospital_service"/>
                    <group expand="0" string="Group By">
                     <filter name="name" string="Set ID" domain="[]" context="{'group_by':'name'}"
                         help="Group  by Set ID "/>
