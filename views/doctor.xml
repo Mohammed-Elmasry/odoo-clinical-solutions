@@ -88,8 +88,8 @@
                 <field name="speciality"/>
                 <field name="job_title"/>
                 <group expand="0" string="Group By">
-                    <filter name="name" string="Employee or Doctor" domain="[]" context="{'group_by':'name'}"
-                        help="Group  by Employee or Doctor name "/>
+                    <filter name="name" string="Employee or Doctor Name" domain="[]" context="{'group_by':'name'}"
+                        help="Group  by Employee or Doctor name by name "/>
                     <filter name="speciality" string="Speciality" domain="[]" context="{'group_by':'speciality'}"
                         help="Group by Speciality"/>
                     <filter name="job_title" string="Job Title" domain="[]" context="{'group_by':'job_title'}"
