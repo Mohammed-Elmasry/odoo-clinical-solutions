@@ -114,7 +114,7 @@
         <field name="name">Visits</field>
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
-            <calendar date_start="start_time" date_stop="end_time">
+            <calendar date_start="start_time" date_stop="end_time" quick_add="false">
                 <field name="name"/>
                 <field name="patient_name_computed"/>
                 <field name="attending_doctor"/>
@@ -183,7 +183,7 @@
             <pivot string="Visit Data and Information">
                 <field name="patient_name_computed" type="row"/>
                 <field name="attending_doctor" type="row"/>
-
+                <field name="product_name_computed" type="row"/>
             </pivot>
         </field>
     </record>
