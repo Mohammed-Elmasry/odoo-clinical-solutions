@@ -26,8 +26,6 @@
                         <field name="work_phone"/>
                         <field name="certificate"/>
                         <field name="speciality" attrs="{'invisible': ['|',('role', '=', 'officer'),('role','=','nurse')]}" />
-                        <!--                    attrs="{'invisible':[('role', '!=', 'officer')]}"-->
-                        <!-- attrs="{'visible':[('role', '!=', 'doctor')]}"-->
                     </group>
                     <group><field name="notes"/> </group>
                 </sheet>

@@ -15,7 +15,12 @@ class DoctorInfo(models.Model):
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True
                             , help="Employee's Role in Our Clinic")
     services_and_products = fields.Many2one('product.template')
-    speciality = fields.Char(size=50)
+    speciality = fields.Selection([
+        ('registrar', 'Registrar Doctor'),
+        ('consultant', 'Consultant Doctor'),
+        ('intern', 'Intern Doctor'),
+        ('fellowship', 'Fellowship Doctor'),
+        ('resident', 'Resident Doctor')])
     license_id = fields.Char(size=14, string="License ID", help="Licence ID Related to Employee in Our Clinic")
     gender = fields.Selection([
         ('male', 'Male'),
