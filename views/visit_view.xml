@@ -137,9 +137,12 @@
                     <filter name="attending_doctor" string="Attending Doctor" domain="[]"
                             context="{'group_by':'attending_doctor'}"
                         help="Group by Patient Name"/>
-                     <filter name="product_name_computed" string="Product or Service Name" domain="[]"
-                            context="{'group_by':'product_name_computed'}"
-                        help="Group by Patient and Services Name"/>
+                       <filter name="product_name_computed" string="Product or Service Name" domain="[]"
+                               context="{'group_by':'product_name_computed'}"
+                               help="Group by Patient and Services Name"/>
+                       <filter name="referring_doctor " string="Referring Doctor" domain="[]"
+                            context="{'group_by':'referring_doctor'}"
+                        help="Group by Referring Doctor Name"/>
                 </group>
             </search>
         </field>
