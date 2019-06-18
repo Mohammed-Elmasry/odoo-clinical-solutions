@@ -14,7 +14,8 @@ class Visit(models.Model):
     patient_name_computed = fields.Char(string="Patient Name", compute="get_patient_name", store=True)
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
     product_name = fields.Char(related="services_and_products.name")
-    product_name_computed = fields.Char(string="Service and Product Name", help="Product or Service  Name")
+    product_name_computed = fields.Char(compute="get_product_and_services_name"
+                                        , store=True, string="Service and Product Name", help="Product or Service  Name")
     doctor_name = fields.Char(related="doctor.name", string="Doctor Name", help="Doctor Name")
     visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
     start_time = fields.Datetime()
@@ -195,3 +196,8 @@ class Visit(models.Model):
         for visit in self.filtered('total_charges'):
             visit.total_adjustments = visit.total_charges * (-0.1)
 
+    @api.depends('product_name')
+    def get_product_and_services_name(self):
+
+        for visit in self.filtered('product_name'):
+            visit.product_name_computed = visit.product_name
