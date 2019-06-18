@@ -130,6 +130,7 @@
                 <field name="patient_name_computed"/>
                 <field name="product_name_computed"/>
                 <field name="attending_doctor"/>
+                <field name="admitting_doctor" />
                 <field name="referring_doctor"/>
                 <field name="hospital_service"/>
                    <group expand="0" string="Group By">
@@ -147,7 +148,9 @@
                        <filter name="hospital_service" string="Hospital Service" domain="[]"
                                context="{'group_by':'hospital_service'}"
                                help="Group by Hospital Service"/>
-
+                        <filter name="admitting_doctor" string="Admitting Doctor" domain="[]"
+                               context="{'group_by':'admitting_doctor'}"
+                               help="Group by Admitting Doctor"/>
                    </group>
             </search>
         </field>
