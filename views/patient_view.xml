@@ -8,13 +8,11 @@
             <field name="model">odoo.clinic.patient</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                        <button name="_compute_visit_count" string="visit count" class="oe_highlight" type="action"/>
-                    </header>
                     <sheet>
                         <div class="button_box">
                             <button class="oe_state_button" type="action" string="Visit List"
                                     name="%(action_visit_view_list_in_patient)d" icon="fa-list">
+                                <field name="visit_count" readonly="1" />
                             </button>
                         </div>
 
