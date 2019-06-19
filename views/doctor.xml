@@ -10,10 +10,13 @@
                         <button class="oe_state_button" type="action" string="Visit List   " name="%(action_visit_view_list)d" icon="fa-list">
                             <field name="visit_count" readonly="1" attrs="{'invisible': [('role', '!=', 'doctor')]}"/>
                         </button>
-                     </div>
+                    </div>
                     <group string="Personal Information" col="6">
                         <field name="name" required="1"/>
                         <field name="gender"/>
+
+                        <field name="user_id"/>
+
                         <field name="birthday"/>
                     </group>
                     <group string="Job Information" col="6">
@@ -129,16 +132,17 @@
         <field name="view_id" ref="view_visit_list"/>
 
     </record>
+
     <!--Action of our model-->
     <record model="ir.actions.act_window" id="employee_list_action">
-        <field name="name">Employees</field>
+        <field name="name">Doctors </field>
         <field name="res_model">doctor.info.model</field>
          <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Employee Data" id="menu_1" parent="menu_root"/>
-    <menuitem name="All Employees" id="menu_1_list" parent="menu_1"
+    <menuitem name="Configurations" id="menu_0" parent="menu_root"/>
+    <menuitem name="Doctor Data" id="menu_1_list" parent="menu_0"
               action="employee_list_action"/>
 
 </odoo>

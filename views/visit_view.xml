@@ -6,6 +6,20 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <form>
+                                <header>
+
+                    <button name="button_reset" string="Reset to Draft" class="oe_highlight"
+                           type="object"/>
+
+                    <button name="button_confirmed" string="Comfirmed" class="oe_highlight" type="object"/>
+                    <button name="button_inplace" string="In Place" class="oe_highlight" type="object"/>
+                    <button name="button_inprogress" string="In Progress" class="oe_highlight" type="object"/>
+                    <button name="button_done" string="Done" class="oe_highlight" type="object"/>
+                    <button name="cancel_visit"  string="Cancel Visit" type="object" />
+                                            <field name="visit_status" widget="statusbar"
+    statusbar_visible="Draft,Comfirmed,Inplace,Inprogress,Done,Canceled"/>
+
+                </header>
                 <sheet>
                     <group string="Basic Data" col="6">
                         <field name="patient_class"/>
@@ -114,7 +128,7 @@
         <field name="name">Visits</field>
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
-            <calendar date_start="start_time" date_stop="end_time" quick_add="false">
+            <calendar date_start="start_time" date_stop="end_time">
                 <field name="name"/>
                 <field name="patient_name_computed"/>
                 <field name="attending_doctor"/>
@@ -129,6 +143,9 @@
             <search>
                 <field name="patient_name_computed"/>
                 <field name="product_name_computed"/>
+                <field name="patient_name"/>
+                <field name="patient_class"/>
+                <field name="patient_type"/>
                 <field name="attending_doctor"/>
                 <field name="admitting_doctor" />
                 <field name="referring_doctor"/>
@@ -174,6 +191,7 @@
             </search>
         </field>
     </record>
+
     <!--    create view of visit List "tree"-->
     <record model="ir.ui.view" id="view_visit_list">
         <field name="name">Visit List</field>
@@ -247,12 +265,27 @@
     </record>
 
 
-    <menuitem name="Visits" id="menu_visit" parent="menu_root"/>
+            <record id="visit_login_doctor" model="ir.rule">
+            <field name="name">only patient for login doctor</field>
+            <field name="model_id" ref="model_visit_model"/>
+            <field name="groups" eval="[(4, ref('clinic_doctor'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1" />
+            <field name="domain_force">[('doctor.user_id','=',user.id)]</field>
+        </record>
+        <!-- Top menu item -->
+
+        <!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
+
+        <!-- menu categories -->
+<!--        <menuitem name="visits" id="menu_visit" parent="menu_root"/>-->
 
 
-    <!-- actions -->
-    <menuitem name="All visit" id="list_visit" parent="menu_visit"
-              action="visit_action_window"/>
+        <!-- actions -->
+        <menuitem name="  Visits" id="menu_5_list" parent="menu_1"
+                  action="visit_action_window"/>
 
 
 

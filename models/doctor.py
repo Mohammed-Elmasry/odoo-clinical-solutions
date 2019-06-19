@@ -30,8 +30,18 @@ class DoctorInfo(models.Model):
     birthday = fields.Date('Date of Birth', groups="hr.group_hr_user", required=True)
     job_title = fields.Char("Job Title", required=True)
     work_phone = fields.Char('Work Phone', required=True)
-    work_email = fields.Char('Work Email', required=True)
-    certificate = fields.Selection([
+    work_email = fields.Char('Work Email', required=True)        # print(self.emp_id.user_id)
+        # vals['user_id']= self.env['res.users'].search(args=[('id', '=', self.emp_id.user_id.id)])
+        # vals['user_id']="13"
+
+        # print(vals['user_id'])
+
+    certificate = fields.Selection([        # print(self.emp_id.user_id)
+        # vals['user_id']= self.env['res.users'].search(args=[('id', '=', self.emp_id.user_id.id)])
+        # vals['user_id']="13"
+
+        # print(vals['user_id'])
+
         ('bachelor', 'Bachelor'),
         ('master', 'Master'),
         ('other', 'Other'),
