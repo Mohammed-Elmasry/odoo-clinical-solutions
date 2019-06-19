@@ -2,7 +2,6 @@ from odoo import models, fields, api
 import datetime
 import requests
 import json
-
 class Visit(models.Model):
     _name = 'visit.model'
     _description = "visits that will be related to patients in the Clinic"
@@ -248,9 +247,11 @@ class Visit(models.Model):
                 pass
 
         if self.visit_status == "Inplace":
-            medical=self.env['odoo.clinic.medical'].create({"visit":self.name})
-            print (medical.visit_status)
-            print("kk",self.name)
+            medical=self.env['odoo.clinic.medical'].search(args=[('visit', '=',self.name)])
+            if not medical.exists() :
+                medical=self.env['odoo.clinic.medical'].create({"visit":self.name})
+                print (medical.visit_status)
+                print("kk",self.name)
 
     @api.depends('total_charges', 'total_payments')
     def calculate_current_patient_balance(self):
@@ -345,7 +346,7 @@ class Visit(models.Model):
             payload = {
                 "notification": {
                     "title": "Hello " + self.patient.name,
-                    "body": "welcome to our clinic your visit is confirmed in " + str(self.start_time)
+                     "body": "welcome to our clinic your visit is confirmed in " + str(self.start_time)
                 },
                 "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
             }

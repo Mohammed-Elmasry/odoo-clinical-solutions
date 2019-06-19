@@ -6,7 +6,7 @@ import json, datetime
 class ClinicalManagementSystem(http.Controller):
 
     @http.route('/clinical_management_system/patient', type="http", auth="none", methods=['get'], cors="*")
-    def get_patient(self, patient_id):
+    def get_patient_visit(self, patient_id):
         record = http.request.env['odoo.clinic.patient'].sudo().browse(int(patient_id))
         print(record.name)
         patient = {}
@@ -29,7 +29,7 @@ class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/patient/<model("odoo.clinic.patient"):patient>/', type="http",
                 auth="none", cors="*")
     def get_patient_data(self, patient):
-        return self.get_patient(patient.id)
+        return self.get_patient_visit(patient.id)
 
 
     @http.route('/clinical_management_system/patients/', type="http", auth="public", methods=['get'])
@@ -50,10 +50,6 @@ class ClinicalManagementSystem(http.Controller):
 
 
 
-    @http.route('/clinical_management_system/medical/patient/<model("odoo.clinic.patient"):patient>/', type="http",
-                auth="none", cors="*")
-    def get_patient_medical(self, patient):
-        return self.get_patient(patient.id)
 
 
     @http.route('/clinical_management_system/patient/new/', type="http", auth="none", methods=['POST'], cors="*",
@@ -81,74 +77,142 @@ class ClinicalManagementSystem(http.Controller):
 
         print(patient["id"])
         record = http.request.env['odoo.clinic.patient'].sudo().search(args=[('id', '=', str(patient["id"]))])
+        record.write({"token": patient["token"]})
+
         return json.dumps("done")
 
         # record = http.request.env['odoo.clinic.patient'].sudo().search(args=[('id', '=', patient["id"])])
         # print(record.name)
-        record.write({"token": patient["token"]})
+
+
+    @http.route('/clinical_management_system/medical/patient/<model("odoo.clinic.patient"):patient>/', type="http",
+                auth="none", cors="*")
+    def get_patient_medical(self, patient):
+        return self.get_patient(patient.id)
 
 
 
+    @http.route('/clinical_management_system/medical/patient', type="http", auth="none", methods=['get'], cors="*")
+    def get_medical(self, patient_id):
+        record = http.request.env['odoo.clinic.patient'].sudo().browse(int(patient_id))
+        medical = []
+        for t in range(len(record.medical)):
+            print(record.medical[t].dm)
+            medical.append({"obstetric_gynecological_history"+str(t) :record.medical[t].obstetric_gynecological_history,
+                            "dm"+str(t) :record.medical[t].dm,
+                            "time" + str(t): str(record.medical[t].time),
+                            "patient" + str(t): record.medical[t].patient.name,
+                            "doctor" + str(t): record.medical[t].doctor.name,
+                            "htn"+str(t) :record.medical[t].htn,
+                            "cardiac"+str(t) :record.medical[t].cardiac,
+                            "heptic" + str(t): record.medical[t].heptic,
+                            "renal" + str(t): record.medical[t].renal,
+                            "others" + str(t): record.medical[t].others,
+                            "surgical_history" + str(t): record.medical[t].surgical_history,
+                            "bp" + str(t): str(record.medical[t].bp) +"mm Hg",
+                            "rr" + str(t): str(record.medical[t].rr) +" /m",
+                            "hr" + str(t): str(record.medical[t].hr) + "p/m",
+                            "temp" +str(t): str(record.medical[t].temp) + "c",
+                            "fhc" + str(t): record.medical[t].fhc,
+                            "weight" + str(t): record.medical[t].weight,
+                            "obese" + str(t): record.medical[t].obese,
+                            "averageweight" + str(t): record.medical[t].average_weight,
+                            "underweight" + str(t): record.medical[t].under_weight,
+
+                            "examination" + str(t): record.medical[t].examination,
+                            "drugallergy" + str(t): record.medical[t].drug_allergy,
+                            })
+        return json.dumps(medical)
 
 
-@http.route('/clinical_management_system/medical/visit', type="http", auth="none", methods=['get'], cors="*")
-def get_visit(self, visit_id):
-    record = http.request.env['visit.model'].sudo().search(args=[('visit_id', '=', visit_id)])
-    medical = []
-    # print(record.sheet[1].dm)
-    #
-    # for t in range(len(record.sheet)):
-    #     print(record.medical[t].dm)
-    medical.append({"obstetricgynecologicalhistory": record.sheet.obstetric_gynecological_history,
+    @http.route('/clinical_management_system/medical/visit', type="http", auth="none", methods=['get'], cors="*")
+    def get_visit(self, visit_id):
 
-                    "dm": record.sheet.dm,
-                    "time": str(record.sheet.time),
-                    "patient": record.sheet.patient.name,
-                    "doctor": record.sheet.doctor.name,
-                    "htn": record.sheet.htn,
-                    "cardiac": record.sheet.cardiac,
-                    "heptic": record.sheet.heptic,
-
-                    "renal": record.sheet.renal,
-                    "others": record.sheet.others,
-                    "surgical_history": record.sheet.surgical_history,
-                    "bp": str(record.sheet.bp) + "mm Hg",
-                    "rr": str(record.sheet.rr) + " /m",
-                    "hr": str(record.sheet.hr) + "p/m",
-                    "temp": str(record.sheet.temp) + "c",
-                    "fhc": record.sheet.fhc,
-                    "weight": record.sheet.weight,
-                    "obese": record.sheet.obese,
-                    "average_weight": record.sheet.average_weight,
-                    "under_weight": record.sheet.under_weight,
-
-                    "examination": record.sheet.examination,
-                    "drug_allergy": record.sheet.drug_allergy,
-                    })
-    return json.dumps(medical)
+        record = http.request.env['visit.model'].sudo().search(args=[('visit_id', '=', visit_id)])
+        medical = []
+        # print(record.sheet[1].dm)
+        #
+        #     print(record.medical[t].dm)
+        try:
+            medical.append({"obstetricgynecologicalhistory": record.sheet.obstetric_gynecological_history,
+                            "dm": record.sheet.dm,
+                            "time": str(record.sheet.time),
+                            "patient": record.sheet.patient.name,
+                            "doctor": record.sheet.doctor.name,
+                            "htn": record.sheet.htn,
+                            "cardiac": record.sheet.cardiac,
+                            "heptic": record.sheet.heptic,
+                            "renal": record.sheet.renal,
+                            "others": record.sheet.others,
+                            "surgical_history": record.sheet.surgical_history,
+                            "bp": str(record.sheet.bp) + "mm Hg",
+                            "rr": str(record.sheet.rr) + " /m",
+                            "hr": str(record.sheet.hr) + "p/m",
+                            "temp": str(record.sheet.temp) + "c",
+                            "fhc": record.sheet.fhc,
+                            "weight": record.sheet.weight,
+                            "obese": record.sheet.obese,
+                            "averageweight": record.sheet.average_weight,
+                            "underweight": record.sheet.under_weight,
+                            "examination": record.sheet.examination,
+                            "drugallergy": record.sheet.drug_allergy,
+                            })
+            return json.dumps(medical)
+        except:
+            pass
+            # for t in range(len(record.medical)):
+            # print(record.medical[t].dm)
+            #
+            # if  len(record.sheet) > 1:
+                # medical.append(
+                # {"obstetricgynecologicalhistory": record.sheet[2].obstetric_gynecological_history})
+                 # "dm" : record.sheet[0].dm,
+                 # "time" : str(record.sheet[0].time),
+                 # "patient" : record.sheet[0].patient.name,
+                 # "doctor" : record.sheet[0].doctor.name,
+                 # "htn" : record.sheet[0].htn,
+                 # "cardiac" : record.sheet[0].cardiac,
+                 # "heptic" : record.sheet[0].heptic,
+                 # "renal" : record.sheet[0].renal,
+                 # "others" : record.sheet[0].others,
+                 # "surgical_history" : record.sheet[0].surgical_history,
+                 # "bp" : str(record.sheet[0].bp) + "mm Hg",
+                 # "rr" : str(record.sheet[0].rr) + " /m",
+                 # "hr" : str(record.sheet[0].hr) + "p/m",
+                 # "temp" : str(record.sheet[0].temp) + "c",
+                 # "fhc" : record.sheet[0].fhc,
+                 # "weight" : record.sheet[0].weight,
+                 # "obese" : record.sheet[0].obese,
+                 # "averageweight" : record.sheet[0].average_weight,
+                 # "underweight" : record.sheet[0].under_weight,
+                 #
+                 # "examination" : record.sheet[0].examination,
+                 # "drugallergy" : record.sheet[0].drug_allergy,
+                 # })
+            return json.dumps(medical)
     # return json.dumps(record.start_time)
 
 
-@http.route('/clinical_management_system/medical/visit/<model("visit.model"):visit>/', type="http",
-            auth="none", cors="*")
-def get_visit_medical(self, visit):
-    return self.get_visit(visit.id)
+    @http.route('/clinical_management_system/medical/visit/<model("visit.model"):visit>/', type="http",
+                auth="none", cors="*")
+    def get_visit_medical(self, visit):
+        return self.get_visit(visit.id)
 
 
-@http.route('/clinical_management_system/visit/status', type="http", auth="none", methods=['POST'], cors="*",
-            csrf=False)
-def update_visit(self, **params):
-    visit = json.loads(http.request.httprequest.data)
+    @http.route('/clinical_management_system/visit/status', type="http", auth="none", methods=['POST'], cors="*",
+                csrf=False)
+    def update_visit(self, **params):
+        visit = json.loads(http.request.httprequest.data)
 
-    print(visit["id"])
-    record = http.request.env['visit.model'].sudo().search(args=[('visit_id', '=', str(visit["id"]))])
+        print(visit["id"])
+        record = http.request.env['visit.model'].sudo().search(args=[('visit_id', '=', str(visit["id"]))])
 
-    # record = http.request.env['odoo.clinic.patient'].sudo().search(args=[('id', '=', patient["id"])])
-    # print(record.name)
-    record.write({"visit_status": "Canceled"})
-    # record.unlink()
-    print(record.visit_status)
-    return json.dumps("true")
+        # record = http.request.env['odoo.clinic.patient'].sudo().search(args=[('id', '=', patient["id"])])
+        # print(record.name)
+        record.write({"visit_status": "Canceled"})
+        # record.unlink()
+        print(record.visit_status)
+        return json.dumps("true")
 
 
 

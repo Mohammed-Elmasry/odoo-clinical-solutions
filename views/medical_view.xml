@@ -77,30 +77,20 @@
       <field name="model">odoo.clinic.medical</field>
       <field name="arch" type="xml">
         <tree>
-              <field name="obstetric_gynecological_history"/>
+                 <field name="obstetric_gynecological_history"/>
             <field name="dm"/>
 
-             <field name="htn"/>
-
-              <field name="cardiac"/>
-              <field name="heptic"/>
-              <field name="renal"/>
               <field name="others"/>
               <field name="surgical_history"/>
-              <field name="bp"/>
-              <field name="rr"/>
-              <field name="hr"/>
               <field name="temp"/>
-              <field name="fhc"/>
               <field name="weight"/>
-              <field name="obese"/>
-              <field name="average_weight"/>
-              <field name="under_weight"/>
               <field name="examination"/>
               <field name="drug_allergy"/>
               <field name="time"/>
               <field name="patient"/>
               <field name="doctor"/>
+              <field name="visit"/>
+
 
         </tree>
       </field>
