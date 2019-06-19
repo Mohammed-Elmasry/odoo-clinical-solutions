@@ -385,7 +385,7 @@ class Visit(models.Model):
     def button_inplace(self):
         for rec in self:
             rec.write({'visit_status': 'Inplace'})
-        medical=self.env['odoo.clinic.medical'].create({"visit":int(self.name),"patient":self.patient.id})
+        medical=self.env['odoo.clinic.medical'].create({"visit":self.id,"patient":self.patient.id})
         print("kk",self.name)
 
     @api.multi

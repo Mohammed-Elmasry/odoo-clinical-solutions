@@ -283,7 +283,7 @@
 
 
         <!-- actions -->
-        <menuitem name="  Visits" id="menu_5_list" parent="menu_0"
+        <menuitem name="  Visits" id="menu_5_list" parent="menu_1"
                   action="visit_action_window"/>
 
 

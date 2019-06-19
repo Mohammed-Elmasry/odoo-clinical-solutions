@@ -190,7 +190,7 @@
 
     <!-- actions -->
 
-    <menuitem name="Medical Sheets" id="menu_31_list" parent="menu_0"
+    <menuitem name="Medical Sheets" id="menu_3_list" parent="menu_1"
               action="medical_action_window"/>
 <!--    <menuitem name="Server to list" id="lab1" parent="lab1.menu_2"-->
 <!--              action="special_action_server"/>-->

@@ -159,37 +159,38 @@ class ClinicalManagementSystem(http.Controller):
                             })
             return json.dumps(medical)
         except:
-            pass
-            # for t in range(len(record.medical)):
+            # print(record)
+            # pass
+            for t in range(len(record.sheet)):
             # print(record.medical[t].dm)
-            #
-            # if  len(record.sheet) > 1:
-                # medical.append(
-                # {"obstetricgynecologicalhistory": record.sheet[2].obstetric_gynecological_history})
-                 # "dm" : record.sheet[0].dm,
-                 # "time" : str(record.sheet[0].time),
-                 # "patient" : record.sheet[0].patient.name,
-                 # "doctor" : record.sheet[0].doctor.name,
-                 # "htn" : record.sheet[0].htn,
-                 # "cardiac" : record.sheet[0].cardiac,
-                 # "heptic" : record.sheet[0].heptic,
-                 # "renal" : record.sheet[0].renal,
-                 # "others" : record.sheet[0].others,
-                 # "surgical_history" : record.sheet[0].surgical_history,
-                 # "bp" : str(record.sheet[0].bp) + "mm Hg",
-                 # "rr" : str(record.sheet[0].rr) + " /m",
-                 # "hr" : str(record.sheet[0].hr) + "p/m",
-                 # "temp" : str(record.sheet[0].temp) + "c",
-                 # "fhc" : record.sheet[0].fhc,
-                 # "weight" : record.sheet[0].weight,
-                 # "obese" : record.sheet[0].obese,
-                 # "averageweight" : record.sheet[0].average_weight,
-                 # "underweight" : record.sheet[0].under_weight,
-                 #
-                 # "examination" : record.sheet[0].examination,
-                 # "drugallergy" : record.sheet[0].drug_allergy,
-                 # })
-            return json.dumps(medical)
+                print(t)
+                if t ==0:
+                        medical.append(
+                        {"obstetricgynecologicalhistory": record.sheet[t].obstetric_gynecological_history,
+                         "dm" : record.sheet[0].dm,
+                         "time" : str(record.sheet[0].time),
+                         "patient" : record.sheet[0].patient.name,
+                         "doctor" : record.sheet[0].doctor.name,
+                         "htn" : record.sheet[0].htn,
+                         "cardiac" : record.sheet[0].cardiac,
+                         "heptic" : record.sheet[0].heptic,
+                         "renal" : record.sheet[0].renal,
+                         "others" : record.sheet[0].others,
+                         "surgical_history" : record.sheet[0].surgical_history,
+                         "bp" : str(record.sheet[0].bp) + "mm Hg",
+                         "rr" : str(record.sheet[0].rr) + " /m",
+                         "hr" : str(record.sheet[0].hr) + "p/m",
+                         "temp" : str(record.sheet[0].temp) + "c",
+                         "fhc" : record.sheet[0].fhc,
+                         "weight" : record.sheet[0].weight,
+                         "obese" : record.sheet[0].obese,
+                         "averageweight" : record.sheet[0].average_weight,
+                         "underweight" : record.sheet[0].under_weight,
+
+                         "examination" : record.sheet[0].examination,
+                         "drugallergy" : record.sheet[0].drug_allergy,
+                         })
+                return json.dumps(medical)
     # return json.dumps(record.start_time)
 
 
