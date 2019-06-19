@@ -111,7 +111,7 @@
             <field name="view_mode">tree,form,graph,pivot,search</field>
         </record>
 
-        <record model="ir.actions.act_window" id="clinical_management_system.action_window">
+        <record model="ir.actions.act_window" id="product_action_window">
             <field name="name">clinical_management_system window</field>
             <field name="res_model">product.template</field>
             <field name="view_mode">tree,form</field>
@@ -121,7 +121,7 @@
         <!--      <menuitem id="menu_custom_left" parent="menu_custom_toplevel" name="This will appear in the left bar"/>-->
         <!--      <menuitem id="menu_all_services" parent="menu_custom_left" action="clinical_management_system.action_window" />-->
 
-        <record model="ir.ui.view" id="clinical_management_system.list">
+        <record model="ir.ui.view" id="list">
             <field name="name">clinical_management_system list</field>
             <field name="model">product.template</field>
             <field name="arch" type="xml">
@@ -153,8 +153,8 @@
 
 
         <menuitem name="Products" id="menu_1_list" parent="menu_root"
-                  action="action_all_services_tree"/>
-        <menuitem name="Services" id="menu_2_list" parent="menu_root"
+                  action="product_action_window"/>
+        <menuitem name="Services" id="menu_2_list" parent="menu_0"
                   action="action_all_services_tree"/>
 
 

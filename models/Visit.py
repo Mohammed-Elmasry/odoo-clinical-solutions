@@ -15,14 +15,19 @@ class Visit(models.Model):
     patient_name = fields.Char(related="patient.name", string="Patient Name", help="Name of Patient")
     patient_name_computed = fields.Char(string="Patient Name", compute="get_patient_name", store=True)
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
+    product_name = fields.Char(related="services_and_products.name")
+    product_name_computed = fields.Char(compute="get_product_and_services_name"
+                                        , store=True, string="Service and Product Name",
+                                        help="Product or Service  Name")
     doctor_name = fields.Char(related="doctor.name", string="Doctor Name", help="Doctor Name")
-    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
+    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic "
+                                 , compute="count_visits")
     start_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
                                   , help="To Detect The Type Of Visit")
     end_time = fields.Datetime(compute='calculate_end_time')
     patient_class = fields.Selection([('class1', 'Walking Patient'), ('class2', 'Insurance Patient')]
-                                     , string="Patient class", required='true')
+                                     , string="Patient class")
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
     assigned_patient_location = fields.Text(string="Assigned Location")
@@ -60,7 +65,7 @@ class Visit(models.Model):
     vip_indicator = fields.Char(string="VIP-Type")
     admitting_doctor = fields.Many2one('doctor.info.model', string="Admitting Doctor"
                                        , help="This field contains the admitting physician information."
-                                       , domain="[('role', '=', 'doctor')]")
+                                       , domain="[('role', '=', 'doctor')]", store=True)
     patient_type = fields.Selection([('value', 'No suggested values defined')])
     visit_number = fields.Integer(string="Visit Number",
                                   help="This field contains the unique number assigned to each patient visit.")
@@ -101,8 +106,8 @@ class Visit(models.Model):
     bad_debt_recovery_amount = fields.Integer(string="Amount of Bad Debt Recovery")
     delete_account_indicator = fields.Selection([('value', 'No suggested values defined')],
                                                 string="Delete Account Indicator"
-                                                ,help="This field indicates that the account was deleted from "
-                                                      "the file")
+                                                , help="This field indicates that the account was deleted from "
+                                                       "the file")
     delete_account_indicator_reasons = fields.Text(string="Reasons Of Delete Account"
                                                    , help="gives the reason for delete the account ")
     delete_account_date = fields.Date(string="Delete Account Date")
@@ -147,7 +152,8 @@ class Visit(models.Model):
     service_episode_identifier = fields.Integer(string="Service Identifier")
     patient = fields.Many2one('odoo.clinic.patient')
     visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'Inplace'),
-                                   ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')])
+                                   ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')],
+                                  default='Draft')
     sheet=fields.One2many('odoo.clinic.medical','visit')
 
     @api.model
@@ -195,6 +201,19 @@ class Visit(models.Model):
         for visit in self.filtered('total_charges'):
             visit.total_adjustments = visit.total_charges * (-0.1)
 
+    @api.depends('product_name')
+    def get_product_and_services_name(self):
+
+        for visit in self.filtered('product_name'):
+            visit.product_name_computed = visit.product_name
+
+    def count_visits(self):
+
+        for visit in self:
+            visits = self.env['visit.model'].search(args=[])
+            count = len(visits)
+            visit.count = count
+            visit.visit_count = visit.count
 
     @api.depends('start_time')
     def calculate_end_time(self):
@@ -213,39 +232,47 @@ class Visit(models.Model):
     def on_change_state(self):
         print (self.visit_status)
         if self.visit_status=="Comfirmed":
-            url = 'https://fcm.googleapis.com/fcm/send'
-            payload = {
-              "notification": {
-               "title": "Hello "+self.patient.name,
-               "body": "welcome to our clinic your visit is confirmed in " +str(self.start_time)
-              },
-              "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
-            }
-            headers = {'content-type': 'application/json','Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
+            try:
+                url = 'https://fcm.googleapis.com/fcm/send'
+                payload = {
+                  "notification": {
+                   "title": "Hello "+self.patient.name,
+                   "body": "welcome to our clinic your visit is confirmed in " +str(self.start_time)
+                  },
+                  "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+                }
+                headers = {'content-type': 'application/json','Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
 
 
-            r = requests.post(url, data=json.dumps(payload), headers=headers)
-            print(r.json)
+                r = requests.post(url, data=json.dumps(payload), headers=headers)
+                print(r.json)
+            except:
+                pass
         if self.visit_status=="Done":
-            url = 'https://fcm.googleapis.com/fcm/send'
-            payload = {
-              "notification": {
-               "title": "Hello "+self.patient.name,
-               "body": "Thank you for attend in time and now you can see all details about visit "
-              },
-              "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
-            }
-            headers = {'content-type': 'application/json','Aut'
-                                                          'horization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
+            try:
+                url = 'https://fcm.googleapis.com/fcm/send'
+                payload = {
+                  "notification": {
+                   "title": "Hello "+self.patient.name,
+                   "body": "Thank you for attend in time and now you can see all details about visit "
+                  },
+                  "to" : "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+                }
+                headers = {'content-type': 'application/json','Aut'
+                                                              'horization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
 
 
-            r = requests.post(url, data=json.dumps(payload), headers=headers)
-            print(r.json)
+                r = requests.post(url, data=json.dumps(payload), headers=headers)
+                print(r.json)
+            except:
+                pass
 
         if self.visit_status == "Inplace":
-            medical=self.env['odoo.clinic.medical'].create({"visit":self.name})
-            print (medical.visit_status)
-            print("kk",self.name)
+            medical=self.env['odoo.clinic.medical'].search(args=[('visit', '=',self.name)])
+            if not medical.exists() :
+                medical=self.env['odoo.clinic.medical'].create({"visit":self.name})
+                print (medical.visit_status)
+                print("kk",self.name)
 
     @api.depends('total_charges', 'total_payments')
     def calculate_current_patient_balance(self):
@@ -261,44 +288,106 @@ class Visit(models.Model):
     @api.multi
     def cancel_visit(self):
         # visit=self.env['visit.model'].write({"visit_status": "Canceled"})
-        self.visit_status="Canceled"
+        # self.visit_status="Canceled"
+        for rec in self:
+            rec.write({'visit_status': 'Canceled'})
+        try:
+            url = 'https://fcm.googleapis.com/fcm/send'
+            payload = {
+                "notification": {
+                    "title": "Hello " + self.patient.name,
+                    "body": "We are very sorry this visit is canceled "
+                },
+                "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+            }
+            headers = {'content-type': 'application/json', 'Aut'
+                                                           'horization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
 
-        print(visit_status)
-        print(self.visit_status)
-        url = 'https://fcm.googleapis.com/fcm/send'
-        payload = {
-            "notification": {
-                "title": "Hello " + self.patient.name,
-                "body": "We are very sorry this visit is canceled "
-            },
-            "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
-        }
-        headers = {'content-type': 'application/json', 'Aut'
-                                                       'horization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
-
-        r = requests.post(url, data=json.dumps(payload), headers=headers)
-        print(r.json)
+            r = requests.post(url, data=json.dumps(payload), headers=headers)
+            print(r.json)
+        except:
+            pass
     @api.multi
     def button_done(self):
        for rec in self:
            rec.write({'visit_status': 'Done'})
 
+       try:
+            url = 'https://fcm.googleapis.com/fcm/send'
+            payload = {
+                "notification": {
+                    "title": "Hello " + self.patient.name,
+                    "body": "Thank you for attend in time and now you can see all details about visit "
+                },
+                "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+            }
+            headers = {'content-type': 'application/json', 'Aut'
+                                                           'horization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
+
+            r = requests.post(url, data=json.dumps(payload), headers=headers)
+            print(r.json)
+       except:
+            pass
+
     @api.multi
     def button_cancel(self):
         for rec in self:
             rec.write({'visit_status': 'Canceled'})
+        try:
+            url = 'https://fcm.googleapis.com/fcm/send'
+            payload = {
+                "notification": {
+                    "title": "Hello " + self.patient.name,
+                    "body": "We are very sorry this visit is canceled "
+                },
+                "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+            }
+            headers = {'content-type': 'application/json', 'Aut'
+                                                           'horization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
+
+            r = requests.post(url, data=json.dumps(payload), headers=headers)
+            print(r.json)
+        except:
+            pass
     @api.multi
     def button_reset(self):
            for rec in self:
                rec.write({'visit_status': 'Draft'})
     @api.multi
     def button_confirmed(self):
-           for rec in self:
-               rec.write({'visit_status': 'Comfirmed'})
+        for rec in self:
+                rec.write({'visit_status': 'Comfirmed'})
+        # firebase = firebase.FirebaseApplication('https://your_storage.firebaseio.com', None)
+        # result = firebase.get('/user001', {'body': "welcome to our clinic your visit is confirmed in " ,
+        #                                    'title': "Hello " ,})
+        # print (result)
+
+        try:
+            url = 'https://fcm.googleapis.com/fcm/send'
+            payload = {
+                "notification": {
+                    "title": "Hello " + self.patient.name +str(datetime.datetime.now()),
+                     "body": "welcome to our clinic your visit is confirmed in " + str(self.start_time),
+                    "date":str(datetime.datetime.now())
+                },
+                "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
+            }
+            headers = {'content-type': 'application/json',
+                       'Authorization': 'key=AAAAhnraShA:APA91bFZvJR5Y1KlMPSyORRdAuLaWD4zQ61jzwt_AjXFqPYbROO23e1gmbrUysHNURvpGFP7EPFUIMl_SUwCvBWSFtympRs6uFy1W_yE40ivfr9YP_I1SfJQVqXtdzQkPNd-ByA5aBjU'}
+
+            r = requests.post(url, data=json.dumps(payload), headers=headers)
+            print(r.json)
+        except:
+            pass
+
+
     @api.multi
     def button_inplace(self):
-           for rec in self:
-               rec.write({'visit_status': 'Inplace'})
+        for rec in self:
+            rec.write({'visit_status': 'Inplace'})
+        medical=self.env['odoo.clinic.medical'].create({"visit":int(self.name),"patient":self.patient.id})
+        print("kk",self.name)
+
     @api.multi
     def button_inprogress(self):
            for rec in self:

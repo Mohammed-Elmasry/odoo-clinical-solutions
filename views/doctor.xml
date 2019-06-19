@@ -6,13 +6,16 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                     <div class="button_box">
+                    <div class="button_box">
                         <button class="oe_state_button" type="action" string="Visit List" name="%(action_visit_view_list)d" icon="fa-list">
+                            <field name="visit_count" readonly="1"/>
                         </button>
-                     </div>
+                    </div>
                     <group string="Personal Information" col="6">
                         <field name="name" required="1"/>
                         <field name="gender"/>
+                        <field name="user_id"/>
+
                         <field name="birthday"/>
                     </group>
                     <group string="Job Information" col="6">
@@ -24,9 +27,7 @@
                         <field name="mobile_phone"/>
                         <field name="work_phone"/>
                         <field name="certificate"/>
-                        <field name="speciality"/>
-                        <!--                    attrs="{'invisible':[('role', '!=', 'officer')]}"-->
-                        <!-- attrs="{'visible':[('role', '!=', 'doctor')]}"-->
+                        <field name="speciality" attrs="{'invisible': ['|',('role', '=', 'officer'),('role','=','nurse')]}" />
                     </group>
                     <group><field name="notes"/> </group>
                 </sheet>
@@ -39,6 +40,11 @@
         <field name="model">doctor.info.model</field>
         <field name="arch" type="xml">
             <tree string="Info List">
+                        <field name="user_id"/>
+
+
+                                <field name="id"></field>
+
                 <field name="name"></field>
                 <field name="role"></field>
                 <field name="job_title"></field>
@@ -87,38 +93,58 @@
                 <field name="speciality"/>
                 <field name="job_title"/>
                 <group expand="0" string="Group By">
-                    <filter name="name" string="Employee or Doctor" domain="[]" context="{'group_by':'name'}"
-                        help="Group  by Employee or Doctor name "/>
-                    <filter name="name" string="Speciality" domain="[]" context="{'group_by':'speciality'}"
-                        help="Group by Speciality"/>
-                    <filter name="name" string="Job Title" domain="[]" context="{'group_by':'job_title'}"
+                    <filter name="name" string="Employee or Doctor Name" domain="[]" context="{'group_by':'name'}"
+                        help="Group  by Employee or Doctor name by name "/>
+                    <filter name="job_title" string="Job Title" domain="[]" context="{'group_by':'job_title'}"
                         help="Group by Job Title"/>
-
+                    <filter name="role" string="Doctors" domain="[('role', '=', 'doctor')]"
+                            context="{'group_by':'role'}"
+                            help="Group by Doctors"/>
+                    <filter name="role" string="Nurses" domain="[('role', '=', 'nurse')]"
+                            context="{'group_by':'role'}"
+                            help="Group by Nurses"/>
+                    <filter name="role" string="Officers" domain="[('role', '=', 'officer')]"
+                            context="{'group_by':'role'}"
+                            help="Group by Officers"/>
+                    <filter name="speciality" string="Registrar Speciality" domain="[('speciality', '=', 'registrar')]"
+                            context="{'group_by':'speciality'}"
+                        help="Group by Registrar Speciality"/>
+                    <filter name="speciality" string="Consultant Speciality" domain="[('speciality', '=', 'consultant')]"
+                            context="{'group_by':'speciality'}"
+                        help="Group by Registrar Speciality"/>
+                    <filter name="speciality" string="Intern Speciality" domain="[('speciality', '=', 'intern')]"
+                            context="{'group_by':'speciality'}"
+                            help="Group by Intern Speciality"/>
+                    <filter name="speciality" string="Fellowship Speciality" domain="[('speciality', '=', 'fellowship')]"
+                            context="{'group_by':'speciality'}"
+                            help="Group by Fellowship Speciality"/>
+                    <filter name="speciality" string="Resident Speciality" domain="[('speciality', '=', 'resident')]"
+                            context="{'group_by':'speciality'}"
+                            help="Group by Resident Speciality"/>
                 </group>
             </search>
         </field>
     </record>
-
-<!--           action for the buttons to display the list of visits-->
+    <!--           action for the buttons to display the list of visits-->
     <record model="ir.actions.act_window" id="action_visit_view_list">
         <field name="name">Visit List</field>
         <field name="res_model">visit.model</field>
         <field name="view_type">form</field>
 
-        <field name="context">{'search_default_attending_doctor':active_id}</field>
+        <field name="context">{'search_default_doctor':active_id}</field>
         <field name="view_id" ref="view_visit_list"/>
 
     </record>
+
     <!--Action of our model-->
     <record model="ir.actions.act_window" id="employee_list_action">
-        <field name="name">Employees</field>
+        <field name="name">Doctors </field>
         <field name="res_model">doctor.info.model</field>
-         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Employee Data" id="menu_1" parent="menu_root"/>
-    <menuitem name="All Employees" id="menu_1_list" parent="menu_1"
+    <menuitem name="Configurations" id="menu_0" parent="menu_root"/>
+    <menuitem name="Doctor Data" id="menu_1_list" parent="menu_0"
               action="employee_list_action"/>
 
 </odoo>

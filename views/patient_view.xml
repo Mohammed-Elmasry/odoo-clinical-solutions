@@ -8,9 +8,7 @@
             <field name="model">odoo.clinic.patient</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                        <button name="_compute_visit_count" string="visit count" class="oe_highlight" type="action"/>
-                    </header>
+
                     <sheet>
                         <div class="button_box">
                             <button class="oe_state_button" type="action" string="Visit List"
@@ -27,7 +25,7 @@
                         <group  string="Personal info" col="4">
                             <field name="image"/>
 
-                            <!--              <field name="id"/>-->
+                            <field name="id"/>
                             <field name="name"/>
                             <!--              <field name="set_id"/>-->
                             <field name="phone"/>
@@ -204,7 +202,6 @@
                 </search>
             </field>
         </record>
-
         <record model="ir.actions.act_window" id="action_visit_view_list_in_patient">
             <field name="name">Visit List</field>
             <field name="res_model">visit.model</field>
@@ -213,27 +210,38 @@
             <field name="context">{'search_default_patient_name_computed':active_id}</field>
             <field name="view_id" ref="view_visit_list"/>
         </record>
+
+
+
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="patient_action_window">
-            <field name="name">Patient</field>
+            <field name="name">Patients</field>
             <field name="res_model">odoo.clinic.patient</field>
             <field name="view_mode">tree,form,graph,pivot</field>
         </record>
 
 
-
+            <record id="patient_login_doctor" model="ir.rule">
+            <field name="name">only patient for login doctor</field>
+            <field name="model_id" ref="model_odoo_clinic_patient"/>
+            <field name="groups" eval="[(4, ref('clinic_doctor'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1" />
+            <field name="domain_force">[('visit.doctor.user_id','=',user.id)]</field>
+        </record>
         <!--    &lt;!&ndash; Top menu item &ndash;&gt;-->
 
         <!--    <menuitem name="clinic" id="lab1_menu_root"/>-->
 
         <!-- menu categories -->
 
-        <menuitem name="Patients" id="menu_4" parent="menu_root" />
-
+        <menuitem name="  Operations" id="menu_1" parent="menu_root" />
         <!-- actions -->
 
-        <menuitem name="List patient" id="menu_4_list" parent="menu_4"
+        <menuitem name="Patients" id="menu_3_list" parent="menu_1"
                   action="patient_action_window"/>
         <!--    <menuitem name="Server to list" id="lab1" parent="lab1.menu_2"-->
         <!--              action="special_action_server"/>-->
