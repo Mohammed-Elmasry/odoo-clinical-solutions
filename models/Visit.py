@@ -3,6 +3,7 @@ import datetime
 import requests
 import json
 
+
 class Visit(models.Model):
     _name = 'visit.model'
     _description = "visits that will be related to patients in the Clinic"
