@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import http
 import json, datetime
-
+from random import randrange
 
 class ClinicalManagementSystem(http.Controller):
     @http.route('/clinical_management_system/patient', type="http", auth="none", methods=['get'], cors="*")
@@ -207,31 +207,31 @@ class ClinicalManagementSystem(http.Controller):
         #         'object': obj
         #     })
 
-        @http.route('/clinical_management_system/doctor', type="http", auth="none", methods=['get'], cors="*")
-        def get_doctor(self, doctor_id):
-            record = http.request.env['doctor.info.model'].sudo().browse(int(doctor_id))
-            return (record.gender)
+    @http.route('/clinical_management_system/doctor', type="http", auth="none", methods=['get'], cors="*")
+    def get_doctor(self, doctor_id):
+        record = http.request.env['doctor.info.model'].sudo().browse(int(doctor_id))
+        return (record.gender)
 
-        @http.route('/clinical_management_system/doctor/<model("doctor.info.model"):doctor>/', type="http", auth="none",
-                    cors="*")
-        def get_doctor_path(self, doctor):
-            return self.get_doctor(doctor.id)
+    @http.route('/clinical_management_system/doctor/<model("doctor.info.model"):doctor>/', type="http", auth="none",
+                cors="*")
+    def get_doctor_path(self, doctor):
+        return self.get_doctor(doctor.id)
 
-        @http.route('/clinical_management_system/doctors/', type="http", auth="public", methods=['get'], cors="*")
-        def get_doctors(self):
-            """
-
-            :return: returns all employees that have the role of 'doctor'
-            """
-            records = http.request.env["doctor.info.model"].sudo().search(args=[('role', '=', 'doctor')])
-            doctor = {}
-            result = []
-            for i in range(len(records)):
-                result.append(
-                    {"id": records[i]["id"], "name": records[i]["name"], "license number": records[i]["license_id"],
-                     "gender": records[i]["gender"], "title": records[i]["job_title"], "rank": records[i]["certificate"],"rate":3,
-                     "src":""})
-            return json.dumps(result)
+    @http.route('/clinical_management_system/doctors/', type="http", auth="public", methods=['get'], cors="*")
+    def get_doctors(self):
+        """
+        :return: returns all employees that have the role of 'doctor'
+        """
+        records = http.request.env["doctor.info.model"].sudo().search(args=[('role', '=', 'doctor')])
+        doctor = {}
+        result = []
+        for i in range(len(records)):
+            rate = randrange(1,6,1)
+            result.append(
+                {"id": records[i]["id"], "name": records[i]["name"], "license number": records[i]["license_id"],
+                    "gender": records[i]["gender"], "title": records[i]["job_title"], "rank": records[i]["certificate"],"rate":rate,
+                    "src":""})
+        return json.dumps(result)
 
     @http.route('/clinical_management_system/officers/', type="http", auth="public", methods=['get'], cors="*")
     def get_officers(self):
