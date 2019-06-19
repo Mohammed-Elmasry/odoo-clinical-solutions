@@ -6,6 +6,7 @@ class Patient(models.Model):
     _inherits = {'res.partner': 'partner_id'}
 
     partner_id = fields.Many2one('res.partner')
+    visit_count = fields.Integer(related="visit.visit_count", string="Visit Count")
     mrn = fields.Char()
     blood_group = fields.Char()
     height = fields.Float()
