@@ -106,7 +106,7 @@
 
 
         <record model="ir.actions.act_window" id="action_all_services_tree">
-            <field name="name">clinical_management_system window</field>
+            <field name="name">Services</field>
             <field name="res_model">product.template</field>
             <field name="view_mode">tree,form,graph,pivot,search</field>
         </record>
@@ -126,9 +126,11 @@
             <field name="model">product.template</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="description"/>
-                    <!--                  <field name="fees"/>-->
-                    <!--                  <field name="value2"/>-->
+                    <field name="name"/>
+                    <field name="list_price"/>
+                    <field name="is_medicine"/>
+                    <field name="item_status"/>
+                    <field name="patient_chargeable_indicator"/>
                 </tree>
             </field>
         </record>
