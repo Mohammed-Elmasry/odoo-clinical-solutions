@@ -20,7 +20,7 @@ class DoctorInfo(models.Model):
         ('consultant', 'Consultant Doctor'),
         ('intern', 'Intern Doctor'),
         ('fellowship', 'Fellowship Doctor'),
-        ('resident', 'Resident Doctor')])
+        ('resident', 'Resident Doctor')], help="the speciality related to the doctor")
     license_id = fields.Char(size=14, string="License ID", help="Licence ID Related to Employee in Our Clinic")
     gender = fields.Selection([
         ('male', 'Male'),

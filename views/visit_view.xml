@@ -133,6 +133,7 @@
                 <field name="admitting_doctor" />
                 <field name="referring_doctor"/>
                 <field name="hospital_service"/>
+                <field name="patient"/>
                    <group expand="0" string="Group By">
                        <filter name="attending_doctor" string="Attending Doctor" domain="[]"
                                context="{'group_by':'attending_doctor'}"
