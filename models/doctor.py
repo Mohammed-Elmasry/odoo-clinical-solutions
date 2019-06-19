@@ -46,14 +46,6 @@ class DoctorInfo(models.Model):
         self.user_id=self.emp_id.user_id
         print(self.emp_id.user_id)
 
-    #
-    # @api.model
-    # def create(self, vals):
-        # vals['doctor_id'] = self.env['ir.sequence'].next_by_code('clinic.employee')
-        # vals = {"id":self.emp_id.user_id}
-        # return super(res.users, self).create(vals)
-            # print(emp_id)
-
     @api.model
     def create(self, vals):
         # model_res_users = self.env['res_users'].create({'id':self.user_id})
