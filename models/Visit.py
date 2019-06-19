@@ -2,6 +2,8 @@ from odoo import models, fields, api
 import datetime
 import requests
 import json
+
+
 class Visit(models.Model):
     _name = 'visit.model'
     _description = "visits that will be related to patients in the Clinic"
@@ -13,8 +15,13 @@ class Visit(models.Model):
     patient_name = fields.Char(related="patient.name", string="Patient Name", help="Name of Patient")
     patient_name_computed = fields.Char(string="Patient Name", compute="get_patient_name", store=True)
     visit_id = fields.Char(string="Visit ID", help="Auto Increment")
+    product_name = fields.Char(related="services_and_products.name")
+    product_name_computed = fields.Char(compute="get_product_and_services_name"
+                                        , store=True, string="Service and Product Name",
+                                        help="Product or Service  Name")
     doctor_name = fields.Char(related="doctor.name", string="Doctor Name", help="Doctor Name")
-    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic ")
+    visit_count = fields.Integer(string="Visit Count", help="To Display The Count Visits in The Clinic "
+                                 , compute="count_visits")
     start_time = fields.Datetime()
     visit_type = fields.Selection([('type1', 'Medical consultation'), ('type2', 'Check Up')], string="Visit Type"
                                   , help="To Detect The Type Of Visit")
@@ -58,7 +65,7 @@ class Visit(models.Model):
     vip_indicator = fields.Char(string="VIP-Type")
     admitting_doctor = fields.Many2one('doctor.info.model', string="Admitting Doctor"
                                        , help="This field contains the admitting physician information."
-                                       , domain="[('role', '=', 'doctor')]")
+                                       , domain="[('role', '=', 'doctor')]", store=True)
     patient_type = fields.Selection([('value', 'No suggested values defined')])
     visit_number = fields.Integer(string="Visit Number",
                                   help="This field contains the unique number assigned to each patient visit.")
@@ -99,8 +106,8 @@ class Visit(models.Model):
     bad_debt_recovery_amount = fields.Integer(string="Amount of Bad Debt Recovery")
     delete_account_indicator = fields.Selection([('value', 'No suggested values defined')],
                                                 string="Delete Account Indicator"
-                                                ,help="This field indicates that the account was deleted from "
-                                                      "the file")
+                                                , help="This field indicates that the account was deleted from "
+                                                       "the file")
     delete_account_indicator_reasons = fields.Text(string="Reasons Of Delete Account"
                                                    , help="gives the reason for delete the account ")
     delete_account_date = fields.Date(string="Delete Account Date")
@@ -144,8 +151,9 @@ class Visit(models.Model):
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
     patient = fields.Many2one('odoo.clinic.patient')
-    visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'In Place'),
-                                   ('Inprogress', 'In Progress'),('Done', 'Done'),('Canceled', 'Canceled')])
+    visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'Inplace'),
+                                   ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')],
+                                  default='Draft')
     sheet=fields.One2many('odoo.clinic.medical','visit')
 
     @api.model
@@ -193,6 +201,19 @@ class Visit(models.Model):
         for visit in self.filtered('total_charges'):
             visit.total_adjustments = visit.total_charges * (-0.1)
 
+    @api.depends('product_name')
+    def get_product_and_services_name(self):
+
+        for visit in self.filtered('product_name'):
+            visit.product_name_computed = visit.product_name
+
+    def count_visits(self):
+
+        for visit in self:
+            visits = self.env['visit.model'].search(args=[])
+            count = len(visits)
+            visit.count = count
+            visit.visit_count = visit.count
 
     @api.depends('start_time')
     def calculate_end_time(self):
@@ -345,8 +366,9 @@ class Visit(models.Model):
             url = 'https://fcm.googleapis.com/fcm/send'
             payload = {
                 "notification": {
-                    "title": "Hello " + self.patient.name,
-                     "body": "welcome to our clinic your visit is confirmed in " + str(self.start_time)
+                    "title": "Hello " + self.patient.name +str(datetime.datetime.now()),
+                     "body": "welcome to our clinic your visit is confirmed in " + str(self.start_time),
+                    "date":str(datetime.datetime.now())
                 },
                 "to": "evdWKI15D-0:APA91bEL-aQglC_TLmmuW-f5DZwx-Kvc_vNVPCdYtRYxiegGi-y6DovlzMkd-gsf_3hmpQ_U34aWbMmoIfHFOFz4pPTLVYUiVGYmEVSUDkJRo1BlTxsr0AGPIEijFFp0IjWEZfKf1EQn"
             }

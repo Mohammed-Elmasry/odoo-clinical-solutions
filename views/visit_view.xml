@@ -141,17 +141,52 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <search>
+                <field name="patient_name_computed"/>
+                <field name="product_name_computed"/>
                 <field name="patient_name"/>
                 <field name="patient_class"/>
                 <field name="patient_type"/>
                 <field name="attending_doctor"/>
+                <field name="admitting_doctor" />
+                <field name="referring_doctor"/>
+                <field name="hospital_service"/>
                    <group expand="0" string="Group By">
-                    <filter name="name" string="Set ID" domain="[]" context="{'group_by':'name'}"
-                        help="Group  by Set ID "/>
-<!--                    <filter name="attending_doctor" string="Attending Doctor" domain="[]"-->
-<!--                            context="{'group_by':'attending_doctor'}"-->
-<!--                        help="Group by Patient Name"/>-->
-                </group>
+                       <filter name="attending_doctor" string="Attending Doctor" domain="[]"
+                               context="{'group_by':'attending_doctor'}"
+                               help="Group by Patient Name"/>
+                       <filter name="product_name_computed" string="Product or Service Name" domain="[]"
+                               context="{'group_by':'product_name_computed'}"
+                               help="Group by Patient and Services Name"/>
+                       <filter name="referring_doctor " string="Referring Doctor" domain="[]"
+                               context="{'group_by':'referring_doctor'}"
+                               help="Group by Referring Doctor Name"/>
+                       <filter name="hospital_service" string="Hospital Service" domain="[]"
+                               context="{'group_by':'hospital_service'}"
+                               help="Group by Hospital Service"/>
+                       <filter name="admitting_doctor" string="Admitting Doctor" domain="[]"
+                               context="{'group_by':'admitting_doctor'}"
+                               help="Group by Admitting Doctor"/>
+                       <filter name="visit_status" string="Draft Status For Visit" domain="[('visit_status', '=', 'Draft')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by Draft Visit Status" />
+                       <filter name="visit_status" string="Confirmed  Status For Visit" domain="[('visit_status', '=', 'Comfirmed')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by Confirmed Visit Status" />
+                       <filter name="visit_status" string="In place  Status For Visit" domain="[('visit_status', '=', 'Inplace')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by In place Visit Status" />
+                       <filter name="visit_status" string="In progress Status For Visit" domain="[('visit_status', '=', 'Inprogress')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by In progress Visit Status" />
+                       <filter name="visit_status" string="Done Status For Visit" domain="[('visit_status', '=', 'Done')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by Done Visit Status" />
+                       <filter name="visit_status" string="Canceled Status For Visit" domain="[('visit_status', '=', 'Canceled')]"
+                               context="{'group_by':'visit_status'}"
+                               help="Group by Canceled Visit Status" />
+
+
+                   </group>
             </search>
         </field>
     </record>
@@ -163,12 +198,15 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="patient_name"/>
+                <field name="visit_id"/>
+                <field name="patient_name_computed"/>
                 <field name="patient_class"/>
-                <field name="patient_type"/>
                 <field name="attending_doctor"/>
+                <field name="admitting_doctor"/>
+                <field name="product_name_computed"/>
                 <field name="start_time"/>
                 <field name="end_time"/>
+                <field name="visit_status"/>
             </tree>
         </field>
     </record>
@@ -178,46 +216,35 @@
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <pivot string="Visit Data and Information">
-                <field name="name" type="row"/>
-                <field name="patient_name_computed" type="measure"/>
+                <field name="patient_name_computed" type="row"/>
+                <field name="attending_doctor" type="row"/>
+                <field name="product_name_computed" type="row"/>
+                <field name="product_name_computed" type="measure"/>
                 <field name="attending_doctor" type="measure"/>
-                <field name="start_time" type="measure"/>
+                <field name="patient_class" type="measure"/>
             </pivot>
         </field>
     </record>
-    <!--    create the graph view for visit-->
-<!--    <record model="ir.ui.view" id="view_visit_graph">-->
-<!--        <field name="name">Visits</field>-->
-<!--        <field name="model">visit.model</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <graph string="Visits Data">-->
-<!--                <field name="name"/>-->
-<!--                <field name="visit_id" readonly="1"/>-->
-<!--                <field name="patient_name" type=""/>-->
-<!--            </graph>-->
-<!--        </field>-->
-<!--    </record>-->
+    <!--    create graph view for visit-->
     <record model="ir.ui.view" id="view_visit_graph">
         <field name="name">Visits</field>
         <field name="model">visit.model</field>
         <field name="arch" type="xml">
             <graph string="Visits Data">
-                <field name="name"/>
-                <field name="doctor"/>
-                <field name="visit_type"/>
+                <field name="patient_name_computed" type="row"/>
+                <field name="attending_doctor" type="row"/>
+                <field name="patient_class" type="row"/>
+                <field name="product_name_computed" type="row"/>
             </graph>
         </field>
     </record>
-    <!--
-        Visit Statement Sequences
-        -->
+
+    <!--Visit Statement Sequences-->
     <record id="visit_seq" model="ir.sequence">
         <field name="name">visit</field>
         <field name="code">clinic.visit</field>
         <field name="prefix">visit</field>
-        <field name="number_increment">1</field>
-        <field name="number_next">1</field>
-        <field name="padding">3</field>
+        <field name="padding">4</field>
     </record>
 
     <!-- actions opening views on models -->

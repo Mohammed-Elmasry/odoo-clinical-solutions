@@ -10,13 +10,17 @@ class DoctorInfo(models.Model):
     user_id = fields.Many2one('res.users', related='emp_id.user_id')
     # user_id = fields.Many2one('res.users',compute='calculate_user',store=True)
     user=fields.Integer()
-    # , related = 'emp_id.user_id'
-    # employee_id = fields.Integer(help="ID Used In Buttons ")
     visit = fields.One2many('visit.model', 'doctor')
+    visit_count = fields.Integer(related="visit.visit_count", string="Visit Count")
     role = fields.Selection([("doctor", "Doctor"), ("officer", "Officer"), ("nurse", "Nurse")], required=True
                             , help="Employee's Role in Our Clinic")
     services_and_products = fields.Many2one('product.template')
-    speciality = fields.Char(size=50)
+    speciality = fields.Selection([
+        ('registrar', 'Registrar Doctor'),
+        ('consultant', 'Consultant Doctor'),
+        ('intern', 'Intern Doctor'),
+        ('fellowship', 'Fellowship Doctor'),
+        ('resident', 'Resident Doctor')])
     license_id = fields.Char(size=14, string="License ID", help="Licence ID Related to Employee in Our Clinic")
     gender = fields.Selection([
         ('male', 'Male'),
@@ -26,8 +30,18 @@ class DoctorInfo(models.Model):
     birthday = fields.Date('Date of Birth', groups="hr.group_hr_user", required=True)
     job_title = fields.Char("Job Title", required=True)
     work_phone = fields.Char('Work Phone', required=True)
-    work_email = fields.Char('Work Email', required=True)
-    certificate = fields.Selection([
+    work_email = fields.Char('Work Email', required=True)        # print(self.emp_id.user_id)
+        # vals['user_id']= self.env['res.users'].search(args=[('id', '=', self.emp_id.user_id.id)])
+        # vals['user_id']="13"
+
+        # print(vals['user_id'])
+
+    certificate = fields.Selection([        # print(self.emp_id.user_id)
+        # vals['user_id']= self.env['res.users'].search(args=[('id', '=', self.emp_id.user_id.id)])
+        # vals['user_id']="13"
+
+        # print(vals['user_id'])
+
         ('bachelor', 'Bachelor'),
         ('master', 'Master'),
         ('other', 'Other'),

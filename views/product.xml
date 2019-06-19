@@ -16,8 +16,9 @@
             <field name="model">product.template</field>
             <field name="arch" type="xml">
                 <graph>
-                    <field name="description" />
                     <field name="is_medicine"/>
+                    <field name="name"/>
+
                 </graph>
             </field>
         </record>
