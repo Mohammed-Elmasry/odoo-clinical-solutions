@@ -179,21 +179,6 @@ class ClinicalManagementSystem(http.Controller):
         print(record.visit_status)
         return json.dumps("true")
 
-
-
-
-
-
-        @http.route('/clinical_management_system/clinical_management_system/', auth='public')
-        def index(self, **kw):
-            request = http.request
-            vals = kw.keys()
-            # print("Your values are: ",vals)
-            # print("Your Email is: ", kw["Email"])
-            # for i in http.request.env["product.template"]:
-            #     print(i)
-            return json.dumps({'id': 'yy'})
-
         @http.route('/clinical_management_system/clinical_management_system/objects/', auth='public')
         def list(self, **kw):
             return http.request.render('clinical_management_system.listing', {
