@@ -127,13 +127,14 @@
             <field name="model">product.template</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="description"/>
-                    <!--                  <field name="fees"/>-->
-                    <!--                  <field name="value2"/>-->
+                    <field name="name"/>
+                    <field name="list_price"/>
+                    <field name="is_medicine"/>
+                    <field name="item_status"/>
+                    <field name="patient_chargeable_indicator"/>
                 </tree>
             </field>
         </record>
-
 
         <!--     Top menu item-->
         <!--    &lt;!&ndash;-->

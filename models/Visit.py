@@ -27,7 +27,7 @@ class Visit(models.Model):
                                   , help="To Detect The Type Of Visit")
     end_time = fields.Datetime(compute='calculate_end_time')
     patient_class = fields.Selection([('class1', 'Walking Patient'), ('class2', 'Insurance Patient')]
-                                     , string="Patient class", required='true')
+                                     , string="Patient class")
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
     assigned_patient_location = fields.Text(string="Assigned Location")
@@ -385,7 +385,7 @@ class Visit(models.Model):
     def button_inplace(self):
         for rec in self:
             rec.write({'visit_status': 'Inplace'})
-        medical=self.env['odoo.clinic.medical'].create({"visit":self.name,"patient":self.patient.id})
+        medical=self.env['odoo.clinic.medical'].create({"visit":int(self.name),"patient":self.patient.id})
         print("kk",self.name)
 
     @api.multi
