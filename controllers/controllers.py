@@ -174,6 +174,7 @@ class ClinicalManagementSystem(http.Controller):
         record = http.request.env['visit.model'].sudo().search(args=[('visit_id', '=', str(visit["id"]))])
 
         # record = http.request.env['odoo.clinic.patient'].sudo().search(args=[('id', '=', patient["id"])])
+        # record = http.request.env['odoo.clinic.patient'].sudo().search(args=[('id', '=', patient["id"])])
         # print(record.name)
         record.write({"visit_status": "Canceled"})
         print(record.visit_status)
@@ -251,7 +252,7 @@ class ClinicalManagementSystem(http.Controller):
         http.request.env['visit.model'].sudo().create({
              'doctor': params["doc_id"],
              "start_time": start_time,
-             'patient_class': 'OBGYN',
+             'patient_class': 'class1',
              "end_time": end_time,
              "patient":params["pat_id"],
              "visit_status":"Draft"
