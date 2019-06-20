@@ -95,7 +95,32 @@
         </tree>
       </field>
     </record>
+        <!-- explicit search view definition -->
 
+        <record model="ir.ui.view" id="medical_search">
+            <field name="name">odoo_clinic_management search</field>
+            <field name="model">odoo.clinic.medical</field>
+            <field name="arch" type="xml">
+                <search string="Medical Information">
+                    <field name="time"/>
+                    <field name="patient"/>
+                    <field name="doctor"/>
+                    <field name="visit"/>
+
+                    <group expand="0" string="Group By">
+                    <filter name="patient" string="Patient Name" domain="[]" context="{'group_by':'patient'}"
+                        help="Group  by Patient name by name "/>
+                    <filter name="doctor" string="Medical Doctor" domain="[]" context="{'group_by':'doctor'}"
+                        help="Group  by Patient doctor "/>
+                        <filter name="visit" string="Medical Visit" domain="[]" context="{'group_by':'visit'}"
+                        help="Group  by Patient visit "/>
+                        <filter name="time" string="Medical Sheet Time" domain="[]" context="{'group_by':'time'}"
+                        help="Group  by Patient time "/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
     <!-- explicit graph view definition -->
 
 <!--    <record model="ir.ui.view" id="medical_graph">-->

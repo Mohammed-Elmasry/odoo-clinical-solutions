@@ -161,7 +161,18 @@
                 </graph>
             </field>
         </record>
+    <!--    create graph view for visit-->
 
+    <record model="ir.ui.view" id="view_patient_graph">
+        <field name="name">Visits</field>
+        <field name="model">odoo.clinic.patient</field>
+        <field name="arch" type="xml">
+            <graph string="patient Data">
+                <field name="name" type="row"/>
+
+            </graph>
+        </field>
+    </record>
 
         <!-- explicit pivot view definition -->
 
@@ -176,6 +187,18 @@
                 </pivot>
             </field>
         </record>
+    <record model="ir.ui.view" id="view_visit_graph">
+        <field name="name">Visits</field>
+        <field name="model">visit.model</field>
+        <field name="arch" type="xml">
+            <graph string="Visits Data">
+                <field name="patient_name_computed" type="row"/>
+                <field name="attending_doctor" type="row"/>
+                <field name="patient_class" type="row"/>
+                <field name="product_name_computed" type="row"/>
+            </graph>
+        </field>
+    </record>
 
         <!-- explicit search view definition -->
 
@@ -192,11 +215,14 @@
                     <field name="gender"/>
 
                     <group expand="0" string="Group By">
-                        <filter name="name" string="patient" domain="[]" context="{'group_by':'id'}"
-                                help="Group patient name Wise"/>
-                        <filter name="company_name" string="company" domain="[]" context="{'group_by':'company_name'}"
-                                help="Group  company " />
-                        <filter name="create_date" context="{'group_by': 'create_date:month'}" string="Month"/>
+                    <filter name="name" string="Patient Name" domain="[]" context="{'group_by':'name'}"
+                        help="Group  by Patient name by name "/>
+                    <filter name="gender" string="Patient gender" domain="[]" context="{'group_by':'gender'}"
+                        help="Group  by Patient gender "/>
+                        <filter name="visit" string="Patient visit" domain="[]" context="{'group_by':'visit'}"
+                        help="Group  by Patient visit "/>
+                        <filter name="diseases" string="Patient diseases" domain="[]" context="{'group_by':'diseases'}"
+                        help="Group  by Patient diseases "/>
                     </group>
 
                 </search>
