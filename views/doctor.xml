@@ -125,6 +125,18 @@
             </search>
         </field>
     </record>
+               <record id="doctor_login_doctor" model="ir.rule">
+            <field name="name">only patient for login doctor</field>
+            <field name="model_id" ref="model_doctor_info_model"/>
+            <field name="groups" eval="[(4, ref('clinic_doctor'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0" />
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+        </record>
+
+
     <!--           action for the buttons to display the list of visits-->
     <record model="ir.actions.act_window" id="action_visit_view_list">
         <field name="name">Visit List</field>
