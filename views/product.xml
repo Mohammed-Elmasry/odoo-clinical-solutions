@@ -154,9 +154,9 @@
 
         <menuitem name="Products" id="menu_1_list" parent="menu_root"
                   action="product_action_window"/>
-<!--        <menuitem name="Services" id="menu_2_list" parent="menu_0"-->
-<!--                  action="action_all_services_tree"/>-->
-
+        <menuitem name="Services" id="menu_2_list" parent="menu_0"
+                  action="action_all_services_tree"/>
+<!---->
 
 
         <!--    <record model="product.template" id="1">-->
