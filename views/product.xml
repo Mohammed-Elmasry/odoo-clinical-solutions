@@ -156,7 +156,7 @@
                   action="product_action_window"/>
         <menuitem name="Services" id="menu_2_list" parent="menu_0"
                   action="action_all_services_tree"/>
-
+<!---->
 
 
         <!--    <record model="product.template" id="1">-->

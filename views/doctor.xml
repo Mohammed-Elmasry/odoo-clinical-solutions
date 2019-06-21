@@ -6,9 +6,9 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <div class="button_box">
-                        <button class="oe_state_button" type="action" string="Visit List" name="%(action_visit_view_list)d" icon="fa-list">
-                            <field name="visit_count" readonly="1"/>
+                     <div class="button_box">
+                        <button class="oe_state_button" type="action" string="Visit List   " name="%(action_visit_view_list)d" icon="fa-list">
+                            <field name="visit_count" readonly="1" attrs="{'invisible': [('role', '!=', 'doctor')]}"/>
                         </button>
                     </div>
                     <group string="Personal Information" col="6">
@@ -152,6 +152,7 @@
     <record model="ir.actions.act_window" id="employee_list_action">
         <field name="name">Doctors </field>
         <field name="res_model">doctor.info.model</field>
+         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 

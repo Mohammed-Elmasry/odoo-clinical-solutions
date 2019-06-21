@@ -20,7 +20,7 @@ class DoctorInfo(models.Model):
         ('consultant', 'Consultant Doctor'),
         ('intern', 'Intern Doctor'),
         ('fellowship', 'Fellowship Doctor'),
-        ('resident', 'Resident Doctor')])
+        ('resident', 'Resident Doctor')], help="the speciality related to the doctor")
     license_id = fields.Char(size=14, string="License ID", help="Licence ID Related to Employee in Our Clinic")
     gender = fields.Selection([
         ('male', 'Male'),
@@ -55,14 +55,6 @@ class DoctorInfo(models.Model):
         # self.env['user_id']=self.emp_id.user_id
         self.user_id=self.emp_id.user_id
         print(self.emp_id.user_id)
-
-    #
-    # @api.model
-    # def create(self, vals):
-        # vals['doctor_id'] = self.env['ir.sequence'].next_by_code('clinic.employee')
-        # vals = {"id":self.emp_id.user_id}
-        # return super(res.users, self).create(vals)
-            # print(emp_id)
 
     @api.model
     def create(self, vals):

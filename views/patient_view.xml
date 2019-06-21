@@ -8,11 +8,11 @@
             <field name="model">odoo.clinic.patient</field>
             <field name="arch" type="xml">
                 <form>
-
                     <sheet>
                         <div class="button_box">
                             <button class="oe_state_button" type="action" string="Visit List"
                                     name="%(action_visit_view_list_in_patient)d" icon="fa-list">
+                                <field name="visit_count" readonly="1" />
                             </button>
                         </div>
 
@@ -25,7 +25,7 @@
                         <group  string="Personal info" col="4">
                             <field name="image"/>
 
-                            <field name="id"/>
+                            <!--              <field name="id"/>-->
                             <field name="name"/>
                             <!--              <field name="set_id"/>-->
                             <field name="phone"/>
@@ -228,12 +228,13 @@
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="action_visit_view_list_in_patient">
             <field name="name">Visit List</field>
             <field name="res_model">visit.model</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree</field>
-            <field name="context">{'search_default_patient_name_computed':active_id}</field>
+            <field name="context">{'search_default_patient_name_computed':patient_name}</field>
             <field name="view_id" ref="view_visit_list"/>
         </record>
 
@@ -242,7 +243,7 @@
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="patient_action_window">
-            <field name="name">Patients</field>
+            <field name="name">Patient</field>
             <field name="res_model">odoo.clinic.patient</field>
             <field name="view_mode">tree,form,graph,pivot</field>
         </record>

@@ -150,6 +150,7 @@
                 <field name="admitting_doctor" />
                 <field name="referring_doctor"/>
                 <field name="hospital_service"/>
+                <field name="patient"/>
                    <group expand="0" string="Group By">
                        <filter name="attending_doctor" string="Attending Doctor" domain="[]"
                                context="{'group_by':'attending_doctor'}"
@@ -219,9 +220,11 @@
                 <field name="patient_name_computed" type="row"/>
                 <field name="attending_doctor" type="row"/>
                 <field name="product_name_computed" type="row"/>
+                <field name="start_time" type="row"/>
                 <field name="product_name_computed" type="measure"/>
                 <field name="attending_doctor" type="measure"/>
                 <field name="patient_class" type="measure"/>
+                <field name="total_charges" type="measure"/>
             </pivot>
         </field>
     </record>
@@ -283,7 +286,7 @@
 
 
         <!-- actions -->
-        <menuitem name="  Visits" id="menu_5_list" parent="menu_1"
+        <menuitem name="  Visits" id="menu_5_list" parent="menu_0"
                   action="visit_action_window"/>
 
 

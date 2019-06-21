@@ -27,7 +27,7 @@ class Visit(models.Model):
                                   , help="To Detect The Type Of Visit")
     end_time = fields.Datetime(compute='calculate_end_time')
     patient_class = fields.Selection([('class1', 'Walking Patient'), ('class2', 'Insurance Patient')]
-                                     , string="Patient class")
+                                     , string="Patient class", required='true', default="class1")
     name = fields.Integer(string="Set ID")
     # change the name of this field to can display it as default when create visit
     assigned_patient_location = fields.Text(string="Assigned Location")
@@ -150,11 +150,12 @@ class Visit(models.Model):
                                         ('V', 'Visit level')], string="Visit Indicator", default='A')
     service_episode_description = fields.Text(string="Service Description")
     service_episode_identifier = fields.Integer(string="Service Identifier")
+    count = fields.Integer(help="Count use for computed field visit count")
     patient = fields.Many2one('odoo.clinic.patient')
-    visit_status=fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'),('Inplace', 'Inplace'),
-                                   ('Inprogress', 'Inprogress'),('Done', 'Done'),('Canceled', 'Canceled')],
-                                  default='Draft')
-    sheet=fields.One2many('odoo.clinic.medical','visit')
+    visit_status = fields.Selection([('Draft', 'Draft'), ('Comfirmed', 'Comfirmed'), ('Inplace', 'Inplace'),
+                                     ('Inprogress', 'Inprogress'), ('Done', 'Done'), ('Canceled', 'Canceled')]
+                                    , default='Draft')
+    sheet = fields.One2many('odoo.clinic.medical', 'visit')
 
     @api.model
     def create(self, vals):
@@ -168,15 +169,18 @@ class Visit(models.Model):
     def calculate_end_time(self):
 
         for visit in self.filtered('start_time'):
-            delta = datetime.timedelta(minutes = 30)
+            delta = datetime.timedelta(minutes=30)
             visit.end_time = visit.start_time + delta
 
+    # Computed method to get the current charges of this visit
     @api.depends('sales_price')
     def get_current_charges(self):
 
         for visit in self.filtered('sales_price'):
             visit.total_charges = visit.sales_price
 
+    # Computed method to Calculate the current patient balance from remove total charges and total adjustments
+    # from total payments
     @api.depends('total_charges', 'total_payments')
     def calculate_current_patient_balance(self):
 
@@ -214,19 +218,6 @@ class Visit(models.Model):
             count = len(visits)
             visit.count = count
             visit.visit_count = visit.count
-
-    @api.depends('start_time')
-    def calculate_end_time(self):
-
-        for visit in self.filtered('start_time'):
-            delta = datetime.timedelta(minutes = 30)
-            visit.end_time = visit.start_time + delta
-
-    @api.depends('sales_price')
-    def get_current_charges(self):
-        for visit in self.filtered('sales_price'):
-
-            visit.total_charges = visit.sales_price
 
     @api.onchange('visit_status')
     def on_change_state(self):
@@ -274,17 +265,6 @@ class Visit(models.Model):
                 print (medical.visit_status)
                 print("kk",self.name)
 
-    @api.depends('total_charges', 'total_payments')
-    def calculate_current_patient_balance(self):
-
-        for visit in self.filtered('total_charges'):
-            visit.current_patient_balance = visit.total_payments - visit.total_charges
-
-    @api.depends('doctor')
-    def assign_doctor_name_to_attending_doctor(self):
-
-        for visit in self.filtered('doctor'):
-            visit.attending_doctor = visit.doctor_name
     @api.multi
     def cancel_visit(self):
         # visit=self.env['visit.model'].write({"visit_status": "Canceled"})
